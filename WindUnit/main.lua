@@ -1,0 +1,23 @@
+require( "class" )
+
+require( "test/windUnit" )
+
+-- require( "test/testMain")
+
+require( "mode/Point" )
+
+require( "mode/glyph/Glyph" )
+require( "mode/glyph/Rectangle" )
+require( "mode/glyph/Polygon" )
+require( "mode/glyph/Character" )
+require( "mode/glyph/Row" )
+
+-- gTestMode = require( "test/TestMode" )
+
+-- gTestMode.main()
+
+-- beginTest()
+
+
+gfRunUnitTest()
+
