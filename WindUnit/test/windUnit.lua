@@ -1,36 +1,43 @@
+-- 单元测试开关
+-- 设置为fals后，测试相关的方法将不会定义，节省内存
 UNIT_TEST = true
-if UNIT_TEST then
 
-	function failure( name, msg, formatStr, ... )
-		local args = { ... }
-		for i = 1, #args do
-			args[ i ] = tostring( args[ i ] )
-		end
+if not UNIT_TEST then return end
 
-		msg = msg or "empty"
-
-		error( string.format( "%s: %s [%s]", tostring( name ), string.format( formatStr, unpack( args ) ), msg ) )
-	end
-
-	function assert_equal(expected, actual, msg)
-		-- stats.assertions = stats.assertions + 1
-		if expected ~= actual then
-			failure( "assert_equal", msg, "expected %s but was %s", expected, actual )
-		end
-		return actual
-	end
-
-end
-
-
+-- 测试组
 TEST_GROUP_DEFAULT = 1
 
-cTestcase = class()
+-- 定义测试用辅助代码
+
+function failure( name, msg, formatStr, ... )
+	local args = { ... }
+	for i = 1, #args do
+		args[ i ] = tostring( args[ i ] )
+	end
+
+	msg = msg or "empty"
+
+	error( string.format( "%s: %s [%s]", tostring( name ), string.format( formatStr, unpack( args ) ), msg ) )
+end
+
+function assert_equal(expected, actual, msg)
+	-- stats.assertions = stats.assertions + 1
+	if expected ~= actual then
+		failure( "assert_equal", msg, "expected %s but was %s", expected, actual )
+	end
+	return actual
+end
 
 local function startWith( str, startStr )
 	local p1, p2 = string.find( str, startStr )
 	return p1 == 1
 end
+
+
+
+
+-- 测试用例class
+cTestcase = class()
 
 function cTestcase:init( groupId )
 	self.groupId = groupId or TEST_GROUP_DEFAULT
@@ -38,16 +45,20 @@ function cTestcase:init( groupId )
 	gfAddTestcase( self )
 end
 
+-- 初始化，在每个测试前调用
 function cTestcase:setup()
 end
 
+-- 释放，在每个测试后调用
 function cTestcase:teardown()
 end
 
+-- 返回当前用例的测试数量
 function cTestcase:getTestCount()
 	return #self:_getTestFuncs()
 end
 
+-- 返回当前用例的所有测试方法：以test_开头的所有方法
 function cTestcase:_getTestFuncs()
 	local testFuncs = {}
 	for k, v in pairs( self ) do
@@ -58,6 +69,8 @@ function cTestcase:_getTestFuncs()
 	return testFuncs
 end
 
+-- 运行测试
+-- 返回成功的数量
 function cTestcase:run()
 	local successCount = 0
 
@@ -84,6 +97,15 @@ function cTestcase:run()
 
 	return successCount
 end
+
+
+
+
+
+
+
+
+
 
 local testcases = {}
 
