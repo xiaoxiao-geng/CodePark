@@ -1,6 +1,6 @@
 require( "class" )
 
-require( "test/windUnit" )
+require( "core/windUnit" )
 
 -- require( "test/testMain")
 
