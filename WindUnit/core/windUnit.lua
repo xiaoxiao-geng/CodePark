@@ -8,6 +8,14 @@ UNIT_TEST = true
 if not UNIT_TEST then return end
 
 
+-- 是否显示错误堆栈信息
+UNIT_SHOW_TRACEBACK = false
+
+-- 是否显示PASS的任务
+UNIT_SHOW_PASS_TEST = true
+
+-- 出错就停止
+UNIT_BREAK_WHEN_FAILD = true
 
 
 
@@ -40,15 +48,12 @@ TEST_GROUP_DEFAULT = 1
 
 local testcases = {}
 
+local _testcase_id = 0
 function gfAddTestcase( case )
+	_testcase_id = _testcase_id + 1
+
 	table.insert( testcases, case )
-end
-
-
-function assertTrue( bool )
-	if bool ~= true then
-		error( "it's not true: " .. tostring( bool ) .. "-" .. type( bool ) )
-	end
+	case.id = _testcase_id
 end
 
 if UNIT_TEST then
@@ -58,20 +63,20 @@ if UNIT_TEST then
 		local a, b = 1, 2
 		assert( a )
 		assert( b )
-		assert( a == b )
+		assert( a ~= b )
 	end
 
 	function case:test_pass()
 	end
 
 	function case:test_true()
-		assertTrue( true )
-		assertTrue( false )
+		assert_true( true )
+		assert_false( false )
 	end
 
 	function case:test_equal()
 		assert_equal( 1, 1 )
-		assert_equal( 1, 2 )
+		assert_not_equal( 1, 2 )
 	end
 
 	function case:test_mock()
@@ -88,7 +93,6 @@ if UNIT_TEST then
 		assert_equal( 100, m:getTime() )
 		assert_equal( 200, m:getTime() )
 		assert_equal( "name", m:getName() )
-		assert_equal( "jack", m:getName() )
 		assert_equal( "jack", m:getName() )
 	end
 end
@@ -108,7 +112,14 @@ function gfRunUnitTest()
 	print(">>>> Run Test <<<<")
 	local successCount = 0
 	for k, case in pairs( cases ) do
-		successCount = successCount + case:run()
+		local count = case:getTestCount()
+		local success = case:run()
+
+		if UNIT_BREAK_WHEN_FAILD then
+			if success < count then break end
+		end
+
+		successCount = successCount + success
 	end
 
 	print( string.format( ">>>> Result: %s/%s <<<<", successCount, funcCount ) )

@@ -12,8 +12,6 @@ require( "mode/glyph/Polygon" )
 require( "mode/glyph/Character" )
 require( "mode/glyph/Row" )
 
--- gTestMode = require( "test/TestMode" )
-
 -- gTestMode.main()
 
 -- beginTest()

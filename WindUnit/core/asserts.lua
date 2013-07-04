@@ -1,5 +1,57 @@
 -- 各种断言方法 
 
+
+local string_format   	= string.format
+local _tb_hide			= {}  
+
+function traceback_hide(func)
+	_tb_hide[func] = true
+end
+
+function traceback_to_str( tb )
+	return "\t>> traceback:\n\t\t" .. table.concat( tb, "\n\t\t" )
+end
+
+function customTraceback()
+	local tb = {}
+
+	local i = 2
+	while true do
+		local info = debug.getinfo(i, "Snlf")
+		if not info or type(info) ~= "table" then break end
+
+
+		if not _tb_hide[info.func] then
+			local line = {}       -- Ripped from ldblib.c...
+			line[#line+1] = string_format("%s:", info.short_src)
+
+			if info.currentline > 0 then
+				line[#line+1] = string_format("%d:", info.currentline)
+			end
+
+			if info.namewhat ~= "" then
+				line[#line+1] = string_format(" in function '%s'", info.name)
+			else
+				if info.what == "main" then
+					line[#line+1] = " in main chunk"
+				elseif info.what == "C" or info.what == "tail" then
+					line[#line+1] = " ?"
+				else
+					line[#line+1] = string_format(" in function <%s:%d>", info.short_src, info.linedefined)
+				end
+			end
+
+			tb[#tb+1] = table.concat(line)
+		end
+		i = i + 1
+	end
+
+	return tb
+end
+traceback_hide( customTraceback )
+traceback_hide( pcall )
+
+
 -- 错误接口
 -- testName:		测试方法名称
 -- msg:				自定义消息
@@ -11,10 +63,14 @@ function failure( testName, msg, formatStr, ... )
 		args[ i ] = tostring( args[ i ] )
 	end
 
-	msg = msg or "empty"
+	local err = {}
+	err.tip = string.format( formatStr, unpack( args ) )
+	err.msg = msg or "empty"
+	err.traceback = customTraceback()
 
-	error( string.format( "%s: %s [%s]", tostring( testName ), string.format( formatStr, unpack( args ) ), msg ) )
+	error( err )
 end
+traceback_hide( failure )
 
 local function format_arg( arg )
 	local argtype = type( arg )
@@ -26,10 +82,20 @@ local function format_arg( arg )
 		return "["..tostring( arg ).."]"
 	end
 end
+traceback_hide( format_arg )
+
+
+
+
+
+
+
+
 
 function fail( msg )
 	failure( "fail", msg, "failure" )
 end
+traceback_hide( fail )
 
 function assert( assertion, msg )
 	if not assertion then
@@ -37,6 +103,7 @@ function assert( assertion, msg )
 	end
 	return assertion
 end
+traceback_hide( assert )
 
 function assert_true( actual, msg )
 	local actualtype = type(actual)
@@ -48,6 +115,7 @@ function assert_true( actual, msg )
 	end
 	return actual
 end
+traceback_hide( assert_true )
 
 function assert_false( actual, msg )
 	local actualtype = type(actual)
@@ -59,6 +127,7 @@ function assert_false( actual, msg )
 	end
 	return actual
 end
+traceback_hide( assert_false )
 
 function assert_equal( expected, actual, msg )
 	if expected ~= actual then
@@ -66,6 +135,7 @@ function assert_equal( expected, actual, msg )
 	end
 	return actual
 end
+traceback_hide( assert_equal )
 
 function assert_not_equal( unexpected, actual, msg )
 	if unexpected == actual then
@@ -73,6 +143,7 @@ function assert_not_equal( unexpected, actual, msg )
 	end
 	return actual
 end
+traceback_hide( assert_not_equal )
 
 function assert_match(pattern, actual, msg)
 	local patterntype = type( pattern )
@@ -90,6 +161,7 @@ function assert_match(pattern, actual, msg)
 	end
 	return actual
 end
+traceback_hide( assert_match )
 
 function assert_not_match( pattern, actual, msg )
 	local patterntype = type( pattern )
@@ -107,6 +179,7 @@ function assert_not_match( pattern, actual, msg )
 	end
 	return actual
 end
+traceback_hide( assert_not_match )
 
 function assert_error( msg, func )
 	if func == nil then
@@ -123,6 +196,7 @@ function assert_error( msg, func )
 	failure( "assert_error", msg, "error expected but no error occurred" )
 	end
 end
+traceback_hide( assert_error )
 
 function assert_error_match( msg, pattern, func )
 	if func == nil then
@@ -153,6 +227,7 @@ function assert_error_match( msg, pattern, func )
 		failure( "assert_error_match", msg, "expected error '%s' to match pattern '%s' but doesn't", errmsg, pattern )
 	end
 end
+traceback_hide( assert_error_match )
 
 function assert_pass( msg, func )
 	stats.assertions = stats.assertions + 1
@@ -170,3 +245,4 @@ function assert_pass( msg, func )
 		failure( "assert_pass", msg, "no error expected but error was: '%s'", errmsg )
 	end
 end
+traceback_hide( assert_pass )
