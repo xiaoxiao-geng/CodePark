@@ -12,6 +12,7 @@ if not UNIT_TEST then return end
 
 
 -- 引入资源 
+require( "core/lemock" )
 require( "core/asserts" )
 require( "core/testCase" )
 
@@ -71,6 +72,24 @@ if UNIT_TEST then
 	function case:test_equal()
 		assert_equal( 1, 1 )
 		assert_equal( 1, 2 )
+	end
+
+	function case:test_mock()
+		local mc = lemock.controller()
+		local m = mc:mock()
+
+		m:getTime()			mc:returns( 100 )
+		m:getTime()			mc:returns( 200 )
+		m:getName() 		mc:returns( "name" )
+		m:getName() 		mc:returns( "jack" )
+
+		mc:replay()
+
+		assert_equal( 100, m:getTime() )
+		assert_equal( 200, m:getTime() )
+		assert_equal( "name", m:getName() )
+		assert_equal( "jack", m:getName() )
+		assert_equal( "jack", m:getName() )
 	end
 end
 
