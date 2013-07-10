@@ -43,13 +43,6 @@ function gfAddTestcase( case )
 	table.insert( testcases, case )
 end
 
-
-function assertTrue( bool )
-	if bool ~= true then
-		error( "it's not true: " .. tostring( bool ) .. "-" .. type( bool ) )
-	end
-end
-
 if UNIT_TEST then
 	local case = cTestcase()
 
@@ -57,20 +50,20 @@ if UNIT_TEST then
 		local a, b = 1, 2
 		assert( a )
 		assert( b )
-		assert( a == b )
+		assert( a ~= b )
 	end
 
 	function case:test_pass()
 	end
 
 	function case:test_true()
-		assertTrue( true )
-		assertTrue( false )
+		assert_true( true )
+		assert_false( false )
 	end
 
 	function case:test_equal()
 		assert_equal( 1, 1 )
-		assert_equal( 1, 2 )
+		assert_not_equal( 1, 2 )
 	end
 end
 

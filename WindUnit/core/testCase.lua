@@ -54,7 +54,7 @@ function cTestcase:run()
 		local name, func = v.name, v.func
 
 		self:setup()
-		local success, err = pcall( func )
+		local success, err = pcall( func, self )
 		self:teardown()
 
 		if success then 

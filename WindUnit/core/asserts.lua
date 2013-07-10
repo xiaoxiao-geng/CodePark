@@ -13,7 +13,7 @@ function failure( testName, msg, formatStr, ... )
 
 	msg = msg or "empty"
 
-	error( string.format( "%s: %s [%s]", tostring( testName ), string.format( formatStr, unpack( args ) ), msg ) )
+	error( string.format( "%s: %s [%s]", tostring( testName ), string.format( formatStr, unpack( args ) ), msg ) .. "\n" .. debug.traceback() )
 end
 
 local function format_arg( arg )

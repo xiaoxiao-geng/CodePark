@@ -27,9 +27,9 @@ if UNIT_TEST then
 	end
 
 	function case:test_point()
-		assertTrue( p1.x == 1 )
-		assertTrue( p1.y == 1 )
-		assertTrue( p2.x == 2 )
-		assertTrue( p2.y == 2 )
+		assert_true( p1.x == 1 )
+		assert_true( p1.y == 1 )
+		assert_true( p2.x == 2 )
+		assert_true( p2.y == 2 )
 	end
 end
