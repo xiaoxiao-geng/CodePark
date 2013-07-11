@@ -108,7 +108,7 @@ function assert_not_match( pattern, actual, msg )
 	return actual
 end
 
-function assert_error( msg, func )
+function assert_error( msg, func, ... )
 	if func == nil then
 		func, msg = msg, nil
 	end
@@ -118,13 +118,13 @@ function assert_error( msg, func )
 		failure( "assert_error", msg, "expected a function as last argument but was a " .. functype )
 	end
 
-	local ok, errmsg = pcall( func )
+	local ok, errmsg = pcall( func, ... )
 	if ok then
 	failure( "assert_error", msg, "error expected but no error occurred" )
 	end
 end
 
-function assert_error_match( msg, pattern, func )
+function assert_error_match( msg, pattern, func, ... )
 	if func == nil then
 		msg, pattern, func = nil, msg, pattern
 	end
@@ -139,7 +139,7 @@ function assert_error_match( msg, pattern, func )
 		failure( "assert_error_match", msg, "expected a function as last argument but was a "..functype )
 	end
 
-	local ok, errmsg = pcall( func )
+	local ok, errmsg = pcall( func, ... )
 	if ok then
 	failure( "assert_error_match", msg, "error expected but no error occurred" )
 	end

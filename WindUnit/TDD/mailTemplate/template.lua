@@ -19,6 +19,12 @@ function cTemplate:fEvaluate()
 	for k, v in pairs( self.values ) do
 		result = string.gsub( result, getVaribleReg( k ), v )
 	end
+
+	if string.find( result, "\$\{.+\}" ) then
+		error( "has some no value varible!\n" .. debug.traceback() )
+		return
+	end
+
 	return result
 end
 
@@ -50,13 +56,15 @@ if UNIT_TEST then
 	end
 
 	function caseHello:test_other_varible()
-		self:assert_eva( "Hello, ${name}" )
+		assert_error( "", cTemplate.fEvaluate, self.template )
 
 		self.template:fSet( "name", "Reader" )
-		self:assert_eva( "Hello, Reader" )
-
 		self.template:fSet( "other_varible", "some value" )
 		self:assert_eva( "Hello, Reader" )
+	end
+
+	function caseHello:test_error()
+		assert_error( "", cTemplate.fEvaluate, self.template )
 	end
 
 
