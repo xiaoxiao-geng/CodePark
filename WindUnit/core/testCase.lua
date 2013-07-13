@@ -60,11 +60,32 @@ function cTestcase:run()
 		if success then 
 			successCount = successCount + 1
 		else
-			print("error:", name )
-			print("  ", err )
+			print("case" .. self.id .. " error:", name )
+			if err and type( err ) == "table" then
+				local tip = err.tip or ""
+				local msg = err.msg or ""
+				local tb = err.traceback or {}
+				local tbText = ""
+
+				if UNIT_SHOW_TRACEBACK then tbText = traceback_to_str( tb )
+				else tbText = "\n\t" .. tostring( tb[ 1 ] or "" ) end
+
+				print( string.format( "r\t%s [%s]%s", tip, msg, tbText ) )
+			else
+				print("\terr:", err)
+			end
+			print()
+
+			if UNIT_BREAK_WHEN_FAILD then return successCount end
 		end
 
 		-- if not r then print( "faild!!!", r ) print( debug.traceback() ) end
+	end
+
+	if UNIT_SHOW_PASS_TEST then
+		if successCount == self:getTestCount() then
+			print( "case" .. self.id .. " all pass test" )
+		end
 	end
 
 	return successCount

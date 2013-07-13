@@ -14,8 +14,6 @@ require( "mode/glyph/Row" )
 
 require( "TDD/tdd_main" )
 
--- gTestMode = require( "test/TestMode" )
-
 -- gTestMode.main()
 
 -- beginTest()

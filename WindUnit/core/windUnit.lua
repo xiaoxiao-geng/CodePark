@@ -8,10 +8,19 @@ UNIT_TEST = true
 if not UNIT_TEST then return end
 
 
+-- 是否显示错误堆栈信息
+UNIT_SHOW_TRACEBACK = false
+
+-- 是否显示PASS的任务
+UNIT_SHOW_PASS_TEST = true
+
+-- 出错就停止
+UNIT_BREAK_WHEN_FAILD = true
 
 
 
 -- 引入资源 
+require( "core/lemock" )
 require( "core/asserts" )
 require( "core/testCase" )
 
@@ -39,8 +48,12 @@ TEST_GROUP_DEFAULT = 1
 
 local testcases = {}
 
+local _testcase_id = 0
 function gfAddTestcase( case )
+	_testcase_id = _testcase_id + 1
+
 	table.insert( testcases, case )
+	case.id = _testcase_id
 end
 
 if UNIT_TEST then
@@ -65,6 +78,23 @@ if UNIT_TEST then
 		assert_equal( 1, 1 )
 		assert_not_equal( 1, 2 )
 	end
+
+	function case:test_mock()
+		local mc = lemock.controller()
+		local m = mc:mock()
+
+		m:getTime()			mc:returns( 100 )
+		m:getTime()			mc:returns( 200 )
+		m:getName() 		mc:returns( "name" )
+		m:getName() 		mc:returns( "jack" )
+
+		mc:replay()
+
+		assert_equal( 100, m:getTime() )
+		assert_equal( 200, m:getTime() )
+		assert_equal( "name", m:getName() )
+		assert_equal( "jack", m:getName() )
+	end
 end
 
 function gfRunUnitTest()
@@ -82,7 +112,14 @@ function gfRunUnitTest()
 	print(">>>> Run Test <<<<")
 	local successCount = 0
 	for k, case in pairs( cases ) do
-		successCount = successCount + case:run()
+		local count = case:getTestCount()
+		local success = case:run()
+
+		if UNIT_BREAK_WHEN_FAILD then
+			if success < count then break end
+		end
+
+		successCount = successCount + success
 	end
 
 	print( string.format( ">>>> Result: %s/%s <<<<", successCount, funcCount ) )
