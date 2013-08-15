@@ -1,0 +1,17 @@
+中文版：http://download.microsoft.com/download/B/0/F/B0F589ED-F1B7-478C-849A-02C8395D0995/VS2012_ULT_chs.iso
+英文版：http://download.microsoft.com/download/B/0/F/B0F589ED-F1B7-478C-849A-02C8395D0995/VS2012_ULT_chs.iso
+百度网盘：http://pan.baidu.com/share/link?shareid=90168&uk=2769186556
+微软官网下载 Visual Studio 2012 旗舰版：https://msdn.microsoft.com/zh-cn/subscriptions/securedownloads/hh442898#searchTerm=Visual%20Studio%20Ultimate%202012&ProductFamilyId=0&Languages=cn&PageSize=10&PageIndex=0&FileId=0
+Visual Studio 2012 Ultimate旗舰版序列号： 
+
+YKCW6-BPFPF-BT8C9-7DCTH-QXGWC
+RBCXF-CVBGR-382MK-DFHJ4-C69G8 
+YQ7PR-QTHDM-HCBCV-9GKGG-TB2TM 
+点击帮助(help)-注册产品(Register Product)-输入Key就可以了
+
+
+http://www.cnblogs.com/hwangbae/archive/2012/08/16/2642999.html
+
+http://www.microsoft.com/visualstudio/chs/products/visual-studio-express-products
+
+MSDN原版英文（内置KEY，装完就激活的） ed2k://|file|en_visual_studio_ultimate_2012_x86_dvd_920947.iso|1594998784|1BBECB1C7A892DA7D97EC4C840953915|  MSDN原版中文（内置KEY，装完就激活的）  /ed2k://|file|cn_visual_studio_ultimate_2012_x86_dvd_920954.iso|1643802624|A3058CE4F2AD7035DB6E67586D07AAA5|/
