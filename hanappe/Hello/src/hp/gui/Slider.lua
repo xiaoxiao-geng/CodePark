@@ -1,11 +1,12 @@
 ----------------------------------------------------------------
--- This class is a general button.
+-- This class is a general horizontal slider.
 ----------------------------------------------------------------
 
 -- import
 local table             = require "hp/lang/table"
 local class             = require "hp/lang/class"
 local Event             = require "hp/event/Event"
+local Sprite            = require "hp/display/Sprite"
 local Component         = require "hp/gui/Component"
 
 -- class define
@@ -14,15 +15,12 @@ local super             = Component
 
 -- States
 M.STATE_NORMAL          = "normal"
-M.STATE_SELECTED        = "selected"
-M.STATE_OVER            = "over"
 M.STATE_DISABLED        = "disabled"
 
 -- Events
-M.EVENT_CLICK           = "click"
-M.EVENT_CANCEL          = "cancel"
-M.EVENT_BUTTON_UP       = "buttonUp"
-M.EVENT_BUTTON_DOWN     = "buttonDown"
+M.EVENT_SLIDER_BEGIN    = "sliderBeginChange"
+M.EVENT_SLIDER_CHANGED  = "sliderChanged"
+M.EVENT_SLIDER_END      = "sliderEndChange"
 
 --------------------------------------------------------------------------------
 -- Initializes the internal variables.
@@ -32,29 +30,31 @@ function M:initInternal()
     self._selected = false
     self._touching = false
     self._touchIndex = nil
-    self._toggle = false
-    self._themeName = "Button"
-    self._skinResizable = true
-    self._firstUpdated = false
+    self._themeName = "Slider"
+    self._beginChangeEvent = Event(M.EVENT_SLIDER_BEGIN)
+    self._changedEvent = Event(M.EVENT_SLIDER_CHANGED)
+    self._endChangeEvent = Event(M.EVENT_SLIDER_END)
+    self._value = 0
+    self._bounds = {min=0, max=1, span=1}
+    self._accuracy = 0.1
 end
 
 --------------------------------------------------------------------------------
 -- Create a child objects.
 --------------------------------------------------------------------------------
 function M:createChildren()
-
-    local skinClass = self:getStyle("skinClass")
-    self._skinClass = skinClass
-    self._background = skinClass(self:getStyle("skin"))
-    
-    self._label = TextLabel()
-    self._label:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.CENTER_JUSTIFY)
-    self._label:setSize(self._background:getSize())
+    self._background = NinePatch(self:getStyle("bg"))
+    self._progress = NinePatch(self:getStyle("progress"))
+    self._thumb = Sprite { texture = self:getStyle("thumb"), left = 0, top = 0 }
 
     self:addChild(self._background)
-    self:addChild(self._label)
+    self:addChild(self._progress)
+    self:addChild(self._thumb)
 
-    self:setSize(self._background:getSize())
+    local _,bh = self._background:getSize()
+    self:setSize(200, bh)
+
+    self._thumb_width = self._thumb:getWidth()
 end
 
 --------------------------------------------------------------------------------
@@ -62,122 +62,148 @@ end
 --------------------------------------------------------------------------------
 function M:updateDisplay()
     local background = self._background
-    background:setColor(unpack(self:getStyle("skinColor")))
-    background:setTexture(self:getStyle("skin"))
+    background:setColor(unpack(self:getStyle("color")))
+    background:setTexture(self:getStyle("bg"))
 
-    local label = self._label
-    label:setColor(unpack(self:getStyle("textColor")))
-    label:setTextSize(self:getStyle("textSize"))
-    label:setFont(self:getStyle("font"))
-    
-    if not self._skinResizable then
-        local tw, th = background.texture:getSize()
-        self:setSize(tw, th)
-    end
+    local progress = self._progress
+    progress:setColor(unpack(self:getStyle("color")))
+    progress:setTexture(self:getStyle("progress"))
+
+    local thumb = self._thumb
+    thumb:setColor(unpack(self:getStyle("color")))
+    thumb:setTexture(self:getStyle("thumb"))
+
+    local thumbLoc = self:_valueToLoc(self._value)
+    thumb:setLoc(thumbLoc, self:getHeight() * 0.5)
+    progress:setSize(thumbLoc + self._thumb_width * 0.5, self:getHeight())
+end
+
+function M:_valueToLoc(value)
+    -- normalize value
+    local v = (value - self._bounds.min) / self._bounds.span
+    return self._thumb_width * 0.5 + (self:getWidth() - self._thumb_width) * v
+end
+
+function M:_locToValue(x)
+    -- normalized
+    local v = (x - self._thumb_width * 0.5) / (self:getWidth() - self._thumb_width)
+    return self._bounds.min + v * self._bounds.span
 end
 
 --------------------------------------------------------------------------------
--- Up the button.
--- There is no need to call directly to the basic.
--- @param idx Touch index
+-- Sets the value (must be between 0 and 1).
+-- @param value value
 --------------------------------------------------------------------------------
-function M:doUpButton()
-    if not self:isSelected() then
+function M:setValue(value)
+    if value < self._bounds.min then
+        value = self._bounds.min
+    end
+    if value > self._bounds.max then
+        value = self._bounds.max
+    end
+    
+    -- round to 4 decimal places = value
+    value = math.floor(value * 10000) / 10000
+    
+    -- snap to accuracy
+    local invsnap = 1 / self._accuracy
+    value = math.floor(value * invsnap) / invsnap
+    
+    -- if value has not changed, abort
+    if value == self._value then
         return
     end
-    self._selected = false
-
-    self:setCurrentState(M.STATE_NORMAL)
-    self:dispatchEvent(M.EVENT_BUTTON_UP)
+    
+    local old_value = self._value
+    self._value = value
+    self:_updateDrawables()
+    
+    local event = self._changedEvent
+    event.oldValue = old_value
+    event.value = self._value
+    self:dispatchEvent(event)
 end
 
---------------------------------------------------------------------------------
--- Down the button.
--- There is no need to call directly to the basic.
---------------------------------------------------------------------------------
-function M:doDownButton()
-    if self:isSelected() then
+function M:_updateDrawables()
+    -- and indication we 're still initializing (called by resizeHandler)...
+    if self._thumb_width == nil then
         return
     end
-    self._selected = true
     
-    self:setCurrentState(M.STATE_SELECTED)
-    self:dispatchEvent(M.EVENT_BUTTON_DOWN)
+    local thumbLoc = self:_valueToLoc(self._value)
+    self._thumb:setLoc(thumbLoc, self._background:getHeight() * 0.5)
+    self._progress:setSize(thumbLoc + self._thumb_width * 0.5, self:getHeight())
 end
 
 --------------------------------------------------------------------------------
--- Sets the text.
--- @param text text
+-- Returns the value.
+-- @return value
 --------------------------------------------------------------------------------
-function M:setText(text)
-    self._text = text
-    self._label:setText(text)
+function M:getValue()
+    return self._value
 end
 
 --------------------------------------------------------------------------------
--- Returns the text.
--- @param text text
+-- Returns the accuracy.
+-- @return accuracy
 --------------------------------------------------------------------------------
-function M:getText()
-    return self._text
+function M:getAccuracy()
+    return self._accuracy
 end
 
 --------------------------------------------------------------------------------
--- Sets whether a toggle button.
--- @param value toggle
+-- Returns the accuracy.
+-- @param accuracy accuracy
 --------------------------------------------------------------------------------
-function M:setToggle(value)
-    self._toggle = value
+function M:setAccuracy(accuracy)
+    self._accuracy = accuracy
+    self:setValue(self._value)
 end
 
 --------------------------------------------------------------------------------
--- Returns whether a toggle button.
--- @return toggle
+-- Returns the minimum and maximum values this slider can hold.
+-- @return minimum and maximum values
 --------------------------------------------------------------------------------
-function M:isToggle()
-    return self._toggle
+function M:getValueBounds()
+    return self._bounds.min, self._bounds.max
 end
 
 --------------------------------------------------------------------------------
--- Returns whether the button is selected.
--- @return selected
+-- Returns the minimum and maximum values this slider can hold.
+-- @param minMax table holding {min, max} values
 --------------------------------------------------------------------------------
-function M:isSelected()
-    return self._selected
+function M:setValueBounds(...)
+    local minMax = {...}
+    assert(#minMax >= 2)
+    
+    self._bounds.min = minMax[1]
+    self._bounds.max = minMax[2]
+    self._bounds.span = self._bounds.max - self._bounds.min
+    self:setValue(self._value)
 end
 
 --------------------------------------------------------------------------------
--- Set skin whether you can resize.
+-- Set the event listener that is called when the user pushes the thumb.
+-- @param func push event handler
 --------------------------------------------------------------------------------
-function M:setSkinResizable(value)
-    self._skinResizable = value
-    if not self._skinResizable then
-        self:invalidateDisplay()
-    end
+function M:setOnSliderBeginChange(func)
+    self:setEventListener(M.EVENT_SLIDER_BEGIN, func)
 end
 
 --------------------------------------------------------------------------------
--- Set the event listener that is called when the user click the button.
--- @param func click event handler
+-- Set the event listener that is called when the user moves the thumb.
+-- @param func move event handler
 --------------------------------------------------------------------------------
-function M:setOnClick(func)
-    self:setEventListener(M.EVENT_CLICK, func)
+function M:setOnSliderChanged(func)
+    self:setEventListener(M.EVENT_SLIDER_CHANGED, func)
 end
 
 --------------------------------------------------------------------------------
--- Set the event listener that is called when the user pressed the button.
--- @param func button down event handler
+-- Set the event listener that is called when the user releases the thumb.
+-- @param func release event handler
 --------------------------------------------------------------------------------
-function M:setOnButtonDown(func)
-    self:setEventListener(M.EVENT_BUTTON_DOWN, func)
-end
-
---------------------------------------------------------------------------------
--- Set the event listener that is called when the user released the button.
--- @param func button up event handler
---------------------------------------------------------------------------------
-function M:setOnButtonUp(func)
-    self:setEventListener(M.EVENT_BUTTON_UP, func)
+function M:setOnSliderEndChange(func)
+    self:setEventListener(M.EVENT_SLIDER_END, func)
 end
 
 --------------------------------------------------------------------------------
@@ -193,14 +219,14 @@ function M:touchDownHandler(e)
         return
     end
     e:stop()
-    
-    self._touchIndex = e.idx
-    self._touching = true
-    
-    if self:isToggle() and self:isButtonDown() then
-        self:doUpButton()
-    else
-        self:doDownButton()
+
+    if self._thumb:hitTestWorld(e.x, e.y) then
+        self._touchIndex = e.idx
+        self._touching = true
+
+        local event = self._beginChangeEvent
+        event.value = self._value
+        self:dispatchEvent(event)
     end
 end
 
@@ -213,14 +239,13 @@ function M:touchUpHandler(e)
         return
     end
     e:stop()
-    
-    if self._touching and not self:isToggle() then
-        self._touching = false
-        self._touchIndex = nil
-        
-        self:doUpButton()
-        self:dispatchEvent(M.EVENT_CLICK)
-    end
+
+    self._touching = false
+    self._touchIndex = nil
+
+    local event = self._endChangeEvent
+    event.value = self._value
+    self:dispatchEvent(event)
 end
 
 --------------------------------------------------------------------------------
@@ -232,15 +257,11 @@ function M:touchMoveHandler(e)
         return
     end
     e:stop()
-    
-    if self._touching and not self:hitTestWorld(e.x, e.y) then
-        self._touching = false
-        self._touchIndex = nil
-        
-        if not self:isToggle() then
-            self:doUpButton()
-            self:dispatchEvent(M.EVENT_CANCEL)
-        end
+
+    if self._touching then
+        local mx, my = self:worldToModel(e.x, e.y, 0)
+        local v = self:_locToValue(mx)
+        self:setValue(v)
     end
 end
 
@@ -252,9 +273,6 @@ function M:touchCancelHandler(e)
     if not self:isToggle() then
         self._touching = false
         self._touchIndex = nil
-        
-        self:doUpButton()
-        self:dispatchEvent(M.EVENT_CANCEL)
     end
 end
 
@@ -263,15 +281,8 @@ end
 -- @param e resize event
 --------------------------------------------------------------------------------
 function M:resizeHandler(e)
-    local background = self._background
-    background:setSize(self:getWidth(), self:getHeight())
-
-    local textPadding = self:getStyle("textPadding")
-    local paddingLeft, paddingTop, paddingRight, paddingBottom = unpack(textPadding)
-
-    local label = self._label
-    label:setSize(self:getWidth() - paddingLeft - paddingRight, self:getHeight() - paddingTop - paddingBottom)
-    label:setPos(paddingLeft, paddingTop)
+    self._background:setSize(self:getWidth(), self:getHeight())
+    self:_updateDrawables()
 end
 
 --------------------------------------------------------------------------------

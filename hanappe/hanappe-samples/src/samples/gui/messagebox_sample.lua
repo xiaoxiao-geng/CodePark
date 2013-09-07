@@ -29,7 +29,7 @@ function onCreate(params)
     }
     messageBox = MessageBox {
         size = {view:getWidth() - 20, 120},
-        text = "メッセージボックスのさんぷるです。\n内部的にはTextLabelが表示されています。\nHello MessageBox!\n改行とか？",
+        text = "中文对话啊中文对话啊中文对话啊",--メッセージボックスのさんぷるです。\n内部的にはTextLabelが表示されています。\nHello MessageBox!\n改行とか？",
         parent = view,
     }
 end

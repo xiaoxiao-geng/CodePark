@@ -15,7 +15,7 @@ function onCreate(params)
     for i = 1, 50 do
         Button {
             parent = scroller,
-            text = "test" .. i,
+            text = "<c:ff0>te<c>st" .. i,
         }
     end
 end

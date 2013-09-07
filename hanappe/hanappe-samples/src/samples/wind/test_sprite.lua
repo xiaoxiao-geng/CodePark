@@ -20,7 +20,7 @@ function onCreate(params)
 
 
     	local la = layer
-    	-- if y > 0 then la = layer3d end
+    	if y > 0 then la = layer3d end
 
     	local sprite = Sprite { 
     		texture = "bird" .. i .. ".png", 

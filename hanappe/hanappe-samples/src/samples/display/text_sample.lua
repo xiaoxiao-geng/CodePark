@@ -5,7 +5,7 @@ function onCreate(params)
     
     -- simple impl
     textbox1 = TextLabel {
-        text = "hello world!\nこんにちわ!\n你好",
+        text = "<c:f00>hello world!<c>\nこんにちわ!\n你好",
         layer = layer,
     }
     textbox1:fitSize()
@@ -13,7 +13,7 @@ function onCreate(params)
     
     -- It supports an empty constructor.
     textbox2 = TextLabel()
-    textbox2:setText("empty constructor.abc abc abc")
+    textbox2:setText("empty <c:f00>constructor<c>.abc abc abc")
     textbox2:setLayer(layer)
     textbox2:setSize(layer:getViewWidth(), 30)
     textbox2:fitHeight()

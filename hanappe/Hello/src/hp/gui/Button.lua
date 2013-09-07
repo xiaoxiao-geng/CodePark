@@ -42,7 +42,6 @@ end
 -- Create a child objects.
 --------------------------------------------------------------------------------
 function M:createChildren()
-
     local skinClass = self:getStyle("skinClass")
     self._skinClass = skinClass
     self._background = skinClass(self:getStyle("skin"))

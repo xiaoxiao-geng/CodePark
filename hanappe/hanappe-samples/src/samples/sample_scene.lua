@@ -12,8 +12,11 @@ local Component = require "hp/gui/Component"
 --------------------------------------------------------------------------------
 
 local SCENE_ITEMS = {
-    {text = "SpriteChild",      scene = "samples/display/test_sprite_child",    animation = "slideToLeft"},
-    {text = "Sprite",           scene = "samples/display/test_sprite",          animation = "slideToLeft"},
+    {text = "UI",               scene = "samples/wind/test_ui",                 animation = "slideToLeft"},
+    {text = "Nine",             scene = "samples/wind/test_nine",               animation = "slideToLeft"},
+    {text = "SpriteChild",      scene = "samples/wind/test_sprite_child",       animation = "slideToLeft"},
+    {text = "Sprite",           scene = "samples/wind/test_sprite",             animation = "slideToLeft"},
+    {text = "panel",            scene = "samples/gui/panel_sample",             animation = "fade"},
     {text = "helloWorld",       scene = "samples/display/hello_world_sample",   animation = "fade"},
     {text = "animation",        scene = "samples/display/animation_sample",     animation = "fade"},
     {text = "sprite",           scene = "samples/display/sprite_sample",        animation = "slideToTop"},
@@ -43,7 +46,6 @@ local SCENE_ITEMS = {
     {text = "rpgmap",           scene = "samples/rpg/rpgmap_sample",            animation = "fade"},
     {text = "button",           scene = "samples/gui/button_sample",            animation = "fade"},
     {text = "joystick",         scene = "samples/gui/joystick_sample",          animation = "fade"},
-    {text = "panel",            scene = "samples/gui/panel_sample",             animation = "fade"},
     {text = "messagebox",       scene = "samples/gui/messagebox_sample",        animation = "fade"},
     {text = "dialogbox",        scene = "samples/gui/dialogbox_sample",         animation = "fade"},
     {text = "scroller",         scene = "samples/gui/scroller_sample",          animation = "fade"},

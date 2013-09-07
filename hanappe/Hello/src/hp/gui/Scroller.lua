@@ -323,7 +323,6 @@ function M:ajustScrollPosition()
         _, top = self:clipScrollPosition(left, top)
     end
 
-    print("ajustScrollPosition", left, top)
     self:setPos(left, top)
 end
 
@@ -468,8 +467,6 @@ function M:touchMoveHandler(e)
     if self._touchMoved then
         return
     end
-
-    print( "Scroller:touchMove", e.moveX, e.moveY )
     
     local scale = self:getLayer():getViewScale()
     local moveX, moveY = e.moveX, e.moveY
@@ -477,11 +474,8 @@ function M:touchMoveHandler(e)
     
     moveX, moveY = self:getScrollingForce()
 
-    print("  force:", moveX, moveY)
-
     -- Implements an elastic effect when we're dragging O.B.
     local minX, minY, maxX, maxY = self:scrollBoundaries()
-
     local left, top = self:getPos()
     local newLeft = left + moveX
     local newTop = top + moveY
@@ -505,7 +499,6 @@ function M:touchMoveHandler(e)
     end
 
     self:addLoc(moveX, moveY, 0)
-    print("  final", moveX, moveY)
     self._touchMoved = true
 end
 

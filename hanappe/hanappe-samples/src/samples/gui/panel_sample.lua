@@ -12,4 +12,7 @@ function onCreate(params)
         parent = view,
     }
 
+    local button = Button { name = "btn", text = "hello", parent = panel }
+    button:setSize( 100, 60 )
+
 end
