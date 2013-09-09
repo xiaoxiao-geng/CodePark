@@ -8,18 +8,30 @@ function onCreate( params )
 	local w, h = sprite:getSize()
 	sprite:dispose()
 
-	panel = Group { layer = layer, size = { w, h * 5 }, pos = { 200, 0 },
+	panel = Panel { layer = layer, size = { w, h * 5 }, pos = { 200, 0 },
 			touchDown = onTouchDown,
 			touchMove = onTouchMove,
 			touchUp = onTouchUp,
 		}
 
+	print("panel = ", panel)
+	panel:sayHi()
+	print("  full pos", panel:getFullPos() )
+
 	for i = 1, 5 do
-		local sprite = Sprite { layer = layer, texture = "title.png", pos = { 0, h * ( i - 1 ) } }
-		sprite:setParent( panel )
+		local sprite = Sprite { parent = panel, texture = "title.png", pos = { 0, h * ( i - 1 ) } }
 
 		sprite:setColor( i * 0.2, i * 0.2, i * 0.2, 1 )
+
+		print("sprite", i, sprite:getFullPos() )
 	end
+
+	local panel2 = Panel { parent = panel, size = { 200, 200 }, pos = { 10, 10 } }
+	print("panel2", panel2, panel2:getFullPos() )
+	local panel3 = Panel { parent = panel2, size = { 180, 180 }, pos = { 10, 10 } }
+	print("panel3", panel3, panel3:getFullPos() )
+	local panel4 = Panel { parent = panel3, size = { 160, 160 }, pos = { 10, 10 } }
+	print("panel4", panel4, panel4:getFullPos() )
 end
 
 local lastUpdateTime = nil

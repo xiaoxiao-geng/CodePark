@@ -4,6 +4,7 @@
 -- Base Classes => DisplayObject, Resizable <br>
 --------------------------------------------------------------------------------
 
+print("  >> import Group")
 -- import
 local table                     = require "hp/lang/table"
 local class                     = require "hp/lang/class"
@@ -14,6 +15,14 @@ local Resizable                 = require "hp/display/Resizable"
 local super                     = DisplayObject
 local M                         = class(DisplayObject, Resizable)
 local MOAIPropInterface         = MOAIProp.getInterfaceTable()
+
+
+print("    DisplayObject", DisplayObject)
+print("    DisplayObject.sayHi", DisplayObject.sayHi)
+
+
+print("    Group", M)
+print("    Group.sayHi", M.sayHi)
 
 ----------------------------------------------------------------
 -- The constructor.
