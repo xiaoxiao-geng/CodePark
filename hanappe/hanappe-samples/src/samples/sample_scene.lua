@@ -12,6 +12,8 @@ local Component = require "hp/gui/Component"
 --------------------------------------------------------------------------------
 
 local SCENE_ITEMS = {
+    {text = "Sentinel",         scene = "samples/wind/test_scroller_sentinel",  animation = "slideToLeft"},
+    {text = "ScrollerExt",      scene = "samples/wind/scroller_extend_sample",  animation = "slideToLeft"},
     {text = "DragPanel",        scene = "samples/wind/dragpanel_sample",        animation = "slideToLeft"},
     {text = "UI",               scene = "samples/wind/test_ui",                 animation = "slideToLeft"},
     {text = "Nine",             scene = "samples/wind/test_nine",               animation = "slideToLeft"},

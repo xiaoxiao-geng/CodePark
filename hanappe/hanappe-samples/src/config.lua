@@ -9,8 +9,14 @@ MOAISim.setBoostThreshold ( 0 )
 TextLabel.DEFAULT_COLOR = {0, 0, 0, 1}
 
 -- Screen size setting
-local screenWidth = MOAIEnvironment.horizontalResolution or 960
-local screenHeight = MOAIEnvironment.verticalResolution or 640
+
+if MOAIEnvironment["osBrand"] == "iOS" then
+	gRealScreenWidth = MOAIEnvironment.verticalResolution
+	gRealScreenHeight = MOAIEnvironment.horizontalResolution
+end
+
+local screenWidth = gRealScreenWidth or 960
+local screenHeight = gRealScreenHeight or 640
 local viewScale = 1 --screenWidth >= 640 and 2 or 1
 
 -- Application config
