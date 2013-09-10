@@ -11,9 +11,8 @@ function onCreate( params )
 	}
 
 	space = 0
-	itemH = 50
-	cols = 2
-	rows = 11
+	itemW, itemH = 100, 50
+	rows, cols = 11, 5
 	row = 1
 
 	maxRows = 20
@@ -30,15 +29,16 @@ function onCreate( params )
 	sentinel1 = Sprite { parent = scroller, size = { 0, 0 }, pos = { 0, 0 } }
 	sentinel2 = Sprite { parent = scroller, size = { 0, 0 }, pos = { 300, 1000 } }
 
+	local id = 0
 	for row = 0, rows - 1 do
-		for col = 0, col - 1 do
-			local x, y = 10, row * 50
-			local id = row + 1
-			local item = Panel { parent = scroller, size = { 100, 50 }, pos = { x, y }, color = { col * ( 1 / 10 ), row * ( 1 / 10 ), 1, 1 } }
+		for col = 0, cols - 1 do
+			local x, y = col * itemW, row * itemH
+			id = id + 1
+			local item = Panel { parent = scroller, size = { itemW, itemH }, pos = { x, y }, color = { col * ( 1 / 10 ), row * ( 1 / 10 ), 1, 1 } }
 			local label = TextLabel { parent = item, pos = { 20, 10 }, size = { 100, 50 }, text = tostring(id), textSize = 16 }
 
 			item.id = id
-			item.row = id
+			item.row = row + 1
 
 			item._background:setScissorRect( rect ) 
 			label:setScissorRect( rect ) 
@@ -85,26 +85,54 @@ function moveTop()
 	row = row - 1
 
 	local first = items[ 1 ]
-	local last = items[ #items ]
+	local _, firstY = first:getPos()
+	local firstRow = first.row
 
-	last.row = first.row - 1
-	local x, y = first:getPos()
-	last:setPos( x, y - itemH )
+	local lastRow = getLastRow()
+	for col = 1, #lastRow  do
+		local item = lastRow[ col ]
 
-	table.remove( items, #items )
-	table.insert( items, 1, last )
+		local x, y = item:getPos()
+		item:setPos( x, firstY - itemH )
+		item.row = firstRow - 1
+
+		table.remove( items, #items - cols + col )
+		table.insert( items, col, item )
+	end
 end
 
 function moveBottom()
 	row = row + 1
 
-	local first = items[ 1 ]
 	local last = items[ #items ]
+	local _, lastY = last:getPos()
+	local lastRow = last.row
 
-	first.row = last.row + 1
-	local x, y = last:getPos()
-	first:setPos( x, y + itemH )
+	local firstRow = getFirstRow()
+	for col = 1, #firstRow do
+		local item = firstRow[ col ]
 
-	table.remove( items, 1 )
-	table.insert( items, first )
+		local x, y = item:getPos()
+		item:setPos( x, lastY + itemH )
+		item.row = lastRow + 1
+
+		table.remove( items, 1 )
+		table.insert( items, item )
+	end
+end
+
+function getFirstRow()
+	local arr = {}
+	for col = 1, cols do
+		arr[ col ] = items[ col ]
+	end
+	return arr
+end
+
+function getLastRow()
+	local arr = {}
+	for col = 1, cols do
+		arr[ col ] = items[ #items - cols + col ]
+	end
+	return arr
 end
