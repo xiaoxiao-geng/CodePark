@@ -14,8 +14,8 @@ function onCreate( params )
 	rows, cols = 11, 6
 	row, col = 1, 1
 
-	maxRows = 20
-	maxCols = 10
+	maxRows = 60
+	maxCols = 30
 
 	viewWidth = space * ( cols - 1 + 1 ) + itemW * ( cols - 1 )
 	viewHeight = space * ( rows - 1 + 1 ) + itemH * ( rows - 1 )
@@ -24,13 +24,17 @@ function onCreate( params )
 	viewRight = viewWidth
 	viewBottom = viewHeight
 
+	print("view: ltrb", viewLeft, viewTop, viewRight, viewBottom)
+
 	items = {}
 
 	rect = MOAIScissorRect.new()
 	rect:setRect( 62, 58, 538, 534 )
 
 	sentinel1 = Sprite { parent = scroller, size = { 0, 0 }, pos = { 0, 0 } }
-	sentinel2 = Sprite { parent = scroller, size = { 0, 0 }, pos = { 1000, 1000 } }
+	sentinel2 = Sprite { parent = scroller, size = { 0, 0 }, pos = { 3000, 3000 } }
+
+	onSetFrameDataCallback = onSetFrameData
 
 	local id = 0
 	for row = 0, rows - 1 do
@@ -38,14 +42,17 @@ function onCreate( params )
 			local x, y = col * itemW, row * itemH
 			id = id + 1
 			local item = Panel { parent = scroller, size = { itemW, itemH }, pos = { x, y }, color = { col * ( 1 / 10 ), row * ( 1 / 10 ), 1, 1 } }
-			local label = TextLabel { parent = item, pos = { 20, 10 }, size = { 100, 50 }, text = tostring(id), textSize = 16 }
+			local label = TextLabel { parent = item, pos = { 20, 10 }, size = { 100, 50 }, text = tostring(id), textSize = 14 }
 
 			item.id = id
 			item.row = row + 1
 			item.col = col + 1
+			item.label = label
 
 			item._background:setScissorRect( rect ) 
 			label:setScissorRect( rect ) 
+
+			onSetFrameDataCallback( item, { item.col, item.row } )
 
 			table.insert( items, item )
 		end
@@ -55,9 +62,16 @@ end
 function onEnterFrame()
 	local x, y = scroller:getPos()
 	local w, h = scroller:getSize()
-	print( "scroller:", row, col, math.floor(x), math.floor(y), w, h )
+	-- print( "scroller:", row, col, math.floor(x), math.floor(y), w, h )
 
 	trySwapItem()
+end
+
+function onSetFrameData( frame, data )
+	local col, row = unpack( data )
+
+	frame.label:setText( string.format( "%d - %d, %d", frame.id, col, row ) ) 
+	frame:setColor( col * ( 1 / maxCols ), row * ( 1 / maxRows ), 1, 1 )
 end
 
 -- 尝试更新
@@ -72,6 +86,8 @@ function trySwapItem()
 	local lx, ly = last:getPos()
 	lx, ly = lx + sx, ly + sy
 
+	-- print("  fx, fy, lx, ly", fx, fy, lx, ly)
+
 	-- 如果第一行低于视野范围
 	if fy > viewTop and first.row > 1 then
 		print( "top" )
@@ -80,12 +96,13 @@ function trySwapItem()
 	elseif ly + itemH < viewBottom and last.row < maxRows then 
 		print( "bottom" )
 		moveBottom()
+	end
 	
-	elseif fx > viewLeft and first.col > 1 then
+	if fx > viewLeft and first.col > 1 then
 		print( "left" )
 		moveLeft()
 
-	elseif fy + itemW < viewRight and last.col < maxCols then
+	elseif lx + itemW < viewRight and last.col < maxCols then
 		print( "right" )
 		moveRight()
 	end
@@ -110,6 +127,8 @@ function moveTop()
 
 		table.remove( items, #items - cols + col )
 		table.insert( items, col, item )
+
+		onSetFrameDataCallback( item, { item.col, item.row } )
 	end
 end
 
@@ -130,6 +149,8 @@ function moveBottom()
 
 		table.remove( items, 1 )
 		table.insert( items, item )
+
+		onSetFrameDataCallback( item, { item.col, item.row } )
 	end
 end
 
@@ -149,7 +170,9 @@ function moveLeft()
 		item.col = firstCol - 1
 
 		table.remove( items, row * cols )
-		table.insert( items, row * col - cols + 1, item )
+		table.insert( items, row * cols - cols + 1, item )
+
+		onSetFrameDataCallback( item, { item.col, item.row } )
 	end
 end
 
@@ -168,8 +191,10 @@ function moveRight()
 		item:setPos( lastX + itemW, y )
 		item.col = lastCol + 1
 
-		table.remove( items, ( row - 1 ) * col + 1 )
+		table.remove( items, ( row - 1 ) * cols + 1 )
 		table.insert( items, row * cols, item )
+
+		onSetFrameDataCallback( item, { item.col, item.row } )
 	end
 end
 
@@ -192,7 +217,7 @@ end
 function getLeftCol()
 	local arr = {}
 	for row = 1, rows do
-		arr[ row ] = items[ ( row - 1 ) * col + 1 ]
+		arr[ row ] = items[ ( row - 1 ) * cols + 1 ]
 	end
 	return arr
 end
@@ -200,7 +225,7 @@ end
 function getRightCol()
 	local arr = {}
 	for row = 1, rows do
-		arr[ row ] = items[ row * col ]
+		arr[ row ] = items[ row * cols ]
 	end
 	return arr
 end
