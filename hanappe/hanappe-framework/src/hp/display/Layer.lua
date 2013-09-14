@@ -40,6 +40,29 @@ function M:init(params)
     
     self:copyParams(params)
 end
+--------------------------------------------------------------------------------
+-- 设置图层优先级
+-- 2013-9-14 ultralisk add
+-- @param priority 越小优先级越高   优先级5 会覆盖在 优先级6之上，并能优先触发touch事件
+--------------------------------------------------------------------------------
+function M:setPriority( priority )
+    self.priority = priority
+
+    print( "Layer.setPriority", priority )
+
+    local scene = self.scene
+    print( "  scene", scene)
+    if not scene then return end
+
+    -- 刷新scene中的renderTable
+    scene.sceneManager:updateRender()
+
+    -- 刷新TouchProcessor中注册时间优先级
+    print( "  touchProcessor", self._touchProcessor)
+    if self._touchProcessor then
+        self._touchProcessor:setEventSource( scene, priority )
+    end
+end
 
 --------------------------------------------------------------------------------
 -- Sets the size of the layer.
@@ -206,7 +229,7 @@ function M:setScene(scene)
     end
     
     if self._touchProcessor then
-        self._touchProcessor:setEventSource(scene)
+        self._touchProcessor:setEventSource(scene, self.priority)
     end
 end
 

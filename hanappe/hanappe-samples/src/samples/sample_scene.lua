@@ -73,7 +73,7 @@ function onCreate(params)
 
     createBackgroundLayer()
     createGuiView()
-    fpsMonitor:play()
+    -- fpsMonitor:play()
 end
 
 function onButtonClick(e)

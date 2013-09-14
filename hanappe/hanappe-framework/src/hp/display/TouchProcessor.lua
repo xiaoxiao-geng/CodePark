@@ -86,8 +86,10 @@ end
 --------------------------------------------------------------------------------
 -- イベント発生元を設定します.
 -- 典型的には、Sceneインスタンスが設定されます.
+-- 2013-9-14 ultralisk add param priority
+-- 添加优先级字段，用于注册触摸事件
 --------------------------------------------------------------------------------
-function M:setEventSource(eventSource)
+function M:setEventSource(eventSource, priority)
     if self._eventSource then
         self._eventSource:removeEventListener(Event.TOUCH_DOWN, self.touchDownHandler, self)
         self._eventSource:removeEventListener(Event.TOUCH_UP, self.touchUpHandler, self)
@@ -98,10 +100,10 @@ function M:setEventSource(eventSource)
     self._eventSource = eventSource
     
     if self._eventSource then
-        self._eventSource:addEventListener(Event.TOUCH_DOWN, self.touchDownHandler, self)
-        self._eventSource:addEventListener(Event.TOUCH_UP, self.touchUpHandler, self)
-        self._eventSource:addEventListener(Event.TOUCH_MOVE, self.touchMoveHandler, self)
-        self._eventSource:addEventListener(Event.TOUCH_CANCEL, self.touchCancelHandler, self)
+        self._eventSource:addEventListener(Event.TOUCH_DOWN, self.touchDownHandler, self, priority)
+        self._eventSource:addEventListener(Event.TOUCH_UP, self.touchUpHandler, self, priority)
+        self._eventSource:addEventListener(Event.TOUCH_MOVE, self.touchMoveHandler, self, priority)
+        self._eventSource:addEventListener(Event.TOUCH_CANCEL, self.touchCancelHandler, self, priority)
     end
 end
 

@@ -30,6 +30,18 @@ local function internalUpdateRenderPriority(obj, priority)
     return priority
 end
 
+function M:setLayerPriority( layerPriority )
+    self.layerPriority = layerPriority
+
+    print( "View.setLayerPriority", layerPriority )
+
+    local layer = self:getLayer()
+    print( "  layer = ", layer )
+    if layer then
+        layer:setPriority( layerPriority )
+    end
+end
+
 --------------------------------------------------------------------------------
 -- Initializes the internal variables.
 --------------------------------------------------------------------------------
@@ -57,6 +69,10 @@ function M:initLayer()
 
     self:setLayer(layer)
     self:setSize(layer:getViewSize())
+
+    if self.layerPriority then
+        layer:setPriority( self.layerPriority )
+    end
 end
 
 --------------------------------------------------------------------------------

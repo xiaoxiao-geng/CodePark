@@ -33,6 +33,43 @@ local updateRenderFlag = false
 local backgroundLayers = {}
 local frontLayers = {}
 
+-- 2013-9-14 ultralisk add 
+-- 将sceneLayers中的layer，按照priority升序放入buffer中
+-- 使用插入排序
+-- 若数据量大，可以考虑使用二分查找等优化手段
+local function insertSceneLayers( buffer, sceneLayers )
+    local default = Event.PRIORITY_DEFAULT
+    local p, pp = 0, 0
+    local inserted = false
+
+    print("insertSceneLayers")
+
+    for i, v in ipairs( sceneLayers ) do
+        p = v.priority or default
+        inserted = fasle
+
+        print("  -> ", v, v.name, p )
+
+        for ii, vv in ipairs( buffer ) do
+            pp = vv.priority or default
+
+            -- 按优先级插入
+            if p > pp then
+                table.insert( buffer, ii, v )
+                inserted = true
+                break
+            end
+        end
+
+        -- 插入末尾
+        if not inserted then
+            table.insert( buffer, v )
+        end
+    end
+end
+
+-- 2013-9-14 ultralisk modi
+-- 对于scene中的图层，使用优先级进行排序
 local function updateRender()
     renderTable = {}
     -- background
@@ -41,11 +78,13 @@ local function updateRender()
     end
     
     -- scene
+    local sceneLayerBuffer = {}
     for i, scene in ipairs(scenes) do
         if scene.visible then
-            table.insert(renderTable, scene:getRenderTable())
+            insertSceneLayers( sceneLayerBuffer, scene:getRenderTable() )
         end
     end
+    table.insert( renderTable, sceneLayerBuffer )
     
     -- front
     for i, layer in ipairs(frontLayers) do
