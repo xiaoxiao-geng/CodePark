@@ -1,8 +1,18 @@
 module( ..., package.seeall )
 
 function onCreate( params )
-	layer1 = Layer { scene = scene }
-	layer2 = Layer { scene = scene }
+	layer = Layer { scene = scene, touchEnabled = true }
+
+	layer1 = Layer { scene = scene, touchEnabled = true  }
+	layer2 = Layer { scene = scene, touchEnabled = true  }
+
+	Button { layer = layer, pos = { 500, 100 }, text = "1 to top", onClick = function( e ) 
+		layer:setPriority
+
+	end }
+	Button { layer = layer, pos = { 500, 200 }, text = "2 to top", onClick = function( e ) 
+
+	end }
 
 	sprite1 = Sprite { layer = layer1, texture = "bird1.png", pos = { 100, 100 } }
 	sprite2 = Sprite { layer = layer2, texture = "bird2.png", pos = { 150, 150 } }
