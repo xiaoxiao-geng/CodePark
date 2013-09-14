@@ -37,6 +37,9 @@ local function getPointByEvent(self, e)
     p.oldX, p.oldY = p.x, p.y
     p.x, p.y = layer:wndToWorld(e.x, e.y, 0)
     p.screenX, p.screenY = e.x, e.y
+
+    -- ultralisk add
+    p.stoped = e.stoped
     
     if p.oldX and p.oldY then
         p.moveX = p.x - p.oldX
@@ -51,12 +54,14 @@ end
 
 local function eventHandle(self, e, o)
     local layer = self._touchLayer
+    local stoped = e.stoped
     while o do
         if o.isTouchEnabled and not o:isTouchEnabled() then
             break
         end
         if o.dispatchEvent then
             o:dispatchEvent(e)
+            if e.stoped then stoped = true end
         end
         if o.getParent then
             o = o:getParent()
@@ -64,6 +69,7 @@ local function eventHandle(self, e, o)
             o = nil
         end
     end
+    e.stoped = stoped
 end
 
 --------------------------------------------------------------------------------

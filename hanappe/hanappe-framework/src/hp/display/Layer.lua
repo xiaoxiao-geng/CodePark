@@ -210,6 +210,14 @@ function M:setScene(scene)
     end
 end
 
+function M:moveToFront()
+    local scene = self.scene
+    if not scene then return end
+
+    scene:removeChild( self )
+    scene:addChild( self )
+end
+
 --------------------------------------------------------------------------------
 -- Returns the scene.
 --------------------------------------------------------------------------------
