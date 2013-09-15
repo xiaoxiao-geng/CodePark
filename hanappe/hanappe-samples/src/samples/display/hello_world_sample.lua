@@ -1,8 +1,6 @@
 module(..., package.seeall)
 
 function onCreate( params )
-	print(" () ()\n( @ @ )\n(  -  )    onCreate", params, unpack( params ) )
-
 	layer = Layer { scene = scene }
 
 	local temp = Sprite { texture = "cathead.png" }

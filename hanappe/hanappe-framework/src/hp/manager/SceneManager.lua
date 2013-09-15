@@ -42,13 +42,9 @@ local function insertSceneLayers( buffer, sceneLayers )
     local p, pp = 0, 0
     local inserted = false
 
-    print("insertSceneLayers")
-
     for i, v in ipairs( sceneLayers ) do
         p = v:getPriority() or default
         inserted = fasle
-
-        print("  -> ", v, v.name, p )
 
         for ii, vv in ipairs( buffer ) do
             pp = vv:getPriority() or default

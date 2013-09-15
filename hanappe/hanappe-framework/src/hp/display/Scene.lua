@@ -133,7 +133,6 @@ end
 -- @return renderTable.
 ---------------------------------------
 function M:getRenderTable()
-    print(" () ()\n( @ @ )\n(  -  )    Scene:getRenderTable")
     local renderTable = {}
     for i, v in ipairs(self.children) do
         if v.getRenderTable then
@@ -141,9 +140,6 @@ function M:getRenderTable()
         else
             table.insert(renderTable, v)
         end
-    end
-    for k, v in pairs( renderTable ) do
-        print( "  ", k, v, v.name )
     end
 
     return renderTable
