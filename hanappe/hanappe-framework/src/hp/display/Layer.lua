@@ -46,7 +46,8 @@ end
 -- @param priority 越小优先级越高   优先级5 会覆盖在 优先级6之上，并能优先触发touch事件
 --------------------------------------------------------------------------------
 function M:setPriority( priority )
-    self.priority = priority
+    MOAILayerInterface.setPriority( self, priority )
+    -- self.priority = priority
 
     print( "Layer.setPriority", priority )
 
@@ -229,7 +230,7 @@ function M:setScene(scene)
     end
     
     if self._touchProcessor then
-        self._touchProcessor:setEventSource(scene, self.priority)
+        self._touchProcessor:setEventSource(scene, self:getPriority() )
     end
 end
 

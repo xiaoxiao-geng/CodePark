@@ -45,13 +45,13 @@ local function insertSceneLayers( buffer, sceneLayers )
     print("insertSceneLayers")
 
     for i, v in ipairs( sceneLayers ) do
-        p = v.priority or default
+        p = v:getPriority() or default
         inserted = fasle
 
         print("  -> ", v, v.name, p )
 
         for ii, vv in ipairs( buffer ) do
-            pp = vv.priority or default
+            pp = vv:getPriority() or default
 
             -- 按优先级插入
             if p > pp then
@@ -78,13 +78,13 @@ local function updateRender()
     end
     
     -- scene
-    local sceneLayerBuffer = {}
     for i, scene in ipairs(scenes) do
         if scene.visible then
+            local sceneLayerBuffer = {}
             insertSceneLayers( sceneLayerBuffer, scene:getRenderTable() )
+            table.insert( renderTable, sceneLayerBuffer )
         end
     end
-    table.insert( renderTable, sceneLayerBuffer )
     
     -- front
     for i, layer in ipairs(frontLayers) do
