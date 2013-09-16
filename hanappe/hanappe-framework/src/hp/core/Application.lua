@@ -28,6 +28,20 @@ function M:start(config)
     local viewWidth = screenWidth / viewScale
     local viewHeight = screenHeight / viewScale
 
+    --cdsc add start
+    screenWidth   = MOAIEnvironment.horizontalResolution or config.screenWidth
+    screenHeight  = MOAIEnvironment.verticalResolution or config.screenHeight
+
+    if MOAIEnvironment["osBrand"] == "iOS" then
+        screenWidth = MOAIEnvironment.verticalResolution or config.screenHeight
+        screenHeight = MOAIEnvironment.horizontalResolution or config.screenWidth
+    end
+
+    viewWidth   = config.screenWidth or MOAIEnvironment.horizontalResolution
+    viewHeight  = config.screenHeight or MOAIEnvironment.verticalResolution
+    viewScale   = screenWidth / viewWidth
+    --cdsc add end
+
     self.title = title
     self.screenWidth = screenWidth
     self.screenHeight = screenHeight
@@ -37,7 +51,29 @@ function M:start(config)
 
     MOAISim.openWindow(title, screenWidth, screenHeight)
     InputManager:initialize()
+    
+    self:registerSystemEvents() --cdsc add
 end
+
+
+-- cdsc add start
+function M:exit(code)
+    code = code or 0
+    if MOAIApp and MOAIApp.exit then
+        MOAIApp.exit()
+    else
+        os.exit( code )
+    end
+    return true
+end
+
+function M:registerSystemEvents()
+    --back button
+    if MOAIApp and MOAIApp.BACK_BUTTON_PRESSED then
+        MOAIApp.setListener ( MOAIApp.BACK_BUTTON_PRESSED, self.exit )
+    end
+end
+-- cdsc add end
 
 --------------------------------------------------------------------------------
 -- Returns whether the mobile execution environment.

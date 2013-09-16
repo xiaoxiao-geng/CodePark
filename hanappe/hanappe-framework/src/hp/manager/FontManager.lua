@@ -54,7 +54,14 @@ function M:newFont(fontName, points, charcodes, dpi)
     local path = ResourceManager:getFilePath(M.fontPaths[fontName] or fontName)
 
     local font = MOAIFont.new()
-    font:load(path)
+
+    --cdsc add for ".fnt" font
+    if string.sub(path, -4) == '.fnt' then
+        font:loadFromBMFont(path)
+    else
+        font:load(path)
+    end
+    
     font.path = path
     font.points = points
     font.charcodes = charcodes

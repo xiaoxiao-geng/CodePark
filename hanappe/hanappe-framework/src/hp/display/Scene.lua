@@ -141,7 +141,6 @@ function M:getRenderTable()
             table.insert(renderTable, v)
         end
     end
-
     return renderTable
 end
 
@@ -245,6 +244,18 @@ function M:onKeyUp(event)
         self.sceneHandler.onKeyUp(event)
     end
 end
+
+--cdsc add start
+function M:onAccelerometerChanged(event)
+    local target = event.target
+    self:dispatchEvent(event)
+    event.target = target
+
+    if not event.stoped and self.sceneHandler.onAccelerometerChanged then
+        self.sceneHandler.onAccelerometerChanged(event)
+    end
+end
+--cdsc add end
 
 ---------------------------------------
 -- Called when screen touched.

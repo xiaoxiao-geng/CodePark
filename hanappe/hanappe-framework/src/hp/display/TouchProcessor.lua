@@ -38,7 +38,10 @@ local function getPointByEvent(self, e)
     p.x, p.y = layer:wndToWorld(e.x, e.y, 0)
     p.screenX, p.screenY = e.x, e.y
 
-    -- ultralisk add
+    -- 2013-9-15 ultralisk 将stoped字段正确赋值到p中
+    -- 从cache中取出的p，没有设置stoped属性
+    -- 导致InputManager中注册的事件有可能无法被监听到
+    -- 如果cache中取出的p是stoped == true，则无论这个事件是否被拦截，在通过TouchProcesser后都会被拦截
     p.stoped = e.stoped
     
     if p.oldX and p.oldY then
@@ -53,15 +56,18 @@ local function getPointByEvent(self, e)
 end
 
 local function eventHandle(self, e, o)
-    local layer = self._touchLayer
+    -- 2013-9-15 ultralisk modi 如果事件链中有一环为stop，则在事件链末尾标记为stoped
     local stoped = e.stoped
+
+    local layer = self._touchLayer
     while o do
         if o.isTouchEnabled and not o:isTouchEnabled() then
             break
         end
         if o.dispatchEvent then
             o:dispatchEvent(e)
-            if e.stoped then stoped = true end
+
+            if e.stoped then stoped = e.stoped end
         end
         if o.getParent then
             o = o:getParent()
@@ -69,7 +75,23 @@ local function eventHandle(self, e, o)
             o = nil
         end
     end
+
     e.stoped = stoped
+end 
+
+--------------------------------------------------------------------------------
+-- 在Layer中查找触摸prop
+-- @param layer
+-- @param x
+-- @param y
+-- @return prop or nil (if not found)
+--------------------------------------------------------------------------------
+local function getPropFromPoint( layer, x, y )
+    local props = { layer:getPartition():propListForPoint( x, y, 0, MOAILayer.SORT_PRIORITY_DESCENDING ) }
+    for k, prop in pairs( props ) do
+        if not prop.isInClipRect or prop:isInClipRect( x, y ) then return prop end
+    end
+    return nil
 end
 
 --------------------------------------------------------------------------------
@@ -139,9 +161,10 @@ function M:touchDownHandler(e)
     local layer = self._touchLayer
 
     local p = getPointByEvent(self, e)
-    p.touchingProp = layer:getPartition():propForPoint(p.x, p.y, 0)
+    p.touchingProp = getPropFromPoint( layer, p.x, p.y )
     table.insertElement(self._touchPoints, p)
     
+    local o = getPropFromPoint( layer, p.x, p.y )
     local te = table.copy(p, EVENT_TOUCH_DOWN)
     te.points = self._touchPoints
 
@@ -173,7 +196,7 @@ function M:touchUpHandler(e)
         eventHandle(self, te, p.touchingProp)
     end
     
-    local o = layer:getPartition():propForPoint(p.x, p.y, 0)
+    local o = getPropFromPoint( layer, p.x, p.y )
     if o and o ~= p.touchingProp then
         eventHandle(self, te, o)
     end
@@ -205,7 +228,7 @@ function M:touchMoveHandler(e)
         eventHandle(self, te, p.touchingProp)
     end
     
-    local o = layer:getPartition():propForPoint(p.x, p.y, 0)
+    local o = getPropFromPoint( layer, p.x, p.y )
     if o and o ~= p.touchingProp then
         eventHandle(self, te, o)
     end
@@ -235,7 +258,7 @@ function M:touchCancelHandler(e)
         eventHandle(self, te, p.touchingProp)
     end
     
-    local o = layer:propForPoint(p.x, p.y, 0)
+    local o = getPropFromPoint( layer, p.x, p.y )
     if o and o ~= p.touchingProp then
         eventHandle(self, te, o)
     end

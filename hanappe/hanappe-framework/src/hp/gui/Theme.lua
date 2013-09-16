@@ -16,13 +16,12 @@ M.Button = {
         skinClass = NinePatch,
         skinColor = {1, 1, 1, 1},
         font = "VL-PGothic",
-        textSize = 18,
+        textSize = 24,
         textColor = {0.0, 0.0, 0.0, 1},
         textPadding = {10, 5, 10, 8},
     },
     selected = {
         skin = "skins/button-selected.png",
-        textColor = {1, 0, 0, 1},
     },
     over = {
         skin = "skins/button-over.png",

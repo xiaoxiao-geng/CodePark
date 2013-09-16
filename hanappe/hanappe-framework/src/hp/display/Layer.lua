@@ -40,6 +40,7 @@ function M:init(params)
     
     self:copyParams(params)
 end
+
 --------------------------------------------------------------------------------
 -- 设置图层优先级
 -- 2013-9-14 ultralisk add
@@ -47,15 +48,18 @@ end
 --------------------------------------------------------------------------------
 function M:setPriority( priority )
     MOAILayerInterface.setPriority( self, priority )
-    -- self.priority = priority
+
+    print( "Layer.setPriority", priority )
 
     local scene = self.scene
+    print( "  scene", scene)
     if not scene then return end
 
     -- 刷新scene中的renderTable
     scene.sceneManager:updateRender()
 
     -- 刷新TouchProcessor中注册时间优先级
+    print( "  touchProcessor", self._touchProcessor)
     if self._touchProcessor then
         self._touchProcessor:setEventSource( scene, priority )
     end
@@ -226,16 +230,9 @@ function M:setScene(scene)
     end
     
     if self._touchProcessor then
+        -- 2013-9-15 ultralisk 将layer的优先级传入touchProcessor中
         self._touchProcessor:setEventSource(scene, self:getPriority() )
     end
-end
-
-function M:moveToFront()
-    local scene = self.scene
-    if not scene then return end
-
-    scene:removeChild( self )
-    scene:addChild( self )
 end
 
 --------------------------------------------------------------------------------

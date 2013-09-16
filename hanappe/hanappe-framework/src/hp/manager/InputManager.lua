@@ -9,6 +9,11 @@ local EventDispatcher = require("hp/event/EventDispatcher")
 local M = EventDispatcher()
 local pointer = {x = 0, y = 0, down = false}
 local keyboard = {key = 0, down = false}
+--cdsc add start
+local level	= {x = 0, y = 0, z = 0}
+local accelerometerEvent = Event(Event.ACCELEROMETER_CHANGE, M)
+accelerometerEvent.level = level
+--cdsc add end
 local touchEventStack = {}
 
 local TOUCH_EVENTS = {}
@@ -78,6 +83,22 @@ local function onKeyboard(key, down)
     M:dispatchEvent(event)
 end
 
+--cdsc add start
+local function onAccelerometer(x, y, z)
+	level.x = x
+	level.y = y
+	level.z = z
+	M:dispatchEvent(accelerometerEvent)
+end
+
+function M:setAccelerometerEnabled(enable)
+	if MOAIInputMgr.device.level then
+		local callback = enable and onAccelerometer or nil
+		MOAIInputMgr.device.level:setCallback(callback)
+	end
+end
+--cdsc add end
+
 --------------------------------------------------------------------------------
 -- Initialize InputManager. <br>
 -- Register a callback function for input operations.
@@ -97,6 +118,10 @@ function M:initialize()
     if MOAIInputMgr.device.keyboard then
         MOAIInputMgr.device.keyboard:setCallback(onKeyboard)
     end
+    
+    --cdsc add: sensor input start
+    M:setAccelerometerEnabled(false)
+    --cdsc add: sensor input end
 end
 
 function M:isKeyDown(key)

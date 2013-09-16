@@ -29,7 +29,9 @@ M.MOVE_STARTED = "moveStarted"
 M.MOVE_FINISHED = "moveFinished"
 M.MOVE_COLLISION = "moveCollision"
 M.COLLISION = "collision"
-
+--cdsc add start
+M.ACCELEROMETER_CHANGE = "accelerometerChange"
+--cdsc add end
 M.PRIORITY_MIN = 0
 M.PRIORITY_DEFAULT = 1000
 M.PRIORITY_MAX = 10000000

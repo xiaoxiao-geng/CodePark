@@ -9,6 +9,8 @@ function onCreate( params )
 		size = { 400, 400 }
 	}
 
+	panel:setClip( 12, 8, 12, 16 )
+
 	scroller = Scroller { 
 		parent = panel,
 		pos = { 0, 0 }, 
@@ -26,7 +28,7 @@ function onCreate( params )
 	local Component = require "hp/gui/Component"
 	local component = Component { 
 		parent = scroller, 
-		size = { 368, 20 },
+		size = { 1368, 20 },
 		layout = HBoxLayout {
 			align = { "left", "top" },
 			padding = {0,0,0,0},

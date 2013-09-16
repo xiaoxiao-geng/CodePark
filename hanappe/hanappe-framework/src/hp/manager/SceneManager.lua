@@ -42,9 +42,13 @@ local function insertSceneLayers( buffer, sceneLayers )
     local p, pp = 0, 0
     local inserted = false
 
+    print("insertSceneLayers")
+
     for i, v in ipairs( sceneLayers ) do
         p = v:getPriority() or default
         inserted = fasle
+
+        print("  -> ", v, v.name, p )
 
         for ii, vv in ipairs( buffer ) do
             pp = vv:getPriority() or default
@@ -64,8 +68,6 @@ local function insertSceneLayers( buffer, sceneLayers )
     end
 end
 
--- 2013-9-14 ultralisk modi
--- 对于scene中的图层，使用优先级进行排序
 local function updateRender()
     renderTable = {}
     -- background
@@ -76,9 +78,7 @@ local function updateRender()
     -- scene
     for i, scene in ipairs(scenes) do
         if scene.visible then
-            local sceneLayerBuffer = {}
-            insertSceneLayers( sceneLayerBuffer, scene:getRenderTable() )
-            table.insert( renderTable, sceneLayerBuffer )
+            table.insert(renderTable, scene:getRenderTable())
         end
     end
     
@@ -125,7 +125,13 @@ local function onKeyUp(e)
         currentScene:onKeyUp(e)
     end
 end
-
+--cdsc add start
+local function onAccelerometerChanged(e)
+    if currentScene and not transitioning then
+        currentScene:onAccelerometerChanged(e)
+    end
+end
+--cdsc add end
 local function onEnterFrame()
     if updateRenderFlag then
         updateRenderFlag = false
@@ -223,7 +229,9 @@ local function initialize()
     InputManager:addEventListener(Event.TOUCH_CANCEL, onTouchCancel)
     InputManager:addEventListener(Event.KEY_DOWN, onKeyDown)
     InputManager:addEventListener(Event.KEY_UP, onKeyUp)
-    
+    --cdsc add start
+    InputManager:addEventListener(Event.ACCELEROMETER_CHANGE, onAccelerometerChanged)
+    --cdsc add end
     Executors.callLoop(onEnterFrame)
 end
 initialize()

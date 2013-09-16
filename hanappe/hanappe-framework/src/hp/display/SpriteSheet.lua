@@ -155,7 +155,8 @@ end
 --------------------------------------------------------------------------------
 -- Start the animation.
 --------------------------------------------------------------------------------
-function M:playAnim(name)
+-- cdsc add: speed
+function M:playAnim(name, speed)
     local currentAnim = self.currentAnim
     local animTable = self.animTable
     
@@ -167,6 +168,7 @@ function M:playAnim(name)
         self.currentAnim = currentAnim
     end
     if currentAnim then
+        currentAnim:throttle(speed) -- cdsc add
         currentAnim:start()
     end
 end
@@ -179,6 +181,35 @@ function M:stopAnim()
         self.currentAnim:stop()
     end
 end
+
+-- cdsc add start
+--------------------------------------------------------------------------------
+-- Pause the animation.
+--------------------------------------------------------------------------------
+function M:pauseAnim()
+    if self.currentAnim then
+        self.currentAnim:pause(true)
+    end
+end
+
+--------------------------------------------------------------------------------
+-- Stop the animation.
+--------------------------------------------------------------------------------
+function M:resumeAnim()
+    if self.currentAnim then
+        self.currentAnim:pause(false)
+    end
+end
+
+--------------------------------------------------------------------------------
+-- Set the animation's speed
+--------------------------------------------------------------------------------
+function M:setAnimSpeed(speed)
+    if self.currentAnim then
+        self.currentAnim:throttle(speed)
+    end
+end
+-- cdsc add end
 
 --------------------------------------------------------------------------------
 -- Check the current animation with the specified name.<br>

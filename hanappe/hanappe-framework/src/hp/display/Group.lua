@@ -4,7 +4,6 @@
 -- Base Classes => DisplayObject, Resizable <br>
 --------------------------------------------------------------------------------
 
-print("  >> import Group")
 -- import
 local table                     = require "hp/lang/table"
 local class                     = require "hp/lang/class"
@@ -15,14 +14,6 @@ local Resizable                 = require "hp/display/Resizable"
 local super                     = DisplayObject
 local M                         = class(DisplayObject, Resizable)
 local MOAIPropInterface         = MOAIProp.getInterfaceTable()
-
-
-print("    DisplayObject", DisplayObject)
-print("    DisplayObject.sayHi", DisplayObject.sayHi)
-
-
-print("    Group", M)
-print("    Group.sayHi", M.sayHi)
 
 ----------------------------------------------------------------
 -- The constructor.
@@ -339,6 +330,37 @@ function M:hitTestWorld(worldX, worldY, worldZ)
         end
     end
     return false
+end
+
+--------------------------------------------------------------------------------
+-- 设置裁剪框 指定基于控件的边缘
+-- 2013-9-16 ultralisk add
+-- @param left      裁剪范围 左侧 起始点（控件内部坐标）
+-- @param top       裁剪范围 上面 起始点（为nil则使用left）
+-- @param right     裁剪范围 右侧 起始点（为nil则使用left）
+-- @param bottom    裁剪范围 下面 起始点（为nil则使用left）
+--------------------------------------------------------------------------------
+function M:setClip( left, top, right, bottom )
+    left = left or 0
+    top = top or left
+    right = right or left
+    bottom = bottom or left
+
+    local x, y = self:getFullPos()
+    local w, h = self:getSize()
+
+    local left      = x + left
+    local top       = y + top
+    local right     = x + w - right
+    local bottom    = y + h - bottom
+
+    local clipRect = MOAIScissorRect.new()
+    clipRect:setRect( left, top, right, bottom )
+    clipRect.left, clipRect.top, clipRect.right, clipRect.bottom = left, top, right, bottom
+
+    self:setClipRect( clipRect )
+    -- 如果有background，则不对background设置裁剪框
+    if self._background then self._background:setClipRect() end
 end
 
 return M

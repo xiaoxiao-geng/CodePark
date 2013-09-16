@@ -322,7 +322,7 @@ function M:ajustScrollPosition()
         local _
         _, top = self:clipScrollPosition(left, top)
     end
-    
+
     self:setPos(left, top)
 end
 
@@ -476,7 +476,6 @@ function M:touchMoveHandler(e)
 
     -- Implements an elastic effect when we're dragging O.B.
     local minX, minY, maxX, maxY = self:scrollBoundaries()
-
     local left, top = self:getPos()
     local newLeft = left + moveX
     local newTop = top + moveY

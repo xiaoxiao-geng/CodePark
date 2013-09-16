@@ -42,7 +42,6 @@ end
 -- Create a child objects.
 --------------------------------------------------------------------------------
 function M:createChildren()
-
     local skinClass = self:getStyle("skinClass")
     self._skinClass = skinClass
     self._background = skinClass(self:getStyle("skin"))
@@ -57,13 +56,30 @@ function M:createChildren()
     self:setSize(self._background:getSize())
 end
 
+--cdsc add start
+function M:recreateChildren()
+    self:removeChild(self._background)
+    self:removeChild(self._label)
+    self:createChildren()
+end
+--cdsc add end
+
 --------------------------------------------------------------------------------
 -- Update the display.
 --------------------------------------------------------------------------------
 function M:updateDisplay()
+
+    --cdsc add start
+    local skinClass = self:getStyle("skinClass")
+    if skinClass ~= self._skinClass then
+        self:recreateChildren()
+    end
+    --cdsc add end
+
     local background = self._background
     background:setColor(unpack(self:getStyle("skinColor")))
     background:setTexture(self:getStyle("skin"))
+
 
     local label = self._label
     label:setColor(unpack(self:getStyle("textColor")))
