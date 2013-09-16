@@ -81,6 +81,8 @@ end
 
 --------------------------------------------------------------------------------
 -- 在Layer中查找触摸prop
+-- 1. 排除不可见的prop
+-- 2. 排除裁剪区外的prop
 -- @param layer
 -- @param x
 -- @param y
@@ -89,7 +91,7 @@ end
 local function getPropFromPoint( layer, x, y )
     local props = { layer:getPartition():propListForPoint( x, y, 0, MOAILayer.SORT_PRIORITY_DESCENDING ) }
     for k, prop in pairs( props ) do
-        if not prop.isInClipRect or prop:isInClipRect( x, y ) then return prop end
+        if prop:getVisible() and ( not prop.isInClipRect or prop:isInClipRect( x, y ) ) then return prop end
     end
     return nil
 end

@@ -225,7 +225,7 @@ function M:hitTestObject(prop)
     if self:inside(left, top, 0) then
         return true
     end
-    if self:inside(right, bottom, 0) then
+    if self:inside(right, top, 0) then
         return true
     end
     if self:inside(left, bottom, 0) then
