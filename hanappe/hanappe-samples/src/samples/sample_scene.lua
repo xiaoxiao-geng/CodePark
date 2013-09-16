@@ -12,6 +12,7 @@ local Component = require "hp/gui/Component"
 --------------------------------------------------------------------------------
 
 local SCENE_ITEMS = {
+    {text = "RadioButton",      scene = "samples/wind/test_radiobutton",        animation = "slideToLeft"},
     {text = "VBox",             scene = "samples/wind/test_vbox",               animation = "slideToLeft"},
     {text = "PanelPri",         scene = "samples/wind/test_panel",              animation = "slideToLeft"},
     {text = "View",             scene = "samples/wind/test_view",               animation = "slideToLeft"},
