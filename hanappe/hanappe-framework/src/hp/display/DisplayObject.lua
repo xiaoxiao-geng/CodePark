@@ -54,9 +54,6 @@ end
 --------------------------------------------------------------------------------
 function M:init(...)
     self._touchEnabled = true
-
-    print("init", self)
-    -- print(debug.traceback())
 end
 
 --------------------------------------------------------------------------------
@@ -203,9 +200,6 @@ end
 -- Dispose resourece.
 --------------------------------------------------------------------------------
 function M:dispose()
-    print("dispose", self)
-    -- print(debug.traceback())
-
     local parent = self:getParent()
     if parent and parent.isGroup then
         parent:removeChild(self)
