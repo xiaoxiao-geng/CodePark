@@ -166,7 +166,6 @@ function M:touchDownHandler(e)
     p.touchingProp = getPropFromPoint( layer, p.x, p.y )
     table.insertElement(self._touchPoints, p)
     
-    local o = getPropFromPoint( layer, p.x, p.y )
     local te = table.copy(p, EVENT_TOUCH_DOWN)
     te.points = self._touchPoints
 
