@@ -234,9 +234,17 @@ end
 -- Remove the children object.
 --------------------------------------------------------------------------------
 function M:removeChildren()
-    local children = table.copy(self:getChildren())
-    for i, child in ipairs(children) do
-        self:removeChild(child)
+    -- local children = table.copy(self:getChildren())
+    -- for i, child in ipairs(children) do
+    --     self:removeChild(child)
+    -- end
+
+    -- 2013-9-18 ultralisk fix bug
+    -- removeChild会直接改变children数组
+    -- 必须使用倒序的方式遍历
+    for i = #children, 1, -1 do
+        local child = children[ i ]
+        self:removeChild( child )
     end
 end
 
@@ -266,8 +274,19 @@ end
 --------------------------------------------------------------------------------
 function M:dispose()
     super.dispose(self)
-    
-    for i, child in ipairs(self:getChildren()) do
+
+    -- for i, child in ipairs(self:getChildren()) do
+    --     if child.dispose then
+    --         child:dispose()
+    --     end
+    -- end
+
+    -- 2013-9-18 ultralisk fix bug
+    -- child:dispose()会直接改变children数组
+    -- 必须使用倒序的方式遍历
+    local children = self:getChildren()
+    for i = #children, 1, -1 do
+        local child = children[i]
         if child.dispose then
             child:dispose()
         end

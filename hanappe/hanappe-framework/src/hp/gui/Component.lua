@@ -67,8 +67,8 @@ function M:initInternal()
     self._invalidDisplayFlag = false
     self._invalidLayoutFlag = false
     self._currentState = M.STATE_NORMAL
-    self._graphics = Graphics {parent = self}
-    self._graphics.isIncludeLayout = dummeyIsIncludeLayout
+    -- self._graphics = Graphics {parent = self}
+    -- self._graphics.isIncludeLayout = dummeyIsIncludeLayout
 end
 
 --------------------------------------------------------------------------------
@@ -267,9 +267,9 @@ end
 -- @param child the child component
 --------------------------------------------------------------------------------
 function M:removeChild(child)
-    if child == self._graphics then
-        return false
-    end
+    -- if child == self._graphics then
+    --     return false
+    -- end
 
     if super.removeChild(self, child) then
         child:dispatchEvent(M.EVENT_REMOVED)
@@ -465,7 +465,7 @@ function M:setSize(width, height)
         
         self:invalidateDisplay()
         self:invalidateLayout()
-        self._graphics:setSize(width, height)
+        -- self._graphics:setSize(width, height)
     end
 end
 
