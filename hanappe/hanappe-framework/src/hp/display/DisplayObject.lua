@@ -319,7 +319,12 @@ function M:isInClipRect( x, y )
     local rect = self._clipRect
     if not rect then return true end
 
-    return x >= rect.left and y >= rect.top and x <= rect.right and y <= rect.bottom
+    local left, top = rect:getLoc()
+
+    left = left + rect.srcX
+    top = top + rect.srcY
+
+    return x >= left and y >= top and x <= ( left + rect.width ) and y <= ( top + rect.height )
 end
 
 --------------------------------------------------------------------------------

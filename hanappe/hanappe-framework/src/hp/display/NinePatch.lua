@@ -33,15 +33,17 @@ function M:init(params)
     deck:reserveUVRects(1)
     deck:setUVRect(1, 0, 0, 1, 1)
 
+    -- 2013-9-23 ultralisk 调整为“四宫图”
+    -- 原有为 33.3% 调整为 49.9%
     deck:reserveRows(3)
-    deck:setRow(1, 1 / 3, false)
-    deck:setRow(2, 1 / 3, true)
-    deck:setRow(3, 1 / 3, false)
+    deck:setRow(1, 0.499, false)
+    deck:setRow(2, 0.002, true)
+    deck:setRow(3, 0.499, false)
     
     deck:reserveColumns(3)
-    deck:setColumn(1, 1 / 3, false)
-    deck:setColumn(2, 1 / 3, true)
-    deck:setColumn(3, 1 / 3, false)
+    deck:setColumn(1, 0.499, false)
+    deck:setColumn(2, 0.002, true)
+    deck:setColumn(3, 0.499, false)
     
     self.setOrignScl = assert(MOAIPropInterface.setScl)
     self.getOrignScl = assert(MOAIPropInterface.getScl)

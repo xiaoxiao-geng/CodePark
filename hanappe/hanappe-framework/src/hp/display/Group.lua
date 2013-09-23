@@ -351,35 +351,61 @@ function M:hitTestWorld(worldX, worldY, worldZ)
     return false
 end
 
+
 --------------------------------------------------------------------------------
--- 设置裁剪框 指定基于控件的边缘
--- 2013-9-16 ultralisk add
+-- 设置裁剪框 基于padding边距距离设定裁剪框
+-- 2013-9-23 ultralisk add
 -- @param left      裁剪范围 左侧 起始点（控件内部坐标）
 -- @param top       裁剪范围 上面 起始点（为nil则使用left）
 -- @param right     裁剪范围 右侧 起始点（为nil则使用left）
 -- @param bottom    裁剪范围 下面 起始点（为nil则使用left）
 --------------------------------------------------------------------------------
-function M:setClip( left, top, right, bottom )
+function M:setClipPadding( left, top, right, bottom )
     left = left or 0
     top = top or left
     right = right or left
     bottom = bottom or left
 
-    local x, y = self:getFullPos()
     local w, h = self:getSize()
 
-    local left      = x + left
-    local top       = y + top
-    local right     = x + w - right
-    local bottom    = y + h - bottom
+    self:setClip( left, top, w - right, h - bottom )
+end
+
+--------------------------------------------------------------------------------
+-- 设置裁剪框 指定裁剪框的坐标
+-- 2013-9-23 ultralisk add
+-- 无参数的情况为按照自身size进行裁剪
+--
+-- @param left      裁剪范围 左侧 起始点
+-- @param top       裁剪范围 上面 起始点
+-- @param right     裁剪范围 右侧 起始点
+-- @param bottom    裁剪范围 下面 起始点
+--------------------------------------------------------------------------------
+function M:setClip( left, top, right, bottom )
+    local w, h = self:getSize()
+    local fx, fy = self:getFullPos()
+    local x, y = self:getPos()
+
+    x, y = fx - x, fy - y
+
+    left            = x + left or 0
+    top             = y + top or 0
+    right           = x + right or w
+    bottom          = y + bottom or h
 
     local clipRect = MOAIScissorRect.new()
     clipRect:setRect( left, top, right, bottom )
-    clipRect.left, clipRect.top, clipRect.right, clipRect.bottom = left, top, right, bottom
+
+    clipRect.srcX,  clipRect.srcY       = left, top
+    clipRect.width, clipRect.height     = right - left, bottom - top
 
     self:setClipRect( clipRect )
     -- 如果有background，则不对background设置裁剪框
     if self._background then self._background:setClipRect() end
+
+    -- 将clip绑定到self
+    clipRect:setAttrLink ( MOAITransform.ATTR_X_LOC, self, MOAITransform.ATTR_X_LOC )
+    clipRect:setAttrLink ( MOAITransform.ATTR_Y_LOC, self, MOAITransform.ATTR_Y_LOC )
 end
 
 return M
