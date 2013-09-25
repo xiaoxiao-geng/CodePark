@@ -33,10 +33,12 @@ local updateRenderFlag = false
 local backgroundLayers = {}
 local frontLayers = {}
 
--- 2013-9-14 ultralisk add 
+--------------------------------------------------------------------------------
+-- 2013-9-14 ultralisk add begin
 -- 将sceneLayers中的layer，按照priority升序放入buffer中
 -- 使用插入排序
 -- 若数据量大，可以考虑使用二分查找等优化手段
+--------------------------------------------------------------------------------
 local function insertSceneLayers( buffer, sceneLayers )
     local default = Event.PRIORITY_DEFAULT
     local p, pp = 0, 0
@@ -67,6 +69,9 @@ local function insertSceneLayers( buffer, sceneLayers )
         end
     end
 end
+--------------------------------------------------------------------------------
+-- 2013-9-14 ultralisk add end
+--------------------------------------------------------------------------------
 
 local function updateRender()
     renderTable = {}

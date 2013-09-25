@@ -25,13 +25,17 @@ local function attenuation(distance)
     return 1 / distance
 end
 
--- 2013-9-22 ultralisk 
+--------------------------------------------------------------------------------
+-- 2013-9-22 ultralisk add begin
 -- 针对Component中的 _graphics  成员进行标记
 -- 需要_graphics child来接收触摸事件
 function M:init( params )
     self._needGraphics = true
     super.init( self, params )
 end
+--------------------------------------------------------------------------------
+-- 2013-9-22 ultralisk add end
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 -- Initializes the internal variables.

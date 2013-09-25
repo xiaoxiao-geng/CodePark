@@ -308,10 +308,16 @@ end
 -- Returns the visible.
 -- @param prop MOAIProp instance.
 -- @return visible
--- 2013-9-16 ultralisk modi return true or false
 --------------------------------------------------------------------------------
 function M.getVisible(prop)
+    --------------------------------------------------------------------------------
+    -- 2013-9-16 ultralisk change begin
+    --  return true or false
+    --------------------------------------------------------------------------------
     return prop:getAttr(MOAIProp.ATTR_VISIBLE) == 1
+    --------------------------------------------------------------------------------
+    -- 2013-9-16 ultralisk change end
+    --------------------------------------------------------------------------------
 end
 
 return M

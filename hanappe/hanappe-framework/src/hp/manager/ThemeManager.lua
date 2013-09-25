@@ -40,8 +40,11 @@ function M:getComponentTheme(name)
 end
 
 ----------------------------------------------------------------
+-- 2013-9-23 ultralisk add begin
+----------------------------------------------------------------
+
+----------------------------------------------------------------
 -- Add user skin in to manager
--- 2013-9-23 ultralisk add
 ----------------------------------------------------------------
 function M:addUserSkin( name, skin )
 	theme[ name ] = skin
@@ -50,7 +53,6 @@ end
 
 ----------------------------------------------------------------
 -- Add user theme in to manager
--- 2013-9-23 ultralisk add
 -- @param doNotCallThemeChanged  不调用themeChanged事件
 ----------------------------------------------------------------
 function M:addUserTheme( userTheme )
@@ -61,5 +63,9 @@ function M:addUserTheme( userTheme )
 	end
     self:dispatchEvent("themeChanged")
 end
+
+----------------------------------------------------------------
+-- 2013-9-23 ultralisk add end
+----------------------------------------------------------------
 
 return M

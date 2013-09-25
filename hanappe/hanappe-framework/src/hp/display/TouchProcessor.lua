@@ -38,11 +38,18 @@ local function getPointByEvent(self, e)
     p.x, p.y = layer:wndToWorld(e.x, e.y, 0)
     p.screenX, p.screenY = e.x, e.y
 
-    -- 2013-9-15 ultralisk 将stoped字段正确赋值到p中
+    --------------------------------------------------------------------------------
+    -- 2013-9-15 ultralisk fix begin
+    -- 将stoped字段正确赋值到p中
     -- 从cache中取出的p，没有设置stoped属性
     -- 导致InputManager中注册的事件有可能无法被监听到
     -- 如果cache中取出的p是stoped == true，则无论这个事件是否被拦截，在通过TouchProcesser后都会被拦截
+    --------------------------------------------------------------------------------
     p.stoped = e.stoped
+    --------------------------------------------------------------------------------
+    -- 2013-9-15 ultralisk fix end
+    --------------------------------------------------------------------------------
+
     
     if p.oldX and p.oldY then
         p.moveX = p.x - p.oldX
@@ -56,7 +63,10 @@ local function getPointByEvent(self, e)
 end
 
 local function eventHandle(self, e, o)
-    -- 2013-9-15 ultralisk modi 如果事件链中有一环为stop，则在事件链末尾标记为stoped
+    --------------------------------------------------------------------------------
+    -- 2013-9-15 ultralisk change begin
+    -- 如果事件链中有一环为stop，则在事件链末尾标记为stoped
+    --------------------------------------------------------------------------------
     local stoped = e.stoped
 
     local layer = self._touchLayer
@@ -77,6 +87,9 @@ local function eventHandle(self, e, o)
     end
 
     e.stoped = stoped
+    --------------------------------------------------------------------------------
+    -- 2013-9-15 ultralisk change end
+    --------------------------------------------------------------------------------
 end 
 
 --------------------------------------------------------------------------------
@@ -110,7 +123,8 @@ end
 --------------------------------------------------------------------------------
 -- イベント発生元を設定します.
 -- 典型的には、Sceneインスタンスが設定されます.
--- 2013-9-14 ultralisk add param priority
+--
+-- 2013-9-14 ultralisk change begin
 -- 添加优先级字段，用于注册触摸事件
 --------------------------------------------------------------------------------
 function M:setEventSource(eventSource, priority)
@@ -130,6 +144,10 @@ function M:setEventSource(eventSource, priority)
         self._eventSource:addEventListener(Event.TOUCH_CANCEL, self.touchCancelHandler, self, priority)
     end
 end
+
+--------------------------------------------------------------------------------
+-- 2013-9-14 ultralisk change end
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 -- イベントソースに対する参照を削除します.

@@ -68,13 +68,18 @@ function M:initInternal()
     self._invalidLayoutFlag = false
     self._currentState = M.STATE_NORMAL
 
-    -- 2013-9-22 ultralisk
+    --------------------------------------------------------------------------------
+    -- 2013-9-22 ultralisk change begin
     -- 针对 _graphics 成员进行单独处理
     -- 如果子类控件需要_graphics需要此成员，则将 _needGraphics 标记为true即可
+    --------------------------------------------------------------------------------
     if self._needGraphics then
         self._graphics = Graphics {parent = self}
         self._graphics.isIncludeLayout = dummeyIsIncludeLayout
     end
+    --------------------------------------------------------------------------------
+    -- 2013-9-22 ultralisk change end
+    --------------------------------------------------------------------------------
 end
 
 --------------------------------------------------------------------------------
@@ -472,11 +477,16 @@ function M:setSize(width, height)
         self:invalidateDisplay()
         self:invalidateLayout()
 
-        -- 2013-9-22 ultralisk 补充
+        --------------------------------------------------------------------------------
+        -- 2013-9-22 ultralisk change begin
         -- _graphics 有可能不存在，需要判断
+        --------------------------------------------------------------------------------
         if self._graphics then
             self._graphics:setSize(width, height)
         end
+        --------------------------------------------------------------------------------
+        -- 2013-9-22 ultralisk change end
+        --------------------------------------------------------------------------------
     end
 end
 
