@@ -326,10 +326,11 @@ function M:isInClipRect( x, y )
     local rect = self._clipRect
     if not rect then return true end
 
-    local left, top = rect:getLoc()
+    -- TODO 每次点击都计算多个prop的fullPos感觉很废，
+    local px, py = rect._clipParent:getFullPos()
 
-    left = left + rect.srcX
-    top = top + rect.srcY
+    local left = px + rect.srcX
+    local top = py + rect.srcY
 
     return x >= left and y >= top and x <= ( left + rect.width ) and y <= ( top + rect.height )
 end

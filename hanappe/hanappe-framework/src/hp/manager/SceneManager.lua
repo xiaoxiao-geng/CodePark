@@ -44,13 +44,9 @@ local function insertSceneLayers( buffer, sceneLayers )
     local p, pp = 0, 0
     local inserted = false
 
-    print("insertSceneLayers")
-
     for i, v in ipairs( sceneLayers ) do
         p = v:getPriority() or default
         inserted = fasle
-
-        print("  -> ", v, v.name, p )
 
         for ii, vv in ipairs( buffer ) do
             pp = vv:getPriority() or default
@@ -81,12 +77,21 @@ local function updateRender()
     end
     
     -- scene
+    --------------------------------------------------------------------------------
+    -- ultralisk change begin
+    -- 使用layerBuffer对scene中所有的layer继续排序，将排序后的layer插入renderTable中
+    --------------------------------------------------------------------------------
+    local layerBuffer = {}
     for i, scene in ipairs(scenes) do
         if scene.visible then
-            table.insert(renderTable, scene:getRenderTable())
+            insertSceneLayers( layerBuffer, scene:getRenderTable() )
         end
     end
-    
+    table.insert( renderTable, layerBuffer )    
+    --------------------------------------------------------------------------------
+    -- ultralisk change end
+    --------------------------------------------------------------------------------
+
     -- front
     for i, layer in ipairs(frontLayers) do
         table.insert(renderTable, layer)

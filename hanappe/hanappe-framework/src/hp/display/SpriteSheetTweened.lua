@@ -222,7 +222,9 @@ function M:getAnimFromData(data, deck)
     local layers = data.layers
     for i = 1, #layers do
         local sprite = SpriteSheet()
+        sprite:setAttrLink(MOAIProp.INHERIT_COLOR, self, MOAIProp.COLOR_TRAIT) 
         sprite:setAttrLink(MOAIProp.INHERIT_TRANSFORM, self, MOAIProp.TRANSFORM_TRAIT) 
+        sprite:setAttrLink(MOAIProp.ATTR_VISIBLE, self, MOAIProp.ATTR_VISIBLE)
         sprite:setDeck ( deck )
         sprite:setIndex(-1)
         table.insert ( self.sprites, sprite )

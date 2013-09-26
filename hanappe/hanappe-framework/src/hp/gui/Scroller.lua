@@ -345,6 +345,17 @@ function M:ajustScrollSize()
     if not self._autoResizing then
         return
     end
+
+    --------------------------------------------------------------------------------
+    -- 2013-9-26 ultralisk fix bug begin
+    -- 清空_graphics中的尺寸
+    --------------------------------------------------------------------------------
+    if self._graphics then
+        self._graphics:setSize( 0, 0 )
+    end
+    --------------------------------------------------------------------------------
+    -- 2013-9-26 ultralisk fix bug end
+    --------------------------------------------------------------------------------
     
     local width, height = 0, 0
     local parent = self:getParent()

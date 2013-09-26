@@ -239,15 +239,17 @@ function M:removeChildren()
     --     self:removeChild(child)
     -- end
 
-    
     --------------------------------------------------------------------------------
     -- 2013-9-18 ultralisk fix bug begin
     -- removeChild会直接改变children数组
     -- 必须使用倒序的方式遍历
     --------------------------------------------------------------------------------
-    for i = #children, 1, -1 do
-        local child = children[ i ]
-        self:removeChild( child )
+    local children = self.children
+    if children then
+        for i = #children, 1, -1 do
+            local child = children[ i ]
+            self:removeChild( child )
+        end
     end
     --------------------------------------------------------------------------------
     -- 2013-9-18 ultralisk fix bug end
@@ -396,29 +398,25 @@ end
 --------------------------------------------------------------------------------
 function M:setClip( left, top, right, bottom )
     local w, h = self:getSize()
-    local fx, fy = self:getFullPos()
-    local x, y = self:getPos()
 
-    x, y = fx - x, fy - y
-
-    left            = x + left or 0
-    top             = y + top or 0
-    right           = x + right or w
-    bottom          = y + bottom or h
+    left            = left or 0
+    top             = top or 0
+    right           = right or w
+    bottom          = bottom or h
 
     local clipRect = MOAIScissorRect.new()
     clipRect:setRect( left, top, right, bottom )
 
     clipRect.srcX,  clipRect.srcY       = left, top
     clipRect.width, clipRect.height     = right - left, bottom - top
+    clipRect._clipParent = self
 
     self:setClipRect( clipRect )
     -- 如果有background，则不对background设置裁剪框
     if self._background then self._background:setClipRect() end
 
     -- 将clip绑定到self
-    clipRect:setAttrLink ( MOAITransform.ATTR_X_LOC, self, MOAITransform.ATTR_X_LOC )
-    clipRect:setAttrLink ( MOAITransform.ATTR_Y_LOC, self, MOAITransform.ATTR_Y_LOC )
+    clipRect:setAttrLink ( MOAITransform.INHERIT_TRANSFORM, self, MOAITransform.TRANSFORM_TRAIT )
 end
 
 --------------------------------------------------------------------------------
