@@ -5,8 +5,11 @@ function onCreate( params )
 
 	panel = Panel { parent = view, pos = { 50, 50 }, size = { 200, 200 } }
 
+	panel:setClipPadding( 6, 8, 6, 8 )
+
 	scroller = Scroller { 
 		parent = panel, 
+		hScrollEnabled = false,
 		layout = VBoxLayout {
 	        align = {"center", "top"},
 	        padding = {10, 10, 10, 10},
@@ -35,4 +38,29 @@ function onCreate( params )
 				print("  ", k, v )
 			end
 		end )
+
+	barX, barY, barW, barH = 180, 30, 7, 140
+	bar1 = NinePatch { parent = panel, texture = "scrollerBar.png", pos = { barX, barY }, size = { barW, barH }, color = { 0, 0, 0, 0.5 } }
+	-- bar2 = NinePatch { parent = view, texture = "scrollerBar.png", pos = { 200, 300 }, color = { 0, 0, 0, 0.5 } }
+end
+
+local r = 0
+function onEnterFrame()
+	local x, y = scroller:getPos()
+	local w, h = scroller:getSize()
+	print( "scroller -> ", x, y, w, h )
+
+	local pw, ph = panel:getSize()
+
+	local height = math.floor( ( ph / h ) * barH )
+
+	local ah = h - ph
+	local alphaY = -y / ah
+
+	local by = math.floor( alphaY * ( barH - height ) ) + height * 0.5
+
+	print( "h, alphaY", height, alphaY)
+
+	bar1:setSize( barW, height )
+	bar1:setPos( barX, by )
 end
