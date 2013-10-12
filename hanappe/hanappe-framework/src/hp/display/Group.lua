@@ -73,8 +73,16 @@ end
 -- @param visible visible
 ----------------------------------------------------------------
 function M:setVisible(visible)
-    MOAIPropInterface.setVisible(self, visible)
-    
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change begin
+    -- 采用DisplayObject中的setVisible进行设置
+    --------------------------------------------------------------------------------
+    super.setVisible( self, visible )
+    -- MOAIPropInterface.setVisible(self, visible)    
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change end
+    --------------------------------------------------------------------------------
+
     for i, v in ipairs(self:getChildren()) do
         if v.setVisible then
             v:setVisible(visible)
