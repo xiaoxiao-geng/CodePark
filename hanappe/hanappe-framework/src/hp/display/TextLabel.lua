@@ -126,9 +126,20 @@ function M:fitSize(length)
     length = length or 1000000
     local padding = 2
     local left, top, right, bottom = self:getStringBounds(1, length)
-    local width, height = right - left + padding, bottom - top + padding
-    width = width % 2 == 0 and width or width + 1
-    height = height % 2 == 0 and height or height + 1
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change begin
+    -- 当文本为空的时候，getStringBounds会返回nil，这里做下检查
+    --------------------------------------------------------------------------------
+    if left then
+        local width, height = right - left + padding, bottom - top + padding
+        width = width % 2 == 0 and width or width + 1
+        height = height % 2 == 0 and height or height + 1
+    else
+        width, height = 0, 0 
+    end
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change end
+    --------------------------------------------------------------------------------
 
     self:setSize(width, height)
 end
@@ -144,9 +155,21 @@ function M:fitHeight(length)
     length = length or 1000000
     local padding = 2
     local left, top, right, bottom = self:getStringBounds(1, length)
-    local width, height = right - left + padding, bottom - top + padding
-    width = width % 2 == 0 and width or width + 1
-    height = height % 2 == 0 and height or height + 1
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change begin
+    -- 当文本为空的时候，getStringBounds会返回nil，这里做下检查
+    --------------------------------------------------------------------------------
+    if left then
+        local width, height = right - left + padding, bottom - top + padding
+        width = width % 2 == 0 and width or width + 1
+        height = height % 2 == 0 and height or height + 1
+    else
+        height = 0
+    end
+    --------------------------------------------------------------------------------
+    -- 2013-10-12 ultralisk change end
+    --------------------------------------------------------------------------------
 
     self:setHeight(height)
 end
