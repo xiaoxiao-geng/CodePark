@@ -94,6 +94,15 @@ end
 -- @param text text.
 --------------------------------------------------------------------------------
 function M:setText(text)
+    --------------------------------------------------------------------------------
+    -- 2013-10-22 ultralisk add begin
+    -- ä½¿ç”¨tostringè½¬æ¢ä¸€æ¬¡
+    --------------------------------------------------------------------------------
+    text = tostring( text )
+    --------------------------------------------------------------------------------
+    -- 2013-10-22 ultralisk add end
+    --------------------------------------------------------------------------------
+
     self:setString(text)
 end
 
@@ -128,7 +137,7 @@ function M:fitSize(length)
     local left, top, right, bottom = self:getStringBounds(1, length)
     --------------------------------------------------------------------------------
     -- 2013-10-12 ultralisk change begin
-    -- µ±ÎÄ±¾Îª¿ÕµÄÊ±ºò£¬getStringBounds»á·µ»Ønil£¬ÕâÀï×öÏÂ¼ì²é
+    -- å½“æ–‡æœ¬ä¸ºç©ºçš„æ—¶å€™ï¼ŒgetStringBoundsä¼šè¿”å›nilï¼Œè¿™é‡Œåšä¸‹æ£€æŸ¥
     --------------------------------------------------------------------------------
     if left then
         local width, height = right - left + padding, bottom - top + padding
@@ -158,14 +167,13 @@ function M:fitHeight(length)
 
     --------------------------------------------------------------------------------
     -- 2013-10-12 ultralisk change begin
-    -- µ±ÎÄ±¾Îª¿ÕµÄÊ±ºò£¬getStringBounds»á·µ»Ønil£¬ÕâÀï×öÏÂ¼ì²é
+    -- å½“æ–‡æœ¬ä¸ºç©ºçš„æ—¶å€™ï¼ŒgetStringBoundsä¼šè¿”å›nilï¼Œè¿™é‡Œåšä¸‹æ£€æŸ¥
     --------------------------------------------------------------------------------
+    local width, height = 0, 0
     if left then
-        local width, height = right - left + padding, bottom - top + padding
+        width, height = right - left + padding, bottom - top + padding
         width = width % 2 == 0 and width or width + 1
         height = height % 2 == 0 and height or height + 1
-    else
-        height = 0
     end
     --------------------------------------------------------------------------------
     -- 2013-10-12 ultralisk change end

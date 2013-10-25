@@ -49,17 +49,13 @@ end
 function M:setPriority( priority )
     MOAILayerInterface.setPriority( self, priority )
 
-    print( "Layer.setPriority", priority )
-
     local scene = self.scene
-    print( "  scene", scene)
     if not scene then return end
 
     -- 刷新scene中的renderTable
     scene.sceneManager:updateRender()
 
     -- 刷新TouchProcessor中注册时间优先级
-    print( "  touchProcessor", self._touchProcessor)
     if self._touchProcessor then
         self._touchProcessor:setEventSource( scene, priority )
     end

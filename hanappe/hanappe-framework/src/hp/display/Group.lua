@@ -431,4 +431,26 @@ end
 -- 2013-9-23 ultralisk add end
 --------------------------------------------------------------------------------
 
+
+--------------------------------------------------------------------------------
+-- 2013-10-25 ultralisk add begin
+--------------------------------------------------------------------------------
+
+-- 设置shader，级联设置所有child的shader
+function M:setShader( shader )
+    for i, child in ipairs(self:getChildren()) do
+        if child.setShader then
+            child:setShader( shader )
+        end
+    end
+
+    if super.setShader then
+        super.setShader( self, shader )
+    end
+end
+
+--------------------------------------------------------------------------------
+-- 2013-10-25 ultralisk add end
+--------------------------------------------------------------------------------
+
 return M

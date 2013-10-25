@@ -17,6 +17,14 @@ local math              = require "hp/lang/math"
 local super             = Component
 local M                 = class(Component)
 
+--------------------------------------------------------------------------------
+-- 2013-10-17 ultralisk add begin
+--------------------------------------------------------------------------------
+M.EVENT_BEGIN_SCROLLING = "beginScrolling"
+--------------------------------------------------------------------------------
+-- 2013-10-17 ultralisk add end
+--------------------------------------------------------------------------------
+
 -- Computes attenuation as a function of distance.
 -- @param distance Distance
 -- @return distance^(-2/3)
@@ -64,6 +72,24 @@ function M:initInternal(params)
     
     Executors.callLoop(self.enterFrame, self)
 end
+
+--------------------------------------------------------------------------------
+-- 2013-10-19 ultralisk add end
+-- _graphics 拦截所有事件
+--------------------------------------------------------------------------------
+function M:createChildren()
+    super.createChildren( self )
+
+    local g = self._graphics
+    if g then
+        g:addEventListener( Component.EVENT_TOUCH_DOWN, function( e ) e:stop() end )
+        g:addEventListener( Component.EVENT_TOUCH_MOVE, function( e ) e:stop() end )
+        g:addEventListener( Component.EVENT_TOUCH_UP, function( e ) e:stop() end )
+    end
+end
+--------------------------------------------------------------------------------
+-- 2013-10-19 ultralisk end
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 -- Update frame.
@@ -363,13 +389,33 @@ function M:ajustScrollSize()
     local minHeight = parent and parent:getHeight() or 0
     
     for i, child in ipairs(self:getChildren()) do
-       width  = math.max(width, child:getRight())
-       height = math.max(height, child:getBottom())
+        --------------------------------------------------------------------------------
+        -- 2013-10-17 ultralisk change begin
+        -- 不可见的成员不计入scroller的范围
+        --------------------------------------------------------------------------------
+        if child:getVisible() then
+           width  = math.max(width, child:getRight())
+           height = math.max(height, child:getBottom())
+        end
+        --------------------------------------------------------------------------------
+        -- 2013-10-17 ultralisk change end
+        --------------------------------------------------------------------------------
     end
     width = width >= minWidth and width or minWidth
     height = height >= minHeight and height or minHeight
-    
+
     self:setSize(width, height)
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk change begin
+    -- 还原graphics
+    --------------------------------------------------------------------------------
+    if self._graphics then
+        self._graphics:setSize( width, height )
+    end
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk change end
+    --------------------------------------------------------------------------------
 end
 
 --------------------------------------------------------------------------------
@@ -458,6 +504,16 @@ function M:touchDownHandler(e)
         return
     end
 
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk add begin
+    -- 记录触摸按下时的坐标
+    --------------------------------------------------------------------------------
+    self._touchDownX, self._touchDownY = self:getPos()
+    self._beginScrolling = false
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk add end
+    --------------------------------------------------------------------------------
+
     self._scrollingForceX = 0
     self._scrollingForceY = 0
     self._touchDownFlag = true
@@ -490,6 +546,15 @@ function M:touchMoveHandler(e)
     if self._touchMoved then
         return
     end
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk change begin
+    -- 如果没有在scroller内按下，不处理移动事件
+    --------------------------------------------------------------------------------
+    if not self._touchDownFlag then return end
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk change end
+    --------------------------------------------------------------------------------
     
     local scale = self:getLayer():getViewScale()
     local moveX, moveY = e.moveX, e.moveY
@@ -523,6 +588,25 @@ function M:touchMoveHandler(e)
 
     self:addLoc(moveX, moveY, 0)
     self._touchMoved = true
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk add begin
+    -- 处理开始滑动的事件
+    -- 根据滑动距离，超过一定距离后触发事件
+    --------------------------------------------------------------------------------
+    if not self._beginScrolling then
+        local x, y = self:getPos()
+        local dx, dy = x - self._touchDownX, y - self._touchDownY
+        self._beginScrolling = false
+
+        if math.abs( dx ) + math.abs( dy ) > 20 then
+            self._beginScrolling = true
+            self:dispatchEvent( M.EVENT_BEGIN_SCROLLING )
+        end
+    end
+    --------------------------------------------------------------------------------
+    -- 2013-10-17 ultralisk add end
+    --------------------------------------------------------------------------------
 end
 
 --------------------------------------------------------------------------------

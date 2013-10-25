@@ -34,6 +34,7 @@ end
 -- Returns the filePath from fileName.
 --------------------------------------------------------------------------------
 function M:getFilePath(fileName, defaultPath)
+
     if MOAIFileSystem.checkFileExists(fileName) then
         return fileName
     end
@@ -43,9 +44,24 @@ function M:getFilePath(fileName, defaultPath)
             return filePath
         end
     end
-    if not defaultPath then
-        error("File not found error!")
-    end
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-11 ultralisk add begin
+    -- 默认采用 empty.png
+    -- 请不要合并给单机部。。。
+    --------------------------------------------------------------------------------
+
+    -- if not defaultPath then
+    --     error("File not found error!")
+    -- end
+    -- gLog.warn( "File not found ! [" .. tostring( fileName ) .. "]" )
+    
+    defaultPath = defaultPath or RESOURCES.getPath( "empty.png" )
+
+    --------------------------------------------------------------------------------
+    -- 2013-10-11 ultralisk add end
+    --------------------------------------------------------------------------------
+
     return defaultPath
 end
 
