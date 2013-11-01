@@ -14,6 +14,9 @@ local super             = CustomButton
 
 M.EVENT_ACTIVE_CHANGED 	= "onActiveChanged"
 
+M.MODE_RADIO = 1
+M.MODE_CHECK = 2
+
 local function getParentGroupId( parent )
 	while true do
 		if not parent then return nil end
@@ -31,6 +34,8 @@ end
 -- Initializes the internal variables.
 --------------------------------------------------------------------------------
 function M:initInternal()
+	self._mode = M.MODE_RADIO
+
 	super.initInternal( self )
 
 	self._groupId = 0
@@ -39,8 +44,13 @@ function M:initInternal()
 end
 
 function M:initComponent( params )
+	if params.mode then
+		self:setMode( params.mode )
+		params.mode = nil
+	end
+
 	-- 尝试在父面板中找到默认id
-	if not params.groupId then
+	if mode == M.MODE_RADIO and not params.groupId then
 		local id = getParentGroupId( params.parent )
 		if not id then error( "RadioButton groupId not found!" ) end
 		params.groupId = id
@@ -49,11 +59,22 @@ function M:initComponent( params )
 	super.initComponent( self, params )
 end
 
+function M:setMode( value )
+	self._mode = value
+
+	RadioButtonManager.removeRadioButton( self )
+	if self._mode == M.MODE_RADIO then
+		RadioButtonManager.addRadioButton( self )
+	end
+end
+
 function M:setGroupId( value )
 	self._groupId = value
 
-	RadioButtonManager.removeRadioButton( self )
-	RadioButtonManager.addRadioButton( self )
+	if self._mode == M.MODE_RADIO then
+		RadioButtonManager.removeRadioButton( self )
+		RadioButtonManager.addRadioButton( self )
+	end
 end
 
 function M:getGroupId()
@@ -66,14 +87,19 @@ end
 
 function M:setActived( value )
 	if self._actived == value then return end
+	
+	self._actived = value
 
 	-- 如果是改变为激活，则提交RadioButton处理
-	if value == true then
-		self._actived = true
-        self:dispatchEvent( M.EVENT_ACTIVE_CHANGED )
-		RadioButtonManager.onButtonActive( self )
+	if self._mode == M.MODE_RADIO then
+		-- 单选模式 如果为true则提交manager并转发事件
+		if value then
+		    self:dispatchEvent( M.EVENT_ACTIVE_CHANGED )
+			RadioButtonManager.onButtonActive( self )
+		end
 	else
-		self._actived = false
+		-- 多选模式 转发任何事件
+		self:dispatchEvent( M.EVENT_ACTIVE_CHANGED )
 	end
 
 	self:updateDisplay()
@@ -99,12 +125,18 @@ function M:touchUpHandler(e)
         self._touchIndex = nil
         
         self:doUpButton()
+        
+        -- 按照模式不同有不同处理
+        if self._mode == M.MODE_RADIO then
+	        -- 设置为激活
+	        self:setActived( true )
+        else
+	        -- 改变激活状态
+	        self:setActived( not self._actived )
+        end
 
         -- 触发点击事件
         self:dispatchEvent(M.EVENT_CLICK)
-        
-        -- 设置为激活
-        self:setActived( true )
     end
 end
 

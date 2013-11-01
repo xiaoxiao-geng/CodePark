@@ -127,6 +127,11 @@ function M:initInternal()
 end
 
 function M:initComponent( params )
+	if params and params.flipMode == true then
+		self._isFlipMode = true
+		params.flipMode = nil
+	end
+
 	super.initComponent( self, params )
 	-- print( " () ()\n( @ @ )\n(  -  )    ListPanel:initComponent" )
 
@@ -139,8 +144,13 @@ function M:createChildren()
 	-- print( "ListPanel:createChildren" )
 	super.createChildren( self )
 
+	local scrollerClass = Scroller
+	if self._isFlipMode == true then
+		scrollerClass = FlipScroller
+	end
+
 	-- 滚动面板
-	self._scroller = Scroller { 
+	self._scroller = scrollerClass { 
 		parent = self, 
 		onUpdateScrollCallback = function( scroller ) 
 			local parent = scroller:getParent()
@@ -305,6 +315,13 @@ end
 -- Getters & Setter
 --------------------------------------------------------------------------------
 
+function M:setFlipSize( width, height )
+	local scroller = self._scroller
+	if scroller.setFlipSize then
+		scroller:setFlipSize( width, height )
+	end
+end
+
 function M:setItemConfig( width, height, horizonSpace, verticalSpace )
 	self:setItemSize( width, height )
 	self:setItemSpace( horizonSpace, verticalSpace )
@@ -318,10 +335,12 @@ function M:setItemSize( width, height )
 end
 
 function M:setItemSpace( horizon, vertical )
-	-- print( "ListPanel:setItemSpace", horizon, vertical )
+	-- print( "ListPanel:seztItemSpace", horizon, vertical )
 
 	self._itemHorizonSpace = horizon
 	self._itemVerticalSpace = vertical
+
+	self:updateFlipSize()
 end
 
 function M:setPanelAlign( horizon, vertical )
@@ -329,13 +348,16 @@ function M:setPanelAlign( horizon, vertical )
 
 	self._panelHorizonAlign = toAlign( horizon )
 	self._panelVerticalAlign = toAlign( vertical )
+
+	self:updateFlipSize()
 end
 
-function M:setItemCallback( fCreate, fSetData )
-	-- print( "ListPanel:setItemCallback", fCreate, fSetData )
+function M:setItemCallback( fCreate, fSetData, source )
+	-- print( "ListPanel:setItemCallback", fCreate, fSetData, source )
 
 	self._fOnItemCreateCallback = fCreate
 	self._fOnItemSetDataCallback = fSetData
+	self._fItemCallbackSource = source
 end
 
 function M:setParent( parent )
@@ -379,6 +401,29 @@ function M:setItemMode( cols, rows, mode )
 	self._itemFixed = fixed
 
 	-- print( "  cols, rows, fixed:", cols, rows, fixed )
+	self:updateFlipSize()
+end
+
+function M:updateFlipSize()
+	if self._isFlipMode ~= true then return end
+
+	local rows, cols = self._itemRows, self._itemCols
+	local mode = self._mode
+
+	-- 计算实际显示的 row、col
+	if mode == M.MODE_VERTICAL then
+		rows = rows - 1
+	else
+		cols = cols - 1
+	end
+
+	local w, h = self._itemWidth, self._itemHeight
+	local gapH, gapV = self._itemHorizonSpace, self._itemVerticalSpace
+
+	local flipW = w * cols + gapH * ( cols - 0 )
+	local flipH = h * rows + gapV * ( rows - 0 )
+
+	self:setFlipSize( flipW, flipH )
 end
 
 -- 设置数据（采用数组的形式）
@@ -427,7 +472,18 @@ function M:getDataIndex( col, row )
 	if self._mode == M.MODE_VERTICAL then
 		return col + ( row - 1 ) * self._itemMaxCols
 	else
-		return row + ( col - 1 ) * self._itemMaxRows 
+		if self._isFlipMode then
+			-- 横向翻页，采用纵向排列，按页分组
+			local cols, rows = self._itemCols - 1, self._itemRows
+			local page = math.floor( ( col - 1 ) / ( cols ) )
+
+			local col = ( col - 1 ) % cols + 1
+			local row = ( row - 1 ) % rows + 1
+
+			return col + ( row - 1 ) * cols + page * cols * rows
+		else
+			return row + ( col - 1 ) * self._itemMaxRows 
+		end
 	end
 end
 
@@ -693,6 +749,14 @@ function M:cancelActived()
 	end
 end
 
+-- 刷新按钮中的内容
+function M:refreshButton()
+	local items = self.items
+	for k, v in pairs( items ) do
+		v:updateData()
+	end
+end
+
 
 
 
@@ -754,7 +818,13 @@ function ListPanelItem:setData( data )
 			local fCreate = parent._fOnItemCreateCallback
 			-- print("fCreate:", fCreate)
 			if fCreate and type( fCreate ) == "function" then
-				ui = fCreate( self.id )
+				local source = parent._fItemCallbackSource
+				if source then
+					ui = fCreate( source, self.id )
+				else
+					ui = fCreate( self.id )
+				end
+
 				ui.id = self.id
 				ui:setPos( self.x, self.y )
 				ui:setSize( parent._itemWidth, parent._itemHeight )
@@ -774,7 +844,12 @@ function ListPanelItem:setData( data )
 		-- 3. 赋值
 		local fSetData = parent._fOnItemSetDataCallback
 		if fSetData and type( fSetData ) == "function" then
-			fSetData( ui, data )
+			local source = parent._fItemCallbackSource
+			if source then
+				fSetData( source, ui, data )
+			else
+				fSetData( ui, data )
+			end
 		end
 	else
 		-- data为空，尝试隐藏ui

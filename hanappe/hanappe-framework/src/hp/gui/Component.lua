@@ -442,8 +442,12 @@ end
 -- Set whether you want to update the position by the layout class.
 --------------------------------------------------------------------------------
 function M:setIncludeLayout(value)
-    self._includeLayout = value
-    self:invalidateLayout()
+    -- ul change begin 如果_includeLayout字段没有改变则不需要调整布局
+    if self._includeLayout ~= value then
+        self._includeLayout = value
+        self:invalidateLayout()
+    end
+    -- ul change end
 end
 
 --------------------------------------------------------------------------------
@@ -660,5 +664,34 @@ end
 --------------------------------------------------------------------------------
 function M:enabledChangedHandler(e)
 end
+
+
+-- ul add begin 添加fillParent相关的getter setter
+
+-- 设置是否填充满parent（布局用）
+function M:setFillParent( value )
+    self._fillParent = value
+end
+
+-- 是否填充parent（布局用）
+function M:isFillParent()
+    return self._fillParent == true
+end
+
+-- 设置BoardLayout用布局方向
+function M:setBoardLayoutDirection( direction )
+    if direction and type( direction ) == "string" then
+        direction = Direction[ direction ]
+    end
+
+    self._boardLayoutDirection = direction
+end
+
+-- 获得BoardLayout用布局方向
+function M:getBoardLayoutDirection()
+    return self._boardLayoutDirection
+end
+
+-- ul add end
     
 return M

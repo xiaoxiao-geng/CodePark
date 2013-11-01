@@ -73,6 +73,14 @@ function M:updateVertical(parent)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local childWidth, childHeight = child:getSize()
+
+            -- ul add begin 如果child标记为fillParent，则设置child的size
+            if child.isFillParent and child:isFillParent() then
+                childWidth = parentWidth - self._paddingLeft - self._paddingRight
+                child:setSize( childWidth, childHeight )
+            end
+            -- ul add end
+
             local childX = self:getChildX(parentWidth, childWidth)
             child:setPos(childX, childY)
             childY = childY + childHeight + self._verticalGap
@@ -100,6 +108,14 @@ function M:updateHorizotal(parent)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local childWidth, childHeight = child:getSize()
+
+            -- ul add begin 如果child标记为fillParent，则设置child的size
+            if child.isFillParent and child:isFillParent() then
+                childHeight = parentHeight - self._paddingTop - self._paddingBottom
+                child:setSize( childWidth, childHeight )
+            end
+            -- ul add end
+
             local childY = self:getChildY(parentHeight, childHeight)
             child:setPos(childX, childY)
             childX = childX + childWidth + self._horizotalGap
@@ -179,8 +195,16 @@ function M:getChildX(parentWidth, childWidth)
         x = self._paddingLeft
     elseif self._horizotalAlign == M.HORIZOTAL_CENTER then
         x = math.floor((diffWidth + self._paddingLeft - self._paddingRight) / 2)
+
+        -- ul fix begin 水平模式居中对齐，需要计算padding
+        if self._direction == M.DIRECTION_HORIZOTAL then x = x + self._paddingLeft end
+        -- ul fix end
     elseif self._horizotalAlign == M.HORIZOTAL_RIGHT then
         x = diffWidth - self._paddingRight
+
+        -- ul fix begin 水平模式右对齐，需要计算padding
+        if self._direction == M.DIRECTION_HORIZOTAL then x = x + self._paddingLeft + self._paddingRight end
+        -- ul fix end
     else
         error("Not found direction!")
     end
@@ -198,8 +222,16 @@ function M:getChildY(parentHeight, childHeight)
         y = self._paddingTop
     elseif self._verticalAlign == M.VERTICAL_CENTER then
         y = math.floor((diffHeight + self._paddingTop - self._paddingBottom) / 2)
+
+        -- ul fix begin 垂直模式居中对齐，需要计算padding
+        if self._direction == M.DIRECTION_VERTICAL then y = y + self._paddingTop end
+        -- ul fix end
     elseif self._verticalAlign == M.VERTICAL_BOTTOM then
         y = diffHeight - self._paddingBottom
+
+        -- ul fix begin 垂直模式右对齐，需要计算padding
+        if self._direction == M.DIRECTION_VERTICAL then y = y + self._paddingTop + self._paddingBottom end
+        -- ul fix end
     else
         error("Not found direction!")
     end
@@ -217,6 +249,11 @@ function M:getVerticalLayoutSize(children)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local cWidth, cHeight = child:getSize()
+
+            -- ultralisk add begin 如果child设置为fillParent，则不计入child尺寸
+            if child.isFillParent and child:isFillParent() then cWidth = 0 end
+            -- ultralisk add end
+
             height = height + cHeight + self._verticalGap
             width = math.max(width, cWidth)
             count = count + 1
@@ -239,6 +276,11 @@ function M:getHorizotalLayoutSize(children)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local cWidth, cHeight = child:getSize()
+
+            -- ultralisk add begin 如果child设置为fillParent，则不计入child尺寸
+            if child.isFillParent and child:isFillParent() then cHeight = 0 end
+            -- ultralisk add end
+
             width = width + cWidth + self._horizotalGap
             height = math.max(height, cHeight)
             count = count + 1

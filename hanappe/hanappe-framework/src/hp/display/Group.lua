@@ -390,6 +390,9 @@ function M:setClipPadding( left, top, right, bottom )
     right = right or left
     bottom = bottom or left
 
+    -- 将clip的值存下来
+    self._clipPadding = { left, top, right, bottom }
+
     local w, h = self:getSize()
 
     self:setClip( left, top, w - right, h - bottom )

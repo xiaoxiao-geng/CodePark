@@ -332,39 +332,62 @@ end
 
 
 local function fLoadModules()
-	_G.table 				= require "hp/lang/table"
+	-- hp 核心
+	_G.table				= require "hp/lang/table"
+	_G.class				= require "hp/lang/class"
+	_G.Component			= require "hp/gui/Component"
+	_G.Event             	= require "hp/event/Event"
+	
+	-- 控件扩展
+	_G.Ease					= require "hpExt/EaseType"
 
-	_G.Ease 				= require "hpExt/EaseType"
+	_G.FlipScroller 		= require "hpExt/component/FlipScroller"
+	
+	_G.RadioButtonManager	= require "hpExt/component/RadioButtonManager"
+	_G.RadioButton			= require "hpExt/component/RadioButton"
+	_G.RadioButtonGroup		= require "hpExt/component/RadioButtonGroup"
+	
+	_G.TextureTextButton	= require "hpExt/component/TextureTextButton"
+	
+	_G.ListPanel			= require "hpExt/component/ListPanel"
+	_G.CustomButton			= require "hpExt/component/CustomButton"
+	_G.EditBox				= require "hpExt/component/EditBox"
+	_G.BoardLayout			= require "hpExt/component/BoardLayout"
+	_G.HBoxLayoutComponent	= require "hpExt/component/HBoxLayoutComponent"
+	_G.VBoxLayoutComponent	= require "hpExt/component/VBoxLayoutComponent"
+	
+	_G.ProgressBar			= require "hpExt/component/ProgressBar"
+	
+	-- 模块组织
+	_G.Router 				= require "hpExt/util/Router"
 
-	_G.RadioButtonManager 	= require "hpExt/component/RadioButtonManager"
-	_G.RadioButton 			= require "hpExt/component/RadioButton"
-	_G.RadioButtonGroup 	= require "hpExt/component/RadioButtonGroup"
-
-	_G.TextureTextButton 	= require "hpExt/component/TextureTextButton"
-
-	_G.ListPanel 			= require "hpExt/component/ListPanel"
-	_G.CustomButton 		= require "hpExt/component/CustomButton"
-	_G.EditBox 				= require "hpExt/component/EditBox"
-	_G.HBoxLayoutComponent 	= require "hpExt/component/HBoxLayoutComponent"
-	_G.VBoxLayoutComponent 	= require "hpExt/component/VBoxLayoutComponent"
-
-	_G.ProgressBar 			= require "hpExt/component/ProgressBar"
-
+	_G.Page					= require "hpExt/container/Page"
+	_G.TabControl			= require "hpExt/container/TabControl"
+	_G.Dialog				= require "hpExt/container/Dialog"
+	
 	-- 自定义控件（模块控件）
-	_G.ItemIcon   			= require "play/ui/module/item/cItemIcon"
-	_G.ItemButton   		= require "play/ui/module/item/cItemButton"
-	_G.ItemShowBox   		= require "play/ui/module/item/cItemShowBox"
-	_G.ItemStar   			= require "play/ui/module/item/cItemStar"
+	_G.ItemIcon				= require "play/ui/module/item/cItemIcon"
+	_G.ItemButton			= require "play/ui/module/item/cItemButton"
+	_G.ItemShowBox			= require "play/ui/module/item/cItemShowBox"
+	_G.ItemStar				= require "play/ui/module/item/cItemStar"
+	_G.ItemPackageList 		= require "play/ui/module/item/cItemPackageList"
 
-	_G.ForgeLabel 			= require "play/ui/module/forge/cForgeLabel"
+	_G.PetIcon 				= require "play/ui/module/pet/component/cPetIcon"
+	_G.PetButton 			= require "play/ui/module/pet/component/cPetButton"
+	_G.PetShowBox 			= require "play/ui/module/pet/component/cPetShowBox"
+	_G.PetIconList 			= require "play/ui/module/pet/component/cPetIconList"
+	_G.PetBoxList 			= require "play/ui/module/pet/component/cPetBoxList"
+	_G.PetPickList 			= require "play/ui/module/pet/component/cPetPickList"
+	
+	_G.ForgeLabel			= require "play/ui/module/forge/cForgeLabel"
 	_G.ForgeRemakeLabel		= require "play/ui/module/forge/cForgeRemakeLabel"
-
-	_G.SkillButton   		= require "play/ui/module/skill/cSkillButton"
-	_G.SkillRuneButton   	= require "play/ui/module/skill/cSkillRuneButton"
-	_G.ShortcutsButton 		= require "play/ui/hud/shortcuts/cShortcutsButton"
-	_G.MessageTipLabel 		= require "play/ui/hud/tip/cMessageTipLabel"
-
-	_G.gHpLayoutParser 		= require "hpExt/hpLayoutParser"
+	
+	_G.SkillButton			= require "play/ui/module/skill/cSkillButton"
+	_G.SkillRuneButton		= require "play/ui/module/skill/cSkillRuneButton"
+	_G.ShortcutsButton		= require "play/ui/hud/shortcuts/cShortcutsButton"
+	_G.MessageTipLabel		= require "play/ui/hud/tip/cMessageTipLabel"
+	
+	_G.gHpLayoutParser		= require "hpExt/hpLayoutParser"
 end
 
 function gfExtendHpFramework()
