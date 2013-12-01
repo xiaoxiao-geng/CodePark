@@ -259,6 +259,25 @@ M.RadioButton = {
     },  
 }
 
+
+
+-- 主界面用的标签页样式
+M.ButtonMainTab = {
+    normal = {
+        skin = "ml/base/Button03.png",
+        skinClass = Sprite,
+        skinColor = { 0.3, 0.3, 0.3, 1 },        
+
+        activeSkin = "empty.png",
+        activeSkinClass = Sprite,
+        activeSkinColor = { 1, 1, 1, 1 },
+
+        textPadding = {10, 4, 10, 4},
+        style = "style16",
+        textColor = {1, 1, 1, 1}
+    },
+}
+
 M.EmptyRadioButton = {
     normal = {
         skin = "empty.png",

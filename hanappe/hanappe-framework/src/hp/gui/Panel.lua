@@ -14,6 +14,10 @@ local Component         = require "hp/gui/Component"
 local M                 = class(Component)
 local super             = Component
 
+-- ul add begin background用
+local function dummeyIsIncludeLayout() return false end
+-- ul add end 
+
 --------------------------------------------------------------------------------
 -- Initializes the internal variables.
 --------------------------------------------------------------------------------
@@ -30,6 +34,10 @@ function M:createChildren()
     self._background = backgroundSkinClass()
     self._background:setTexture(self:getStyle("backgroundSkin"))
     self:addChild(self._background)
+
+   -- ul add begin background不计入布局
+   self._background.isIncludeLayout = dummeyIsIncludeLayout
+   -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -47,6 +55,12 @@ end
 --------------------------------------------------------------------------------
 function M:resizeHandler(e)
     self._background:setSize(e.newWidth, e.newHeight)
+
+    -- ul add begin 如果当前panel处于clipPadding状态，则重新clip
+    if self._clipPadding then
+      self:setClipPadding( unpack( self._clipPadding ) )
+    end
+    -- ul add end
 end
 
 return M

@@ -3,14 +3,22 @@
 ----------------------------------------------------------------
 
 -- import
-local class						= require "hp/lang/class"
-local Component					= require "hp/gui/Component"
+local class		= require "hp/lang/class"
+local Event		= require("hp/event/Event")
+local Component	= require "hp/gui/Component"
 
 -- class
-local M							= class( Component )
-local super						= Component
+local super		= Component
+local M			= class( super )
+
+local MODE_VERTICAL	= 1
+local MODE_HORZION	= 2
+
+M.EVNET_SELECTED = "buttonSelected"
 
 function M:initInternal()
+	super.initInternal( self )
+
 	self._align = Direction.left
 
 	self._buttonWidth, self._buttonHeight = 10, 10
@@ -20,16 +28,26 @@ function M:initInternal()
 
 	self._buttonGroupId = RadioButtonManager.generalPanelGroupId()
 
-	self._fSelectedCallback = nil
-
 	self._datas = {}
 	self._buttons = {}
+
+	self._fillParent = true
 end
 
-function M:initComponent( params )
-	super.initComponent( self, params )
+function M:createChildren()
+	super.createChildren( self )
+
+	self:_setMode( self._mode or MODE_HORZION )
 
 	self:_createButton()
+end
+
+function M:setVisible( value )
+	super.setVisible( self, value )
+
+	if value then
+		self:_updateLayout()
+	end
 end
 
 function M:setBeginId( value )
@@ -38,14 +56,37 @@ end
 
 -- 设置水平对齐方式
 function M:setHorizonAlign( align )
-	self._isHorizon = true
+	self:_setMode( MODE_HORZION )
+
 	self:_setAlign( align )
 end
 
 -- 设置垂直对齐方式
 function M:setVerticalAlign( align )
-	self._isHorizon = false
+	self:_setMode( MODE_VERTICAL )
+
 	self:_setAlign( align )
+end
+
+-- 设置垂直、水平模式
+function M:_setMode( mode )
+	print("Group._setMode", mode)
+	if self._mode == mode then return false end
+
+	self._mode = mode
+
+	if mode == MODE_HORZION then
+		self:setLayout( HBoxLayout { 
+			spacing = { 0, 0, 0, 0 },
+			gap = { self._buttonSpacing, self._buttonSpacing },
+			} )
+
+	elseif mode == MODE_VERTICAL then
+		self:setLayout( VBoxLayout { 
+			spacing = { 0, 0, 0, 0 },
+			gap = { self._buttonSpacing, self._buttonSpacing },
+			} )
+	end
 end
 
 function M:_setAlign( align )
@@ -56,19 +97,41 @@ function M:_setAlign( align )
 	end
 
 	if not align then
-		error( "RadioButtonGroup: wrong vertical align: " .. tostring( align ) )
+		error( "RadioButtonGroup: wrong align: " .. tostring( align ) )
+	end
+
+	-- 设置到layout中
+	local layout = self:getLayout()
+	if layout then
+		-- 水平
+		local ha, va = "center", "center"
+		
+		if Direction.isLeft( align ) 		then ha = "left"
+		elseif Direction.isRight( align ) 	then ha = "right" end
+		
+		if Direction.isTop( align ) 		then va = "top"
+		elseif Direction.isBottom( align ) 	then va = "bottom" end
+
+		layout:setAlign( ha, va )
 	end
 
 	self._align = align
 end
 
 function M:setButtonSize( w, h )
+
+	print("Group.setButtonSize", w, h)
 	self._buttonWidth = w
 	self._buttonHeight = h
 end
 
 function M:setButtonSpacing( spacing )
 	self._buttonSpacing = spacing
+
+	local layout = self:getLayout()
+	if layout then
+		layout:setGap( spacing, spacing )
+	end
 end
 
 function M:setButtonTheme( theme )
@@ -76,11 +139,7 @@ function M:setButtonTheme( theme )
 end
 
 function M:setOnSelected( callback )
-	if callback and type( callback ) == "function" then
-		self._fSelectedCallback = callback
-	else
-		self._fSelectedCallback = nil
-	end
+	self:addEventListener( M.EVNET_SELECTED, callback )
 end
 
 function M:setTexts( texts, ... )
@@ -176,18 +235,12 @@ end
 
 
 
-local function onButtonClick( e )
+function M:onButtonClick( e )
 	local button = e.target
 
-	button:moveToFront()
-
-	local group = button:getParent()
-	if not group then return end
-
-	local callback = group._fSelectedCallback
-	if callback then
-		callback( button.id )
-	end
+	local event = Event( M.EVNET_SELECTED )
+	event.selectedId = button.id
+	self:dispatchEvent( event )
 end
 
 function M:_disposeButton()
@@ -220,11 +273,8 @@ function M:_createButton()
 		local text = data.text
 		local texture = data.texture
 
-		local x, y = self:_getPosByIndex( i, count )
-
 		local button = RadioButton { 
 			parent = self,
-			pos = { x, y },
 			size = { w, h },
 			themeName = theme,
 			text = text,
@@ -232,7 +282,7 @@ function M:_createButton()
 			groupId = groupId,
 			}
 
-		button:addEventListener( RadioButton.EVENT_ACTIVE_CHANGED, onButtonClick )
+		button:addEventListener( RadioButton.EVENT_ACTIVE_CHANGED, M.onButtonClick, self )
 
 		table.insert( buttons, button )
 		button.id = i + self._beginId - 1
@@ -247,26 +297,16 @@ function M:_updateLayout()
 	local buttons = self._buttons
 	local datas = self._datas
 
-	-- 统计可显示的button数量
-	local count = 0
-	for k, v in pairs( datas ) do
-		if v.visibled then count = count + 1 end
-	end
-
-	local index = 0
 	for i = 1, #datas do
-
 		local data = datas[ i ]
 		local button = buttons[ i ]
 
 		if data.visibled then
-			index = index + 1
-
-			local x, y = self:_getPosByIndex( index, count )
-			button:setPos( x, y )
 			button:show()
+			button:setIncludeLayout( true )
 		else
 			button:hide()
+			button:setIncludeLayout( false )
 		end
 	end
 end
@@ -275,12 +315,12 @@ function M:_getPosByIndex( index, count )
 	local w, h = self._buttonWidth, self._buttonHeight
 	local spacing = self._buttonSpacing
 	local align = self._align
-	local isHorizon = self._isHorizon
+	local mode = self._mode
 
 	local i = index - 1
 	local x, y = 0, 0
 
-	if isHorizon then
+	if mode == MODE_HORZION then
 		-- 水平对齐
 		local tw = w * count + spacing * ( count - 1 )
 
