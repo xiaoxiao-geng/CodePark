@@ -20,6 +20,8 @@ print("require modules")
 local modules = require "modules"
 local config = require "config"
 
+_G.HpBar = require "hpExt/component/cHpBar"
+
 -- start and open
 Application:start(config)
 SceneManager:openScene(config.mainScene)
