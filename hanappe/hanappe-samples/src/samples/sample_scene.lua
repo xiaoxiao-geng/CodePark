@@ -12,7 +12,9 @@ local Component = require "hp/gui/Component"
 --------------------------------------------------------------------------------
 
 local SCENE_ITEMS = {
+    {text = "Camera",           scene = "samples/wind/test_camera",             animation = "slideToLeft"},
     {text = "HpBar",            scene = "samples/wind/test_hp_bar",             animation = "slideToLeft"},
+    {text = "Ease",             scene = "samples/wind/test_ease",               animation = "slideToLeft"},
     {text = "BoardLayout",      scene = "samples/wind/test_board_layout",       animation = "slideToLeft"},
     {text = "Visible",          scene = "samples/wind/test_visible",            animation = "slideToLeft"},
     {text = "ButtonTheme",      scene = "samples/wind/test_button_theme",       animation = "slideToLeft"},
