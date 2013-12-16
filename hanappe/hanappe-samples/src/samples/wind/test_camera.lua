@@ -25,6 +25,9 @@ function onCreate()
 	-- camera = createCamrea( 10000, -10000, 0, 0, 0 )
 	-- view:getLayer():setCamera( camera )
 	-- fitter = createFitter( view.viewport, camera, sprite, 1000, 1000 )
+
+	cspeed = 1
+	stopCount = 0
 end
 
 
@@ -81,6 +84,11 @@ function onEnterFrame()
 	updateCamera()
 end
 
+local distance = function( x1, y1, x2, y2 )
+	local a, b = x2 - x1, y2 - y1
+	return math.sqrt( a * a + b * b )
+end
+
 function updateCamera()
 	local x, y = sprite:getLoc()
 
@@ -92,13 +100,39 @@ function updateCamera()
 	local bl, bt, br, bb = 0, 0, 2000, 2000
 
 	-- 将镜头限制在屏幕范围内
-	if cx < bl then cx = cl
+	if cx < bl then cx = bl
 	elseif cx + w > br then cx = br - w end
 
 	if cy < bt then cy = bt
 	elseif cy + h > bb then cy = bb - h end
 
-	camera:setLoc( cx, cy )
+	-- 整理一下思路
+	-- 首先计算当前camera的点距离目标点的距离
+	-- 使用距离作为speed的依据，让camera向目标靠拢
+	local tx, ty = cx, cy
+
+	local x, y = camera:getLoc()
+
+	-- print( distance( x, y, tx, ty ), stopCount, cspeed )
+	local dist = distance( x, y, tx, ty )
+	if dist <= 0 then 
+		stopCount = stopCount + 1
+		if stopCount > 10 then
+			cspeed = 0
+		end
+		return 
+	end
+	stopCount = 0
+	local ox, oy = ( tx - x ) / dist, ( ty - y ) / dist
+
+	if cspeed > dist then
+		camera:setLoc( tx, ty )
+	else
+		cspeed = dist / 15
+		camera:setLoc( math.floor( x + ox * cspeed ), math.floor( y + oy * cspeed ) )
+	end
+
+	-- camera:setLoc( cx, cy )
 end
 
 
