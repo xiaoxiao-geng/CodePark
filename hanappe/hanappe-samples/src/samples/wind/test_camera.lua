@@ -28,6 +28,8 @@ function onCreate()
 
 	cspeed = 1
 	stopCount = 0
+
+	cameraX, cameraY = 0, 0
 end
 
 
@@ -58,7 +60,7 @@ end
 function onEnterFrame()
 
 	local x, y = 0, 0
-	local speed = 10
+	local speed = 180 / 1000 * 30
 
 	if isDown( UP ) then
 		y = -speed
@@ -111,28 +113,33 @@ function updateCamera()
 	-- 使用距离作为speed的依据，让camera向目标靠拢
 	local tx, ty = cx, cy
 
-	local x, y = camera:getLoc()
+	local x, y = cameraX, cameraY
 
-	-- print( distance( x, y, tx, ty ), stopCount, cspeed )
 	local dist = distance( x, y, tx, ty )
-	if dist <= 0 then 
-		stopCount = stopCount + 1
-		if stopCount > 10 then
-			cspeed = 0
-		end
-		return 
-	end
-	stopCount = 0
+	if dist <= 0 then return end
+	
 	local ox, oy = ( tx - x ) / dist, ( ty - y ) / dist
 
+	-- 分段计算跟随速度
+	cspeed = dist / 20
+	if dist > 100 then
+		cspeed = cspeed + ( ( dist - 100 ) / 12 )
+	end
+	if dist > 200 then
+		cspeed = cspeed + ( ( dist - 200 ) / 5 )
+	end
+
+	cspeed = math.max( cspeed, 0.01 )
+	print(cspeed, dist)
+
 	if cspeed > dist then
-		camera:setLoc( tx, ty )
+		cameraX, cameraY = tx, ty
 	else
-		cspeed = dist / 15
-		camera:setLoc( math.floor( x + ox * cspeed ), math.floor( y + oy * cspeed ) )
+		cameraX, cameraY = x + ox * cspeed, y + oy * cspeed
 	end
 
 	-- camera:setLoc( cx, cy )
+	camera:setLoc( math.floor( cameraX + 0.499 ), math.floor( cameraY + 0.499 ) )
 end
 
 
