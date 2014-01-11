@@ -327,6 +327,13 @@ function M:getFullPos()
     return self:getPos()
 end
 
+function M:getFullLoc()
+    local x, y = self:getFullPos()
+    local w, h = self:getSize()
+
+    return x + w / 2, y + h / 2
+end
+
 --------------------------------------------------------------------------------
 -- 设置裁剪框
 -- 警告！不要手动使用此方法
@@ -334,6 +341,9 @@ end
 -- @param rect 裁剪框数组    MoaiScissorRec
 --------------------------------------------------------------------------------
 function M:setClipRect( rect )
+    -- 如果标记为keetClipRect，则不能更改
+    if self.keepClipRect then return end
+
     self._clipRect = rect
     if self.getChildren then
         local children = self:getChildren()
@@ -368,5 +378,49 @@ end
 --------------------------------------------------------------------------------
 -- 2013-9-16 ultralisk add end
 --------------------------------------------------------------------------------
+
+-- ul add begin 添加layoutConfig相关方法
+
+function M:setLayoutConfig( value )
+    self.layoutConfig = value
+end
+
+-- 按照Direction设定piv
+function M:setPivByDirection( direction )
+    if not direction then return end
+
+    local x, y = self:getPos()
+    local w, h = self:getSize()
+
+    local u, v = 0, 0
+
+    if Direction.isLeft( direction ) then           u = 0
+    elseif Direction.isHCenter( direction ) then    u = 0.5
+    else                                            u = 1
+    end
+
+    if Direction.isTop( direction ) then           v = 0
+    elseif Direction.isVCenter( direction ) then    v = 0.5
+    else                                            v = 1
+    end
+
+    self:setPivByUv( u, v )
+end
+
+-- 通过uv设定piv
+-- @param u 横向值[ 0, 1 ]
+-- @param v 纵向值[ 0, 1 ]
+function M:setPivByUv( u, v )
+    u = u or 0
+    v = v or 0
+
+    local x, y = self:getPos()
+    local w, h = self:getSize()
+
+    self:setPiv( w * u, h * v )
+    self:setPos( x, y )
+end
+
+-- ul add end
 
 return M

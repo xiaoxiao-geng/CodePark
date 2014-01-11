@@ -32,6 +32,18 @@ function M.createScene(name, params)
     scene.sceneHandler.scene = scene
     params.scene = scene
 
+    -- ul add begin
+    -- 由于Game中require的Scene有可能会被改变，这里每次createScene后，将handler保存到全局变量中
+    -- 将sceneHander保存在全局中
+    if _G.SCENE_HANDLER_NAMES then
+	    for k, v in pairs( _G.SCENE_HANDLER_NAMES ) do
+	    	if v == name then
+	    		_G[ k ] = scene.sceneHandler
+	    	end
+	    end
+	end
+    -- ul add end
+
     return scene
 end
 

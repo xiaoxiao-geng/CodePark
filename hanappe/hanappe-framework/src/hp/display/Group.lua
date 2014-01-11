@@ -422,7 +422,12 @@ function M:setClip( left, top, right, bottom )
     clipRect.width, clipRect.height     = right - left, bottom - top
     clipRect._clipParent = self
 
+    self.keepClipRect = false
     self:setClipRect( clipRect )
+
+    -- 标记为保留clipRect，不受parent的clip的改变
+    self.keepClipRect = true
+
     -- 如果有background，则不对background设置裁剪框
     if self._background then self._background:setClipRect() end
 
@@ -442,7 +447,7 @@ end
 -- 设置shader，级联设置所有child的shader
 function M:setShader( shader )
     for i, child in ipairs(self:getChildren()) do
-        if child.setShader then
+        if child.setShader and not child._keepShader then
             child:setShader( shader )
         end
     end

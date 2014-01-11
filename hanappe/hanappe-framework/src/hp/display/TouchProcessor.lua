@@ -71,14 +71,20 @@ local function eventHandle(self, e, o)
 
     local layer = self._touchLayer
     while o do
+
         if o.isTouchEnabled and not o:isTouchEnabled() then
-            break
-        end
-        if o.dispatchEvent then
+            -- 2013-12-5 gxx 一个控件设置为不可点击
+            -- 应该把事件转发给它的parent，而不是将事件给抛弃
+            -- 如果break，可能造成的情况：
+            -- panelA中有butonA，如果buttonA设置为不可点，那么该触摸事件将会穿越panelA，达到本不应该点到的地方
+            
+            -- break
+        elseif o.dispatchEvent then
             o:dispatchEvent(e)
 
             if e.stoped then stoped = e.stoped end
         end
+
         if o.getParent then
             o = o:getParent()
         else
@@ -96,6 +102,7 @@ end
 -- 在Layer中查找触摸prop
 -- 1. 排除不可见的prop
 -- 2. 排除裁剪区外的prop
+-- 3. 排除不可点击prop （没有isTouchEnabled的不能点）（如果以后有奇怪的prop不能点击，则检查这里）(原来的 -- ( not prop.isTouchEnabled or prop:isTouchEnabled() ))
 -- @param layer
 -- @param x
 -- @param y
@@ -104,7 +111,10 @@ end
 local function getPropFromPoint( layer, x, y )
     local props = { layer:getPartition():propListForPoint( x, y, 0, MOAILayer.SORT_PRIORITY_DESCENDING ) }
     for k, prop in pairs( props ) do
-        if prop:getVisible() and ( not prop.isInClipRect or prop:isInClipRect( x, y ) ) then return prop end
+        if prop:getVisible() and
+            ( not prop.isInClipRect or prop:isInClipRect( x, y ) ) and 
+            ( prop.isTouchEnabled and prop:isTouchEnabled() )
+            then return prop end
     end
     return nil
 end
@@ -186,6 +196,12 @@ function M:touchDownHandler(e)
     
     local te = table.copy(p, EVENT_TOUCH_DOWN)
     te.points = self._touchPoints
+
+    -- ul add begin
+    -- 针对component的点击事件进行特殊处理
+    -- 重置event的中断标记
+    te.__component_stoped = nil
+    -- ul add end
 
     if p.touchingProp then
         eventHandle(self, te, p.touchingProp)

@@ -55,6 +55,15 @@ function M:createChildren()
     self:setSize(200, bh)
 
     self._thumb_width = self._thumb:getWidth()
+
+    -- ul add begin
+    local w, h = self._thumb:getSize()
+    local boundsExtra = self:getStyle( "boundsExtra" ) or 0
+    w, h= w + boundsExtra * 2, h + boundsExtra * 2
+    
+    local g = Graphics { parent = self, size = { w, h }, piv = { w / 2, h / 2 } }
+    self._thumbGraphics = g
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -75,6 +84,11 @@ function M:updateDisplay()
 
     local thumbLoc = self:_valueToLoc(self._value)
     thumb:setLoc(thumbLoc, self:getHeight() * 0.5)
+    
+    -- ul add begin
+    self._thumbGraphics:setLoc( thumb:getLoc() )
+    -- ul add end
+
     progress:setSize(thumbLoc + self._thumb_width * 0.5, self:getHeight())
 end
 
@@ -132,6 +146,11 @@ function M:_updateDrawables()
     
     local thumbLoc = self:_valueToLoc(self._value)
     self._thumb:setLoc(thumbLoc, self._background:getHeight() * 0.5)
+
+    -- ul add begin
+    self._thumbGraphics:setLoc( self._thumb:getLoc() )
+    -- ul add end
+
     self._progress:setSize(thumbLoc + self._thumb_width * 0.5, self:getHeight())
 end
 
@@ -220,14 +239,20 @@ function M:touchDownHandler(e)
     end
     e:stop()
 
-    if self._thumb:hitTestWorld(e.x, e.y) then
+    -- ul change begin
+    if self._thumbGraphics:hitTestWorld(e.x, e.y) then
         self._touchIndex = e.idx
         self._touching = true
 
         local event = self._beginChangeEvent
         event.value = self._value
         self:dispatchEvent(event)
+
+        local mx, my = self:worldToModel(e.x, e.y, 0)
+        local v = self:_locToValue(mx)
+        self:setValue(v)
     end
+    -- ul change end
 end
 
 --------------------------------------------------------------------------------

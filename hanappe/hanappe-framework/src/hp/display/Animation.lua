@@ -583,6 +583,11 @@ function M:parallel(...)
             
             -- wait animations
             while count < max do
+                -- ul fix begin
+                -- 并行事件在stop时候如果没有完成所有的子Animation
+                -- 那么这个循环永远不会被中断，需要检测是否被stop
+                if context.stopped then break end
+                -- ul fix end
                 coroutine.yield()
                 for i, a in ipairs(animations) do
                     if self._throttle ~= a:getThrottle() then

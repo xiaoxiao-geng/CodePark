@@ -33,6 +33,11 @@ M.EVENT_REMOVED         = "removed"
 M.EVENT_CHILD_ADDED     = "childAdded"
 M.EVENT_CHILD_REMOVED   = "childRemoved"
 
+-- ul add begin
+M.EVENT_CLICK           = "click"
+M.EVENT_CLICK_NO_MOVE   = "clickNoMove"
+-- ul add end
+
 -- States
 M.STATE_NORMAL          = "normal"
 M.STATE_DISABLED        = "disabled"
@@ -68,10 +73,15 @@ function M:initInternal()
     self._invalidLayoutFlag = false
     self._currentState = M.STATE_NORMAL
 
+    -- ul add begin
+    self.__component_touching = false
+    self.__component_touchIndex = nil
+    -- ul add end
+
     --------------------------------------------------------------------------------
     -- 2013-9-22 ultralisk change begin
-    -- Õë¶Ô _graphics ³ÉÔ±½øĞĞµ¥¶À´¦Àí
-    -- Èç¹û×ÓÀà¿Ø¼şĞèÒª_graphicsĞèÒª´Ë³ÉÔ±£¬Ôò½« _needGraphics ±ê¼ÇÎªtrue¼´¿É
+    -- é’ˆå¯¹ _graphics æˆå‘˜è¿›è¡Œå•ç‹¬å¤„ç†
+    -- å¦‚æœå­ç±»æ§ä»¶éœ€è¦_graphicséœ€è¦æ­¤æˆå‘˜ï¼Œåˆ™å°† _needGraphics æ ‡è®°ä¸ºtrueå³å¯
     --------------------------------------------------------------------------------
     if self._needGraphics then
         self._graphics = Graphics {parent = self}
@@ -442,7 +452,7 @@ end
 -- Set whether you want to update the position by the layout class.
 --------------------------------------------------------------------------------
 function M:setIncludeLayout(value)
-    -- ul change begin Èç¹û_includeLayout×Ö¶ÎÃ»ÓĞ¸Ä±äÔò²»ĞèÒªµ÷Õû²¼¾Ö
+    -- ul change begin å¦‚æœ_includeLayoutå­—æ®µæ²¡æœ‰æ”¹å˜åˆ™ä¸éœ€è¦è°ƒæ•´å¸ƒå±€
     if self._includeLayout ~= value then
         self._includeLayout = value
         self:invalidateLayout()
@@ -483,7 +493,7 @@ function M:setSize(width, height)
 
         --------------------------------------------------------------------------------
         -- 2013-9-22 ultralisk change begin
-        -- _graphics ÓĞ¿ÉÄÜ²»´æÔÚ£¬ĞèÒªÅĞ¶Ï
+        -- _graphics æœ‰å¯èƒ½ä¸å­˜åœ¨ï¼Œéœ€è¦åˆ¤æ–­
         --------------------------------------------------------------------------------
         if self._graphics then
             self._graphics:setSize(width, height)
@@ -621,6 +631,22 @@ end
 -- @param e touch event
 --------------------------------------------------------------------------------
 function M:touchDownHandler(e)
+    -- ul add begin
+    -- é’ˆå¯¹componentçš„ç‚¹å‡»äº‹ä»¶è¿›è¡Œç‰¹æ®Šå¤„ç†
+    if self.__component_need_click ~= true then return end
+    if self.__component_touching then return end
+    if e.__component_stoped == true then return end
+
+    -- print("Component.down", self.name, e.__component_stoped )
+
+    e:stop()
+    
+    self.__component_touchIndex = e.idx
+    self.__component_touching = true
+
+    self.__component_down_x = e.x
+    self.__component_down_y = e.y
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -628,6 +654,39 @@ end
 -- @param e touch event
 --------------------------------------------------------------------------------
 function M:touchUpHandler(e)
+    -- ul add begin
+    -- é’ˆå¯¹componentçš„ç‚¹å‡»äº‹ä»¶è¿›è¡Œç‰¹æ®Šå¤„ç†
+    if self.__component_need_click ~= true then return end
+    -- print("Component.up")
+
+    if e.idx ~= self.__component_touchIndex then
+        return
+    end
+    e:stop()
+    
+    if self.__component_touching then
+        -- print("call event")
+
+        self.__component_touching = false
+        self.__component_touchIndex = nil
+
+        -- è®¡ç®—è·ç¦»
+        -- è¯´æ˜ï¼šè€ƒè™‘åœ¨æ‹–åŠ¨é¢æ¿çš„åœºæ™¯ï¼Œä¸€æ—¦å‘ç”Ÿäº†æ‹–åŠ¨å°±ä¸éœ€è¦å“åº”ç‚¹å‡»äº‹ä»¶
+        -- åœ¨åº•å±‚å°è£…clickNoMoveäº‹ä»¶ï¼Œå¯ä»¥å¤§å¤§ç®€åŒ–è¿™ç§åœºæ™¯çš„é€»è¾‘
+        local deltaX = e.x - self.__component_down_x
+        local deltaY = e.y - self.__component_down_y
+
+        local e = Event( M.EVENT_CLICK )
+        e.deltaX = deltaX
+        e.deltaY = deltaY
+        self:dispatchEvent( e )
+
+        -- æ²¡æœ‰ç§»åŠ¨çš„ç‚¹å‡» PSï¼šè¯¯å·®10åº”è¯¥èƒ½æ¥å—
+        if math.abs( deltaX ) + math.abs( deltaY ) < 10 then
+            self:dispatchEvent( M.EVENT_CLICK_NO_MOVE )
+        end
+    end
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -635,6 +694,19 @@ end
 -- @param e touch event
 --------------------------------------------------------------------------------
 function M:touchMoveHandler(e)
+    -- ul add begin
+    -- é’ˆå¯¹componentçš„ç‚¹å‡»äº‹ä»¶è¿›è¡Œç‰¹æ®Šå¤„ç†
+    if self.__component_need_click ~= true then return end
+    -- print("Component.move")
+
+    if e.idx ~= self.__component_touchIndex then return end
+    e:stop()
+    
+    if self.__component_touching and not self:hitTestWorld(e.x, e.y) then
+        self.__component_touching = false
+        self.__component_touchIndex = nil
+    end
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -642,6 +714,14 @@ end
 -- @param e touch event
 --------------------------------------------------------------------------------
 function M:touchCancelHandler(e)
+    -- ul add begin
+    -- é’ˆå¯¹componentçš„ç‚¹å‡»äº‹ä»¶è¿›è¡Œç‰¹æ®Šå¤„ç†
+    if self.__component_need_click ~= true then return end
+    -- print("Component.cancel")
+
+    self.__component_touching = false
+    self.__component_touchIndex = nil
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -665,31 +745,18 @@ end
 function M:enabledChangedHandler(e)
 end
 
-
--- ul add begin Ìí¼ÓfillParentÏà¹ØµÄgetter setter
-
--- ÉèÖÃÊÇ·ñÌî³äÂúparent£¨²¼¾ÖÓÃ£©
-function M:setFillParent( value )
-    self._fillParent = value
+-- ul add begin
+-- é’ˆå¯¹componentçš„ç‚¹å‡»äº‹ä»¶è¿›è¡Œç‰¹æ®Šå¤„ç†
+-- æ ‡è®°ä¸ºéœ€è¦
+function M:setNeedClick( value )
+    -- print( "setNeedClick", value, self )
+    self.__component_need_click = value
 end
 
--- ÊÇ·ñÌî³äparent£¨²¼¾ÖÓÃ£©
-function M:isFillParent()
-    return self._fillParent == true
-end
-
--- ÉèÖÃBoardLayoutÓÃ²¼¾Ö·½Ïò
-function M:setBoardLayoutDirection( direction )
-    if direction and type( direction ) == "string" then
-        direction = Direction[ direction ]
-    end
-
-    self._boardLayoutDirection = direction
-end
-
--- »ñµÃBoardLayoutÓÃ²¼¾Ö·½Ïò
-function M:getBoardLayoutDirection()
-    return self._boardLayoutDirection
+-- è®¾ç½®includeLayoutå’Œvisible
+function M:setIncludeLayoutAndVisible( value )
+	self:setIncludeLayout( value )
+	self:setVisible( value )
 end
 
 -- ul add end

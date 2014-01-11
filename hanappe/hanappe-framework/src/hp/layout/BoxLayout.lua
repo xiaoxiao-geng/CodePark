@@ -32,9 +32,9 @@ M.DIRECTION_HORIZOTAL       = "horizotal"
 --------------------------------------------------------------------------------
 function M:initInternal(params)
     self._horizotalAlign = M.HORIZOTAL_LEFT
-    self._horizotalGap = 5
+    self._horizotalGap = 0
     self._verticalAlign = M.VERTICAL_TOP
-    self._verticalGap = 5
+    self._verticalGap = 0
     self._paddingTop = 0
     self._paddingBottom = 0
     self._paddingLeft = 0
@@ -47,6 +47,10 @@ end
 -- 指定した親コンポーネントのレイアウトを更新します.
 --------------------------------------------------------------------------------
 function M:update(parent)
+    -- ul add begin 调整children尺寸
+    self:updateChildrenSize( parent )
+    -- ul add end
+
     if self._direction == M.DIRECTION_VERTICAL then
         self:updateVertical(parent)
     elseif self._direction == M.DIRECTION_HORIZOTAL then
@@ -73,14 +77,6 @@ function M:updateVertical(parent)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local childWidth, childHeight = child:getSize()
-
-            -- ul add begin 如果child标记为fillParent，则设置child的size
-            if child.isFillParent and child:isFillParent() then
-                childWidth = parentWidth - self._paddingLeft - self._paddingRight
-                child:setSize( childWidth, childHeight )
-            end
-            -- ul add end
-
             local childX = self:getChildX(parentWidth, childWidth)
             child:setPos(childX, childY)
             childY = childY + childHeight + self._verticalGap
@@ -108,14 +104,6 @@ function M:updateHorizotal(parent)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local childWidth, childHeight = child:getSize()
-
-            -- ul add begin 如果child标记为fillParent，则设置child的size
-            if child.isFillParent and child:isFillParent() then
-                childHeight = parentHeight - self._paddingTop - self._paddingBottom
-                child:setSize( childWidth, childHeight )
-            end
-            -- ul add end
-
             local childY = self:getChildY(parentHeight, childHeight)
             child:setPos(childX, childY)
             childX = childX + childWidth + self._horizotalGap
@@ -249,11 +237,6 @@ function M:getVerticalLayoutSize(children)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local cWidth, cHeight = child:getSize()
-
-            -- ultralisk add begin 如果child设置为fillParent，则不计入child尺寸
-            if child.isFillParent and child:isFillParent() then cWidth = 0 end
-            -- ultralisk add end
-
             height = height + cHeight + self._verticalGap
             width = math.max(width, cWidth)
             count = count + 1
@@ -276,11 +259,6 @@ function M:getHorizotalLayoutSize(children)
     for i, child in ipairs(children) do
         if child.isIncludeLayout == nil or child:isIncludeLayout() then
             local cWidth, cHeight = child:getSize()
-
-            -- ultralisk add begin 如果child设置为fillParent，则不计入child尺寸
-            if child.isFillParent and child:isFillParent() then cHeight = 0 end
-            -- ultralisk add end
-
             width = width + cWidth + self._horizotalGap
             height = math.max(height, cHeight)
             count = count + 1
@@ -291,5 +269,43 @@ function M:getHorizotalLayoutSize(children)
     end
     return width, height
 end
+
+-- ul add begin 调整children尺寸
+
+function M:updateChildrenSize( parent )
+    local children = parent:getChildren()
+
+    local pw, ph = parent:getSize()
+    pw = pw - self._paddingLeft - self._paddingRight
+    ph = ph - self._paddingTop - self._paddingBottom
+
+    for k, child in pairs( children ) do
+        local config = child.layoutConfig
+        if config then
+            local w, h = child:getSize()
+            local newW, newH = w, h
+
+            if config:isFillParentWidth() then newW = pw
+            elseif config:isFixedWidth() then newW = config.width
+            elseif config:isRelativeWidth() then error( "BoxLayout do not support relative size!" ) end
+
+            if config:isFillParentHeight() then newH = ph
+            elseif config:isFixedHeight() then newH = config.height
+            elseif config:isRelativeHeight() then error( "BoxLayout do not support relative size!" ) end
+
+            newW = newW + config.widthDelta
+            newH = newH + config.heightDelta
+
+            if w ~= newW or h ~= newH then child:setSize( newW, newH ) end
+        end
+    end
+end
+
+-- 设置是否可以更改parent的size
+function M:setParentResizeable( value )
+    self._parentResizable = value
+end
+
+-- ul add end
 
 return M

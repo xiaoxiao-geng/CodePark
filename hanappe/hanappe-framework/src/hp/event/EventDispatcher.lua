@@ -3,6 +3,10 @@
 -- 
 --------------------------------------------------------------------------------
 
+-- ul add begin
+local table = require("hp/lang/table")
+-- ul ann end
+
 local class = require("hp/lang/class")
 local Event = require("hp/event/Event")
 local EventListener = require("hp/event/EventListener")
@@ -100,9 +104,18 @@ function M:dispatchEvent(event, data)
     event.data = data or event.data
     event.stoped = false
     event.target = self.eventTarget or self
-    
-    for key, obj in ipairs(self.eventlisteners) do
+
+    -- ul fix bug
+    -- 在某些事件的相应事件中，可能会对eventlisteners进行修改
+    -- 那么直接使用for循环会出现部分事件无法调用的问题
+    -- 由于不能改变listeners的遍历顺序，不能使用for i 倒序的方式进行遍历
+    -- 这里使用table.copy将监听器数组先备份一次再进行遍历
+    local listeners = table.copy( self.eventlisteners )
+    -- ul fix end
+
+    for key, obj in ipairs(listeners) do
         if obj.type == event.type then
+
             event:setListener(obj.callback, obj.source)
             obj:call(event)
             if event.stoped == true then

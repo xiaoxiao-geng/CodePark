@@ -179,4 +179,115 @@ function string.decrypt( str )
     return newString
 end
 
+--cdsc add start
+function string.u8foreach(str, callback)
+    if not str or not callback then
+        return
+    end
+    local i = 1
+    local multiLen = #str
+    while( i <= multiLen ) do
+        local s = string.sub(str, i, i)
+        local b = string.byte(s)
+        local skip = 0
+        if b>=0xf0 and b<=0xf7 then
+            skip = 3
+        elseif b>=0xe0 then
+            skip = 2
+        elseif b>=0xc0 then
+            skip = 1
+        end
+        local i2 = i + skip
+        if ( callback(string.sub(str, i, i2 ), i, i2) ) then
+            break
+        end
+        i = i2 + 1
+  end
+end
+
+function string.u8len(str)
+    local len = 0
+        string.u8foreach(str, function() len = len + 1 end)
+    return len
+end
+
+function string.u8sub(str, idx1, idx2)
+    if not str or not idx1 then
+        return nil
+    end
+    idx2 = idx2 or 0xffffffff
+    if idx1 > idx2 then
+        return nil
+    end
+    local loc = 1
+    local st, ed = 1,1
+    local function _each(ch, starti, endi )
+        if loc == idx1 then
+            st = starti
+        end
+        if loc <= idx2 then
+            ed = endi
+        else
+          return true
+        end
+        loc = loc + 1
+    end
+    string.u8foreach(str, _each)
+    return string.sub(str, st, ed)
+end
+
+function string.trim (s) 
+  return (string.gsub(s, "^%s*(.-)%s*$", "%1")) 
+end 
+
+function string.a2u(aStr)
+    local uStr = lc.gbk2u8(aStr) or ""
+    return uStr
+end
+
+function string.u2a(uStr)
+    local aStr = lc.u82gbk(uStr) or ""
+    return aStr
+end
+
+function string.toHex(s)
+    if(s == nil) then
+        return nil
+    end
+    s = string.gsub(s, "(.)", function (x) return string.format("%02X",string.byte(x)) end)
+    return s
+end
+
+function string.dumpbuffer(s)
+    if(s == nil) then
+        return nil
+    end
+
+    local idx = 0
+    local count = 0
+    local result = {}
+    table_insert = table.insert
+    string_sub = string.sub
+    string_format = string.format
+    for idx = 1,#s do
+
+        table_insert(result,string_format("%02X ",string.byte(string_sub(s,idx,idx+1))))
+
+        count = count + 1
+        if count == 8 then
+            table_insert(result,"   ")
+        elseif count ==16 then
+            table_insert(result,"\n")
+            count = 0
+        end
+    end
+    if count>0 then
+        table_insert(result,"\n")
+    end
+    s = table.concat(result)
+    return s
+end
+
+--cdsc add end
+
 return M

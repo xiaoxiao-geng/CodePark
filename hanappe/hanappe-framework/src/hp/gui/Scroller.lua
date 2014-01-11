@@ -141,8 +141,19 @@ end
 -- Also changes the size of the scroll container when layout update.
 --------------------------------------------------------------------------------
 function M:updateLayout()
+    -- ul change begin 尝试先计算自己的尺寸，再更新children
+
+    -- 解释一下调用量此ajustScrollerSize的原因
+    -- 第一次调用需要计算scroller自身的size，用于布局
+    -- 第二次由于布局调整了children的尺寸，所以需要根据children的尺寸调整自身
+    self:ajustScrollSize()
     super.updateLayout(self)
     self:ajustScrollSize()
+
+    if self._autoFitEnable then
+        self:fitEnable()
+    end
+    -- ul change end
 end
 
 --------------------------------------------------------------------------------
@@ -387,7 +398,7 @@ function M:ajustScrollSize()
     local parent = self:getParent()
     local minWidth = parent and parent:getWidth() or 0
     local minHeight = parent and parent:getHeight() or 0
-    
+
     for i, child in ipairs(self:getChildren()) do
         --------------------------------------------------------------------------------
         -- 2013-10-17 ultralisk change begin
@@ -401,9 +412,24 @@ function M:ajustScrollSize()
         -- 2013-10-17 ultralisk change end
         --------------------------------------------------------------------------------
     end
+
+    -- ul add begin 
+    -- 如果parent拥有clipPadding，则使用clip的边界修正scroller的尺寸
+    if parent then
+        local clipPadding = parent._clipPadding
+        if clipPadding then
+            local right, bottom = clipPadding[ 3 ] or 0, clipPadding[ 4 ] or 0
+
+            if self._hBounceEnabled then width = width + right end
+            if self._vBounceEnabled then height = height + bottom end
+        end
+    end
+    -- ul add end
+
     width = width >= minWidth and width or minWidth
     height = height >= minHeight and height or minHeight
 
+    print("scroller -> size", width, height)
     self:setSize(width, height)
 
     --------------------------------------------------------------------------------
@@ -485,6 +511,12 @@ end
 function M:setParent(value)
     super.setParent(self, value)
     self:ajustScrollSize()
+
+    -- ul add begin
+    if self._needFitEnable then
+        self:fitEnable()
+    end
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------
@@ -621,5 +653,35 @@ function M:touchCancelHandler(e)
     self._touchDownFlag = false
     self._touchDownIndex = nil
 end
+
+-- ul add begin
+
+function M:setAutoFitEnable( value )
+    self._autoFitEnable = value
+end
+
+function M:fitEnable()
+    self._needFitEnable = true
+
+    local parent = self:getParent()
+    if parent and parent.getSize then
+        local pw, ph = parent:getSize()
+        local w, h = self:getSize()
+
+        local hEnabled = w > pw
+        local vEnabled = h > ph
+
+        -- 任何一个方向的锁定值从未锁定变为锁定，则重置坐标
+        if self._hBounceEnabled and not hEnabled then self:scrollTo( 0, 0 ) end
+        if self._vBounceEnabled and not vEnabled then self:scrollTo( 0, 0 ) end
+
+        self:setHScrollEnabled( hEnabled )
+        self:setVScrollEnabled( vEnabled )
+
+        self._needFitEnable = false
+    end
+end
+
+-- ul add end
 
 return M

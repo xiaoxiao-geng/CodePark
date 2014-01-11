@@ -33,6 +33,10 @@ local updateRenderFlag = false
 local backgroundLayers = {}
 local frontLayers = {}
 
+-- ul add begin
+local ultraliskLayers = {}
+-- ul add end
+
 --------------------------------------------------------------------------------
 -- 2013-9-14 ultralisk add begin
 -- 将sceneLayers中的layer，按照priority升序放入buffer中
@@ -74,6 +78,13 @@ local function updateRender()
     -- background
     for i, layer in ipairs(backgroundLayers) do
         table.insert(renderTable, layer)
+    end
+
+    -- 插入ultralisk图层
+    if ultraliskLayers then
+        for k, v in pairs( ultraliskLayers ) do
+            table.insert( renderTable, v )
+        end
     end
     
     -- scene
@@ -526,5 +537,18 @@ end
 function M:getFrontLayerSize()
     return #frontLayers
 end
+
+-- ul add begin
+
+-- 添加ultralisk专用图层
+function M:setUltraliskLayers( layers )
+    if not layers or type( layers ) ~= "table" then layers = {} end
+
+    ultraliskLayers = layers
+
+    self:updateRender()
+end
+
+-- ul add end
 
 return M

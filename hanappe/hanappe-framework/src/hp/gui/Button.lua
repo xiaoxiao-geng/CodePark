@@ -194,6 +194,12 @@ function M:touchDownHandler(e)
     end
     e:stop()
     
+    -- ul add begin
+    -- Õë¶ÔcomponentµÄµã»÷ÊÂ¼þ½øÐÐÌØÊâ´¦Àí
+    -- ½«ÊÂ¼þ±ê¼ÇÎª´Óbutton¿ªÊ¼ÖÐ¶Ï
+    e.__component_stoped = true
+    -- ul add end
+    
     self._touchIndex = e.idx
     self._touching = true
     
@@ -219,7 +225,12 @@ function M:touchUpHandler(e)
         self._touchIndex = nil
         
         self:doUpButton()
-        self:dispatchEvent(M.EVENT_CLICK)
+
+        -- ul change bgein
+        if self:checkClickGap() then
+            self:dispatchEvent(M.EVENT_CLICK)
+        end
+        -- ul change end
     end
 end
 
@@ -263,6 +274,10 @@ end
 -- @param e resize event
 --------------------------------------------------------------------------------
 function M:resizeHandler(e)
+    -- ul add begin
+    super.resizeHandler( self, e )
+    -- ul add end
+
     local background = self._background
     background:setSize(self:getWidth(), self:getHeight())
 
@@ -284,5 +299,29 @@ function M:enabledChangedHandler(e)
         self._touchIndex = 0
     end
 end
+
+-- ul add begin
+-- add click gap, in gap time, do not dispatch click event
+
+function M:setClickGap( value )
+    self._clickGap = value
+end
+
+function M:checkClickGap()
+    local gap = self._clickGap
+    if not gap then return true end
+
+    local last = self._lastClickClock
+    local clock = os.clock()
+
+    if not last or math.abs( clock - last ) > gap then 
+        self._lastClickClock = clock
+        return true 
+    end
+        
+    return false
+end
+
+-- ul add end
 
 return M

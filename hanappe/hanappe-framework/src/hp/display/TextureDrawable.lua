@@ -12,7 +12,10 @@ local M = {}
 -- @param texture Path or texture.
 --------------------------------------------------------------------------------
 function M:setTexture(texture)
-    assert(texture, "texture nil value!")
+    -- ul change begin
+    -- assert(texture, "texture nil value!")
+    texture = texture or ""
+    -- ul change end
     
     if type(texture) == "string" then
         texture = TextureManager:request(texture)

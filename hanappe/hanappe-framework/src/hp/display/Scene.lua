@@ -205,6 +205,9 @@ function M:onDestroy()
     
     self:dispose()
     destroyModule(self.sceneHandler)
+--cdsc add start --TODO should destroy SceneSelf
+    self.sceneHandler = {}
+--cdsc add end
 end
 
 ---------------------------------------

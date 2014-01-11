@@ -18,16 +18,16 @@ local M                         = class(DisplayObject, TextureDrawable, Resizabl
 -- @param params (option)Parameter is set to Object.<br>
 --------------------------------------------------------------------------------
 function M:init(params)
-	-- ul add begin Sprite构造中如果没有设定pos，getPos取出的结果是 -0.5, -0.5。这里给一个默认值
-	if params and type( params ) == "table" and not params.pos then
-		params.pos = { 0, 0 }
-	end
-	-- ul add end
-
     DisplayObject.init(self)
 
     params = params or {}
     params = type(params) == "string" and {texture = params} or params
+
+    -- ul add begin Sprite构造中如果没有设定pos，getPos取出的结果是 -0.5, -0.5。这里给一个默认值
+    if not params.pos then
+        params.pos = { 0, 0 }
+    end
+    -- ul add end
     
     local deck = MOAIGfxQuad2D.new()
     deck:setUVRect(0, 0, 1, 1)

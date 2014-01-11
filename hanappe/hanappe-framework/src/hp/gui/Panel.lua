@@ -24,6 +24,13 @@ local function dummeyIsIncludeLayout() return false end
 function M:initInternal()
     super.initInternal(self)
     self._themeName = "Panel"
+    
+    
+    -- ul add begin
+    -- 针对component的点击事件进行特殊处理
+    -- 标记为需要component点击事件
+    self.__component_need_click = true
+    -- ul add end
 end
 
 --------------------------------------------------------------------------------

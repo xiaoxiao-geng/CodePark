@@ -18,7 +18,11 @@ M.DEFAULT_FILTER = MOAITexture.GL_LINEAR
 -- @param path path
 -- @return MOAITexture instance.
 ----------------------------------------------------------------
-function M:request(path)
+function M:request(path)   
+    if gPlatformMgr.mfIsMobile() then
+        path = path .. "ul"
+    end
+
     path = ResourceManager:getFilePath(path)
 
     if cache[path] == nil then
