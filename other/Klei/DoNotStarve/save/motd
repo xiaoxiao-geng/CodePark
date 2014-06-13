@@ -1,0 +1,26 @@
+KLEI     1 {
+   "standalone":{
+      "motd_title":"Don't Starve Figures!",
+      "motd_body":"Don't Starve collectable figures are available now in the Klei Store!",
+      "link_title":"Klei Store",
+      "link_url":"http://store.kleientertainment.com"
+   },
+   "steam":{
+      "motd_title":"Don't Starve Figures!",
+      "motd_body":"Don't Starve collectable figures are available now in the Klei Store!",
+      "link_title":"Klei Store",
+      "link_url":"http://store.kleientertainment.com"
+   }
+   "rogsteam":{
+      "motd_title":"Don't Starve Figures!",
+      "motd_body":"Don't Starve collectable figures are available now in the Klei Store!",
+      "link_title":"Klei Store",
+      "link_url":"http://store.kleientertainment.com"
+   }
+   "rogstandalone":{
+      "motd_title":"Don't Starve Figures!",
+      "motd_body":"Don't Starve collectable figures are available now in the Klei Store!",
+      "link_title":"Klei Store",
+      "link_url":"http://store.kleientertainment.com"
+   }
+}
