@@ -1,7 +1,7 @@
 Starting up
 Don't Starve: 102572 WIN32
 Build Date: 2014-05-24_15-31-36
-THREAD - started 'GAClient' (6628)
+THREAD - started 'GAClient' (14596)
 HttpClient::ClientThread::Main()
 cGame::InitializeOnMainThread
 WindowManager::Initialize
@@ -9,9 +9,10 @@ WindowManager::SetFullscreen(0, 1920, 1080, 60)
 GLInfo
 ~~~~~~
 GL_VENDOR: Google Inc.
-GL_RENDERER: ANGLE (Intel(R) HD Graphics)
+GL_RENDERER: ANGLE (NVIDIA GeForce GTX 760)
 GL_VERSION: OpenGL ES 2.0 (ANGLE 1.0.0.2249)
 GL_SHADING_LANGUAGE_VERSION: OpenGL ES GLSL ES 1.00 (ANGLE 1.0.0.2249)
+THREAD - started 'WindowsInputManager' (14888)
 OpenGL extensions (19, 19):
 GL_ANGLE_depth_texture
 GL_ANGLE_framebuffer_blit
@@ -32,11 +33,10 @@ GL_OES_packed_depth_stencil
 GL_OES_rgb8_rgba8
 GL_OES_standard_derivatives
 GL_OES_texture_npot
-THREAD - started 'WindowsInputManager' (1056)
-GL_MAX_TEXTURE_SIZE = 8192
+GL_MAX_TEXTURE_SIZE = 16384
 GL_MAX_TEXTURE_IMAGE_UNITS = 16
-GL_MAX_RENDERBUFFER_SIZE = 8192
-GL_MAX_VIEWPORT_DIMS = 8192, 8192
+GL_MAX_RENDERBUFFER_SIZE = 16384
+GL_MAX_VIEWPORT_DIMS = 16384, 16384
 GL_MAX_VARYING_VECTORS = 10
 GL_MAX_VERTEX_ATTRIBS = 16
 GL_MAX_VERTEX_UNIFORM_VECTORS = 254
@@ -58,8 +58,18 @@ scripts/main.lua(161,1) running main.lua
 scripts/modindex.lua(302,1) loaded modindex	
 scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
 	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
 LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	354	
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
 scripts/playerprofile.lua(434,1) loaded profile	
 scripts/playerprofile.lua(504,1) bloom_enabled	true	
 scripts/saveindex.lua(97,1) loaded saveindex	
@@ -247,16 +257,22 @@ Could not unload undefined prefab 0x1078732c (character_fire)
 Could not unload undefined prefab 0x427b5b39 (shatter)
 scripts/gamelogic.lua(112,1) 	Unload BE done	
 scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(124,1) 	Load FE	
 scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0C2DD9A0	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0E599BD0	
 SimLuaProxy::QueryServer()
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-HttpClientWriteCallback (0x01FA177C, 1, 1007, 0x0385FDD8)
+HttpClientWriteCallback (0x0080B681, 1, 1007, 0x0391FD24)
 HttpClientWriteCallback READ 1007 (1007 total)
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0C2DD900	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0E088D58	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 Collecting garbage...
 lua_gc took 0.01 seconds
 ~SimLuaProxy()
@@ -273,8 +289,18 @@ scripts/main.lua(161,1) running main.lua
 scripts/modindex.lua(302,1) loaded modindex	
 scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
 	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
 LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	354	
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
 scripts/playerprofile.lua(434,1) loaded profile	
 scripts/playerprofile.lua(504,1) bloom_enabled	true	
 scripts/saveindex.lua(97,1) loaded saveindex	
@@ -283,88 +309,79 @@ scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete
 scripts/gamelogic.lua(140,1) 	Unload FE	
 scripts/gamelogic.lua(142,1) 	Unload FE done	
 scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(156,1) 	LOAD BE	
 scripts/gamelogic.lua(164,1) 	LOAD BE : done	
 MiniMapComponent::AddAtlas( minimap/minimap_data.xml )
-scripts/components/seasonmanager.lua(1528,1) SPRING TIME	
+scripts/components/seasonmanager.lua(1585,1) AUTUMN TIME	
 scripts/gamelogic.lua(486,1) Loading Nav Grid	
 scripts/saveindex.lua(333,1) ClearCurrentResurrectors CB	
+scripts/components/resurrector.lua(76,1) Registering resurrector	100053 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100053 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/saveindex.lua(358,1) DeregisterResurrector	
+scripts/saveindex.lua(374,1) DeregisterResurrector	
 scripts/saveindex.lua(216,1) LoadSavedSeasonData CB	
 scripts/widgets/bloodover.lua(30,1) update state	
 scripts/widgets/bloodover.lua(50,1) turn off	
+Could not find anim build naughty
+Could not find anim bank [naughty]
+Could not find anim build temperature
+Could not find anim bank [temperature]
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-scripts/components/resurrector.lua(30,1) OnBuilt Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/stategraphs/SGwilson.lua(1345,1) Using 	fish01	 to swap out fish01	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100053 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100053 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100053 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100046 - resurrectionstone	used:nil	active:nil	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100054 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100047 - resurrectionstone	used:nil	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mainfunctions.lua(556,1) Can't find	103636	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
-scripts/prefabs/pinecone.lua(25,1) PLANT	297.85302285836	
-scripts/prefabs/pinecone.lua(25,1) PLANT	295.23911252174	
-scripts/prefabs/acorn.lua(34,1) PLANT	181.49510177923	
-scripts/prefabs/acorn.lua(34,1) PLANT	270.2215643788	
-scripts/prefabs/pinecone.lua(25,1) PLANT	183.70616779077	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100046 - resurrectionstone	used:nil	active:nil	
+scripts/prefabs/wolfgang.lua(89,1) mighty!	664.06670130044	stack traceback:
+	D:/Games/DontStarveReignofGiants/data/scripts/prefabs/wolfgang.lua:89 in (local) fn (Lua) <55-111>
+	D:/Games/DontStarveReignofGiants/data/scripts/entityscript.lua:690 in (method) PushEvent (Lua) <684-707>
+	D:/Games/DontStarveReignofGiants/data/scripts/components/hunger.lua:82 in (method) DoDelta (Lua) <63-92>
+	D:/Games/DontStarveReignofGiants/data/scripts/components/eater.lua:119 in () ? (Lua) <109-147>
+	=(tail call):-1 in ()  (tail) <-1--1>
+	D:/Games/DontStarveReignofGiants/data/scripts/bufferedaction.lua:19 in (method) Do (Lua) <16-32>
+	D:/Games/DontStarveReignofGiants/data/scripts/entityscript.lua:942 in (method) PerformBufferedAction (Lua) <932-955>
+	D:/Games/DontStarveReignofGiants/data/scripts/stategraphs/SGwilson.lua:1432 in (field) fn (Lua) <1431-1433>
+	D:/Games/DontStarveReignofGiants/data/scripts/stategraph.lua:476 in (method) UpdateState (Lua) <444-488>
+	D:/Games/DontStarveReignofGiants/data/scripts/stategraph.lua:515 in (method) Update (Lua) <507-535>
+	D:/Games/DontStarveReignofGiants/data/scripts/stategraph.lua:111 in (method) Update (Lua) <95-134>
+	D:/Games/DontStarveReignofGiants/data/scripts/update.lua:127 in () ? (Lua) <73-140>	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100053 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100053 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100053 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100054 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100047 - resurrectionstone	used:nil	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mainfunctions.lua(556,1) Can't find	103636	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
-scripts/prefabs/acorn.lua(14,1) GROWTREE	
-scripts/components/hunter.lua(162,1) Suspicious dirt placed	
-scripts/prefabs/pinecone.lua(8,1) GROWTREE	
-scripts/prefabs/acorn.lua(14,1) GROWTREE	
-scripts/prefabs/pinecone.lua(8,1) GROWTREE	
-scripts/prefabs/pinecone.lua(8,1) GROWTREE	
-scripts/components/hunter.lua(162,1) Suspicious dirt placed	
-scripts/components/hunter.lua(162,1) Suspicious dirt placed	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100046 - resurrectionstone	used:nil	active:nil	
-scripts/saveindex.lua(358,1) DeregisterResurrector	
-scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100047 - resurrectionstone	used:nil	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(347,1) RegisterResurrector CB	
-scripts/mainfunctions.lua(582,1) Saved	survival_3	
-scripts/gamelogic.lua(237,1) OnPlayerDeath	
-scripts/gamelogic.lua(242,1) OnPlayerDeath() 	knight	true	
-scripts/playerdeaths.lua(54,1) SAVING Morgue	4	
-scripts/gamelogic.lua(265,1) OnPlayerDeath() 	100047 - resurrectionstone	
-scripts/components/resurrector.lua(19,1) Resurrector:Resurrect	100047 - resurrectionstone	
-scripts/saveindex.lua(358,1) DeregisterResurrector	
-scripts/saveindex.lua(363,1) DeregisterResurrector found	survival_3:100047	
-scripts/saveindex.lua(368,1) DeregisterResurrector CB	
-scripts/components/hunter.lua(162,1) Suspicious dirt placed	
-scripts/stategraphs/SGcatcoon.lua(195,1) 2	0.4	0.57930234687338	
-scripts/stategraphs/SGcatcoon.lua(195,1) 3	0.26666666666667	0.97509689626759	
-scripts/stategraphs/SGcatcoon.lua(195,1) 4	0.2	0.28003784295175	
-scripts/stategraphs/SGcatcoon.lua(195,1) 5	0.16	0.71190527054659	
-scripts/stategraphs/SGcatcoon.lua(195,1) 6	0.13333333333333	0.54548783837397	
-scripts/stategraphs/SGcatcoon.lua(195,1) 7	0.11428571428571	0.65239417706839	
-scripts/stategraphs/SGcatcoon.lua(195,1) 8	0.1	0.92996002075259	
-scripts/stategraphs/SGcatcoon.lua(195,1) 9	0.088888888888889	0.71077608569597	
-scripts/gamelogic.lua(237,1) OnPlayerDeath	
-scripts/gamelogic.lua(242,1) OnPlayerDeath() 	knight	false	
-scripts/playerdeaths.lua(54,1) SAVING Morgue	5	
-scripts/gamelogic.lua(182,1) Calculating progression	
-[GameService] AwardAchievement failed: achievement_1 is not a valid achievement.
-[GameService] AwardAchievement failed: achievement_2 is not a valid achievement.
-scripts/gamelogic.lua(196,1) Progression: 	4	260	80	340	
-scripts/fileutil.lua(35,1) Erasing	survival_3	
-scripts/fileutil.lua(35,1) Erasing	survival_3	
 Collecting garbage...
-lua_gc took 0.07 seconds
+lua_gc took 0.09 seconds
 ~SimLuaProxy()
-lua_close took 0.11 seconds
+lua_close took 0.10 seconds
 ReleaseAll
 ReleaseAll Finished
 cGame::StartPlaying
@@ -377,8 +394,18 @@ scripts/main.lua(161,1) running main.lua
 scripts/modindex.lua(302,1) loaded modindex	
 scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
 	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
 LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	602	
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
 scripts/playerprofile.lua(434,1) loaded profile	
 scripts/playerprofile.lua(504,1) bloom_enabled	true	
 scripts/saveindex.lua(97,1) loaded saveindex	
@@ -387,19 +414,24 @@ scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete
 scripts/gamelogic.lua(109,1) 	Unload BE	
 scripts/gamelogic.lua(112,1) 	Unload BE done	
 scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(124,1) 	Load FE	
 scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0C19F7C0	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 2DBCB638	
 SimLuaProxy::QueryServer()
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-HttpClientWriteCallback (0x01FA177C, 1, 1007, 0x0385FDD8)
+HttpClientWriteCallback (0x0080B681, 1, 1007, 0x0391FD24)
 HttpClientWriteCallback READ 1007 (1007 total)
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 06E3F7B0	
-scripts/saveindex.lua(705,1) SaveIndex:StartSurvivalMode!:	true	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 2DBBFB80	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 Collecting garbage...
-lua_gc took 0.02 seconds
+lua_gc took 0.01 seconds
 ~SimLuaProxy()
 lua_close took 0.02 seconds
 ReleaseAll
@@ -414,99 +446,65 @@ scripts/main.lua(161,1) running main.lua
 scripts/modindex.lua(302,1) loaded modindex	
 scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
 	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
 LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	602	
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
 scripts/playerprofile.lua(434,1) loaded profile	
 scripts/playerprofile.lua(504,1) bloom_enabled	true	
 scripts/saveindex.lua(97,1) loaded saveindex	
 scripts/gamelogic.lua(1163,1) OnFilesLoaded()	
 scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete	
-WorldSim::SimThread::SimThread()
-WorldSim::SimThread::SimThread() complete
-THREAD - started 'WorldSim' (8088)
-WorldSim::SimThread::Main()
-DoLuaFile scripts/worldgen_main.lua
-scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
-	
-Reset() returning
-DoLuaFile loading buffer scripts/worldgen_main.lua
-D:/games/DontStarveReignOfGiants/data/scripts/translator.lua(31,1) Translator:LoadPOFile - loading file: scripts/languages/chinese.po	
-D:/games/DontStarveReignOfGiants/data/scripts/dlcsupport_worldgen.lua(24,1) DLC enabled : 	true	
-scripts/worldgen_main.lua(78,1) running worldgen_main.lua
-	
-scripts/worldgen_main.lua(80,1) SEED = 	1403240782	
-scripts/worldgen_main.lua(458,1) WORLDGEN PRESET: 	SURVIVAL_DEFAULT	
-scripts/worldgen_main.lua(466,1) WORLDGEN LEVEL ID: 	1	
-scripts/worldgen_main.lua(473,1) 
-#######
-#
-# Generating Normal Mode Default Level
-#
-#######
-	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(240,1) Creating story...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/storygen.lua(444,1) LinkNodesByKeys	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(278,1) Baking map...	350	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(303,1) Map Baked!	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(334,1) Encoding...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(338,1) Encoding... DONE	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(407,1) Checking Tags	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(520,1) Populating voronoi...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/object_layout.lua(418,1) Warning! Could not find a spot for TeleportatoBoxLayout in node Beeeees!:4:Forest	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(560,1) PANIC: missing required prefab! 	teleportato_box	
-scripts/worldgen_main.lua(527,1) An error occured during world gen we will retry! [	1	 of 	5	]	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(240,1) Creating story...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/storygen.lua(444,1) LinkNodesByKeys	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(278,1) Baking map...	350	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(303,1) Map Baked!	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(334,1) Encoding...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(338,1) Encoding... DONE	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(407,1) Checking Tags	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(520,1) Populating voronoi...	
-D:/games/DontStarveReignOfGiants/data/scripts/map/forest_map.lua(655,1) Done forest map gen!	
-scripts/worldgen_main.lua(246,1) Checking map...	
-scripts/worldgen_main.lua(600,1) Generation complete	
-WorldSim::SimThread::Main() complete
 scripts/gamelogic.lua(140,1) 	Unload FE	
 scripts/gamelogic.lua(142,1) 	Unload FE done	
 scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(156,1) 	LOAD BE	
 scripts/gamelogic.lua(164,1) 	LOAD BE : done	
 MiniMapComponent::AddAtlas( minimap/minimap_data.xml )
-scripts/components/seasonmanager.lua(1528,1) SPRING TIME	
+scripts/components/seasonmanager.lua(1585,1) AUTUMN TIME	
 scripts/gamelogic.lua(486,1) Loading Nav Grid	
+scripts/saveindex.lua(333,1) ClearCurrentResurrectors CB	
+scripts/components/resurrector.lua(76,1) Registering resurrector	100274 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100274 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/saveindex.lua(358,1) DeregisterResurrector	
+scripts/saveindex.lua(374,1) DeregisterResurrector	
 scripts/saveindex.lua(216,1) LoadSavedSeasonData CB	
 scripts/widgets/bloodover.lua(30,1) update state	
 scripts/widgets/bloodover.lua(50,1) turn off	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100144 - resurrectionstone	used:nil	active:nil	
+Could not find anim build naughty
+Could not find anim bank [naughty]
+Could not find anim build temperature
+Could not find anim bank [temperature]
+scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
+	
+Reset() returning
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100274 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100274 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100274 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100275 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100145 - resurrectionstone	used:nil	active:nil	
-scripts/saveindex.lua(358,1) DeregisterResurrector	
-scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/mainfunctions.lua(582,1) Saved	survival_3	
-scripts/prefabs/wolfgang.lua(89,1) mighty!	752.76670592651	stack traceback:
-	D:/games/DontStarveReignOfGiants/data/scripts/prefabs/wolfgang.lua:89 in (local) fn (Lua) <55-111>
-	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:690 in (method) PushEvent (Lua) <684-707>
-	D:/games/DontStarveReignOfGiants/data/scripts/components/hunger.lua:82 in (method) DoDelta (Lua) <63-92>
-	D:/games/DontStarveReignOfGiants/data/scripts/components/eater.lua:119 in () ? (Lua) <109-147>
-	=(tail call):-1 in ()  (tail) <-1--1>
-	D:/games/DontStarveReignOfGiants/data/scripts/bufferedaction.lua:19 in (method) Do (Lua) <16-32>
-	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:942 in (method) PerformBufferedAction (Lua) <932-955>
-	D:/games/DontStarveReignOfGiants/data/scripts/stategraphs/SGwilson.lua:1471 in (field) fn (Lua) <1470-1473>
-	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:476 in (method) UpdateState (Lua) <444-488>
-	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:515 in (method) Update (Lua) <507-535>
-	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:111 in (method) Update (Lua) <95-134>
-	D:/games/DontStarveReignOfGiants/data/scripts/update.lua:127 in () ? (Lua) <73-140>	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100144 - resurrectionstone	used:nil	active:nil	
-scripts/saveindex.lua(358,1) DeregisterResurrector	
-scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100145 - resurrectionstone	used:nil	active:nil	
-scripts/saveindex.lua(358,1) DeregisterResurrector	
-scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mainfunctions.lua(556,1) Can't find	104397	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
 Collecting garbage...
-lua_gc took 0.09 seconds
+lua_gc took 0.08 seconds
 ~SimLuaProxy()
 lua_close took 0.09 seconds
 ReleaseAll
@@ -521,8 +519,18 @@ scripts/main.lua(161,1) running main.lua
 scripts/modindex.lua(302,1) loaded modindex	
 scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
 	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
 LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	602	
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
 scripts/playerprofile.lua(434,1) loaded profile	
 scripts/playerprofile.lua(504,1) bloom_enabled	true	
 scripts/saveindex.lua(97,1) loaded saveindex	
@@ -531,639 +539,154 @@ scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete
 scripts/gamelogic.lua(109,1) 	Unload BE	
 scripts/gamelogic.lua(112,1) 	Unload BE done	
 scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(124,1) 	Load FE	
 scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 27F1EF40	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0EA40138	
 SimLuaProxy::QueryServer()
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-HttpClientWriteCallback (0x01FA177C, 1, 1007, 0x0385FDD8)
+HttpClientWriteCallback (0x0080B681, 1, 1007, 0x0391FD24)
 HttpClientWriteCallback READ 1007 (1007 total)
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 27F137A8	
-Could not unload undefined prefab 0xe5bb0a (firework_fx)
-Could not unload undefined prefab 0x97380db1 (multifirework_fx)
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0EA417B8	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 Collecting garbage...
-lua_gc took 0.02 seconds
+lua_gc took 0.01 seconds
 ~SimLuaProxy()
-lua_close took 0.03 seconds
+lua_close took 0.02 seconds
+ReleaseAll
+ReleaseAll Finished
+cGame::StartPlaying
+LOADING LUA
+DoLuaFile scripts/main.lua
+DoLuaFile loading buffer scripts/main.lua
+scripts/translator.lua(31,1) Translator:LoadPOFile - loading file: scripts/languages/chinese.po	
+scripts/main.lua(161,1) running main.lua
+	
+scripts/modindex.lua(302,1) loaded modindex	
+scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
+	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
+LOADING LUA SUCCESS
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
+scripts/playerprofile.lua(434,1) loaded profile	
+scripts/playerprofile.lua(504,1) bloom_enabled	true	
+scripts/saveindex.lua(97,1) loaded saveindex	
+scripts/gamelogic.lua(1163,1) OnFilesLoaded()	
+scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete	
+scripts/gamelogic.lua(140,1) 	Unload FE	
+scripts/gamelogic.lua(142,1) 	Unload FE done	
+scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
+scripts/gamelogic.lua(156,1) 	LOAD BE	
+scripts/gamelogic.lua(164,1) 	LOAD BE : done	
+MiniMapComponent::AddAtlas( minimap/minimap_data.xml )
+scripts/components/seasonmanager.lua(1528,1) SPRING TIME	
+scripts/gamelogic.lua(486,1) Loading Nav Grid	
+scripts/saveindex.lua(333,1) ClearCurrentResurrectors CB	
+scripts/components/resurrector.lua(76,1) Registering resurrector	100061 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100061 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/saveindex.lua(358,1) DeregisterResurrector	
+scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/saveindex.lua(216,1) LoadSavedSeasonData CB	
+scripts/widgets/bloodover.lua(30,1) update state	
+scripts/widgets/bloodover.lua(50,1) turn off	
+Could not find anim build naughty
+Could not find anim bank [naughty]
+Could not find anim build temperature
+Could not find anim bank [temperature]
+scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
+	
+Reset() returning
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100061 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100061 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100061 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100062 - resurrectionstone	used:false	active:false	
+scripts/saveindex.lua(358,1) DeregisterResurrector	
+scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
+scripts/mainfunctions.lua(582,1) Saved	survival_3	
+Collecting garbage...
+lua_gc took 0.07 seconds
+~SimLuaProxy()
+lua_close took 0.09 seconds
+ReleaseAll
+ReleaseAll Finished
+cGame::StartPlaying
+LOADING LUA
+DoLuaFile scripts/main.lua
+DoLuaFile loading buffer scripts/main.lua
+scripts/translator.lua(31,1) Translator:LoadPOFile - loading file: scripts/languages/chinese.po	
+scripts/main.lua(161,1) running main.lua
+	
+scripts/modindex.lua(302,1) loaded modindex	
+scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
+	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
+scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
+scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
+scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
+scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
+scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
+LOADING LUA SUCCESS
+scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	838	
+scripts/playerprofile.lua(434,1) loaded profile	
+scripts/playerprofile.lua(504,1) bloom_enabled	true	
+scripts/saveindex.lua(97,1) loaded saveindex	
+scripts/gamelogic.lua(1163,1) OnFilesLoaded()	
+scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete	
+scripts/gamelogic.lua(109,1) 	Unload BE	
+scripts/gamelogic.lua(112,1) 	Unload BE done	
+scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
+scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
+scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
+scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
+scripts/gamelogic.lua(124,1) 	Load FE	
+scripts/gamelogic.lua(128,1) 	Load FE: done	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0DCFA908	
+SimLuaProxy::QueryServer()
+scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
+	
+Reset() returning
+HttpClientWriteCallback (0x0080B681, 1, 1007, 0x0391FD24)
+HttpClientWriteCallback READ 1007 (1007 total)
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0DCEBCA0	
 Could not unload undefined prefab 0xe5bb0a (firework_fx)
 Could not unload undefined prefab 0x97380db1 (multifirework_fx)
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
-Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
+scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
+Collecting garbage...
+lua_gc took 0.01 seconds
+~SimLuaProxy()
+lua_close took 0.02 seconds
+Could not unload undefined prefab 0xe5bb0a (firework_fx)
+Could not unload undefined prefab 0x97380db1 (multifirework_fx)
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
