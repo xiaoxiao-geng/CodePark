@@ -1,7 +1,7 @@
 Starting up
 Don't Starve: 102572 WIN32
 Build Date: 2014-05-24_15-31-36
-THREAD - started 'GAClient' (8616)
+THREAD - started 'GAClient' (6896)
 HttpClient::ClientThread::Main()
 cGame::InitializeOnMainThread
 WindowManager::Initialize
@@ -12,6 +12,7 @@ GL_VENDOR: Google Inc.
 GL_RENDERER: ANGLE (Intel(R) HD Graphics)
 GL_VERSION: OpenGL ES 2.0 (ANGLE 1.0.0.2249)
 GL_SHADING_LANGUAGE_VERSION: OpenGL ES GLSL ES 1.00 (ANGLE 1.0.0.2249)
+THREAD - started 'WindowsInputManager' (8576)
 OpenGL extensions (19, 19):
 GL_ANGLE_depth_texture
 GL_ANGLE_framebuffer_blit
@@ -46,7 +47,6 @@ texture format 0x83f0
 texture format 0x83f1
 texture format 0x83f2
 texture format 0x83f3
-THREAD - started 'WindowsInputManager' (8644)
 cDontStarveGame::DoGameSpecificInitialize()
 cGame::StartPlaying
 LOADING LUA
@@ -263,14 +263,16 @@ scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registerin
 scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(124,1) 	Load FE	
 scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0CA41270	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0C18E0A8	
 SimLuaProxy::QueryServer()
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-HttpClientWriteCallback (0x0201155C, 1, 1007, 0x037FF6A8)
+HttpClientWriteCallback (0x0045155C, 1, 1007, 0x0338FAA0)
 HttpClientWriteCallback READ 1007 (1007 total)
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0CA3EF48	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 0C18B150	
+CURRENT: 1920, 1080, 60
+CURRENT: 1920, 1080, 60
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 Collecting garbage...
@@ -316,14 +318,15 @@ scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Register
 scripts/gamelogic.lua(156,1) 	LOAD BE	
 scripts/gamelogic.lua(164,1) 	LOAD BE : done	
 MiniMapComponent::AddAtlas( minimap/minimap_data.xml )
-scripts/components/seasonmanager.lua(1585,1) AUTUMN TIME	
+scripts/components/seasonmanager.lua(1528,1) SPRING TIME	
 scripts/gamelogic.lua(486,1) Loading Nav Grid	
 scripts/saveindex.lua(333,1) ClearCurrentResurrectors CB	
-scripts/components/resurrector.lua(76,1) Registering resurrector	100267 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100267 - resurrectionstone	
+scripts/components/resurrector.lua(76,1) Registering resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/entityscript.lua(280,1) component propagator already exists!	
 scripts/saveindex.lua(216,1) LoadSavedSeasonData CB	
 scripts/widgets/bloodover.lua(30,1) update state	
 scripts/widgets/bloodover.lua(50,1) turn off	
@@ -334,131 +337,87 @@ Could not find anim bank [temperature]
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100267 - resurrectionstone	used:false	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100267 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100267 - resurrectionstone	
+CURRENT: 1920, 1080, 60
+CURRENT: 1920, 1080, 60
+CURRENT: 1920, 1080, 60
+CURRENT: 1920, 1080, 60
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100042 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100268 - resurrectionstone	used:false	active:false	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100043 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
 scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
-scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
-scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
+scripts/mainfunctions.lua(556,1) Can't find	114549	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
-Collecting garbage...
-lua_gc took 0.07 seconds
-~SimLuaProxy()
-lua_close took 0.10 seconds
-ReleaseAll
-ReleaseAll Finished
-cGame::StartPlaying
-LOADING LUA
-DoLuaFile scripts/main.lua
-DoLuaFile loading buffer scripts/main.lua
-scripts/translator.lua(31,1) Translator:LoadPOFile - loading file: scripts/languages/chinese.po	
-scripts/main.lua(161,1) running main.lua
-	
-scripts/modindex.lua(302,1) loaded modindex	
-scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
-	
-scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
-scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
-scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
-scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
-scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
-scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
-scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
-scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
-scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
-scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
-LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	1079	
-scripts/playerprofile.lua(434,1) loaded profile	
-scripts/playerprofile.lua(504,1) bloom_enabled	true	
-scripts/saveindex.lua(97,1) loaded saveindex	
-scripts/gamelogic.lua(1163,1) OnFilesLoaded()	
-scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete	
-scripts/gamelogic.lua(109,1) 	Unload BE	
-scripts/gamelogic.lua(112,1) 	Unload BE done	
-scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
-scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
-scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
-scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
-scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
-scripts/gamelogic.lua(124,1) 	Load FE	
-scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 19C94AC0	
-SimLuaProxy::QueryServer()
-scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
-	
-Reset() returning
-HttpClientWriteCallback (0x0201155C, 1, 1007, 0x037FF6A8)
-HttpClientWriteCallback READ 1007 (1007 total)
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 19C8D3B0	
-scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
-scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
-Collecting garbage...
-lua_gc took 0.01 seconds
-~SimLuaProxy()
-lua_close took 0.02 seconds
-ReleaseAll
-ReleaseAll Finished
-cGame::StartPlaying
-LOADING LUA
-DoLuaFile scripts/main.lua
-DoLuaFile loading buffer scripts/main.lua
-scripts/translator.lua(31,1) Translator:LoadPOFile - loading file: scripts/languages/chinese.po	
-scripts/main.lua(161,1) running main.lua
-	
-scripts/modindex.lua(302,1) loaded modindex	
-scripts/modindex.lua(75,1) ModIndex: Beginning normal load sequence.
-	
-scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_DisplayFoodValues	
-scripts/mods.lua(147,1) Loading mod: DisplayFoodValues (Display Food Values) (Old API! (mod: 4 game: 6) )	
-scripts/modindex.lua(367,1) Could not load mod_config_data/modconfiguration_ds23alwaysonstatus7_5	
-scripts/mods.lua(147,1) Loading mod: ds23alwaysonstatus7_5 (Always On Status) (Old API! (mod: 4 game: 6) )	
-scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modworldgenmain.lua	
-scripts/mods.lua(182,1) Mod: DisplayFoodValues (Display Food Values)	  Mod had no modworldgenmain.lua. Skipping.	
-scripts/mods.lua(174,1) Mod: DisplayFoodValues (Display Food Values)	Loading modmain.lua	
-scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modworldgenmain.lua	
-scripts/mods.lua(182,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Mod had no modworldgenmain.lua. Skipping.	
-scripts/mods.lua(174,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Loading modmain.lua	
-LOADING LUA SUCCESS
-scripts/playerdeaths.lua(79,1) PlayerDeaths loaded morgue	1079	
-scripts/playerprofile.lua(434,1) loaded profile	
-scripts/playerprofile.lua(504,1) bloom_enabled	true	
-scripts/saveindex.lua(97,1) loaded saveindex	
-scripts/gamelogic.lua(1163,1) OnFilesLoaded()	
-scripts/gamelogic.lua(1152,1) OnUpdatePurchaseStateComplete	
-scripts/gamelogic.lua(140,1) 	Unload FE	
-scripts/gamelogic.lua(142,1) 	Unload FE done	
-scripts/dlcsupport.lua(24,1) Load scripts/DLC001_prefab_files	
-scripts/mods.lua(264,1) Mod: DisplayFoodValues (Display Food Values)	Registering prefabs	
-scripts/mods.lua(287,1) Mod: DisplayFoodValues (Display Food Values)	  Registering default mod prefab	
-scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registering prefabs	
-scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
-scripts/gamelogic.lua(156,1) 	LOAD BE	
-scripts/gamelogic.lua(164,1) 	LOAD BE : done	
-MiniMapComponent::AddAtlas( minimap/minimap_data.xml )
-scripts/components/seasonmanager.lua(1585,1) AUTUMN TIME	
-scripts/gamelogic.lua(486,1) Loading Nav Grid	
-scripts/saveindex.lua(333,1) ClearCurrentResurrectors CB	
-scripts/components/resurrector.lua(76,1) Registering resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
+scripts/prefabs/wolfgang.lua(89,1) mighty!	667.23336813226	stack traceback:
+	D:/games/DontStarveReignOfGiants/data/scripts/prefabs/wolfgang.lua:89 in (local) fn (Lua) <55-111>
+	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:690 in (method) PushEvent (Lua) <684-707>
+	D:/games/DontStarveReignOfGiants/data/scripts/components/hunger.lua:82 in (method) DoDelta (Lua) <63-92>
+	D:/games/DontStarveReignOfGiants/data/scripts/components/eater.lua:119 in () ? (Lua) <109-147>
+	=(tail call):-1 in ()  (tail) <-1--1>
+	D:/games/DontStarveReignOfGiants/data/scripts/bufferedaction.lua:19 in (method) Do (Lua) <16-32>
+	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:942 in (method) PerformBufferedAction (Lua) <932-955>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraphs/SGwilson.lua:1471 in (field) fn (Lua) <1470-1473>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:476 in (method) UpdateState (Lua) <444-488>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:515 in (method) Update (Lua) <507-535>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:111 in (method) Update (Lua) <95-134>
+	D:/games/DontStarveReignOfGiants/data/scripts/update.lua:127 in () ? (Lua) <73-140>	
+scripts/prefabs/pinecone.lua(25,1) PLANT	262.73689992981	
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+scripts/prefabs/acorn.lua(34,1) PLANT	256.21814630573	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100042 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100043 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
-scripts/saveindex.lua(216,1) LoadSavedSeasonData CB	
-scripts/widgets/bloodover.lua(30,1) update state	
-scripts/widgets/bloodover.lua(50,1) turn off	
-Could not find anim build naughty
-Could not find anim bank [naughty]
-Could not find anim build temperature
-Could not find anim bank [temperature]
-scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
-	
-Reset() returning
-scripts/prefabs/wolfgang.lua(89,1) mighty!	110.93333911896	stack traceback:
+scripts/mainfunctions.lua(556,1) Can't find	101995	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mainfunctions.lua(556,1) Can't find	114549	
+scripts/mainfunctions.lua(582,1) Saved	survival_3	
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+scripts/stategraphs/SGcatcoon.lua(195,1) 2	0.4	0.62370677816095	
+scripts/stategraphs/SGcatcoon.lua(195,1) 3	0.26666666666667	0.64671773430586	
+scripts/stategraphs/SGcatcoon.lua(195,1) 4	0.2	0.84752952665792	
+scripts/stategraphs/SGcatcoon.lua(195,1) 5	0.16	0.98706015198218	
+scripts/stategraphs/SGcatcoon.lua(195,1) 6	0.13333333333333	0.98916592913602	
+scripts/stategraphs/SGcatcoon.lua(195,1) 7	0.11428571428571	0.86376537369915	
+scripts/stategraphs/SGcatcoon.lua(195,1) 8	0.1	0.97555467390973	
+scripts/stategraphs/SGcatcoon.lua(195,1) 9	0.088888888888889	0.5455793939024	
+scripts/prefabs/pinecone.lua(8,1) GROWTREE	
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+scripts/prefabs/acorn.lua(14,1) GROWTREE	
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:710
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/components/combat.lua:653
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/stategraphs/SGeyeplant.lua:81
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:710
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/components/combat.lua:653
+Stale Component Reference: GUID 100054, @D:/games/DontStarveReignOfGiants/data/scripts/stategraphs/SGeyeplant.lua:81
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+scripts/prefabs/birdcage.lua(86,1) EAT!	
+scripts/prefabs/birdcage.lua(86,1) EAT!	
+scripts/prefabs/birdcage.lua(86,1) EAT!	
+scripts/prefabs/birdcage.lua(86,1) EAT!	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100042 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(347,1) RegisterResurrector CB	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100043 - resurrectionstone	used:false	active:false	
+scripts/saveindex.lua(358,1) DeregisterResurrector	
+scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
+scripts/mainfunctions.lua(556,1) Can't find	114549	
+scripts/mainfunctions.lua(556,1) Can't find	101995	
+scripts/mainfunctions.lua(556,1) Can't find	139512	
+scripts/mainfunctions.lua(582,1) Saved	survival_3	
+scripts/components/hunter.lua(162,1) Suspicious dirt placed	
+Stale Component Reference: GUID 150798, @D:/games/DontStarveReignOfGiants/data/scripts/widgets/text.lua:55
+scripts/components/seasonmanager.lua(457,1) 6	1	
+scripts/prefabs/wolfgang.lua(89,1) mighty!	1949.8334350251	stack traceback:
 	D:/games/DontStarveReignOfGiants/data/scripts/prefabs/wolfgang.lua:89 in (local) fn (Lua) <55-111>
 	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:690 in (method) PushEvent (Lua) <684-707>
 	D:/games/DontStarveReignOfGiants/data/scripts/components/hunger.lua:82 in (method) DoDelta (Lua) <63-92>
@@ -471,46 +430,49 @@ scripts/prefabs/wolfgang.lua(89,1) mighty!	110.93333911896	stack traceback:
 	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:515 in (method) Update (Lua) <507-535>
 	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:111 in (method) Update (Lua) <95-134>
 	D:/games/DontStarveReignOfGiants/data/scripts/update.lua:127 in () ? (Lua) <73-140>	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/entityscript.lua(280,1) component propagator already exists!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/prefabs/birdcage.lua(86,1) EAT!	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100047 - resurrectionstone	used:false	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100042 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100048 - resurrectionstone	used:false	active:false	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100043 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/mainfunctions.lua(556,1) Can't find	114549	
 scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
-scripts/mainfunctions.lua(556,1) Can't find	109361	
-scripts/mainfunctions.lua(556,1) Can't find	109362	
-scripts/mainfunctions.lua(556,1) Can't find	109363	
-scripts/mainfunctions.lua(556,1) Can't find	109365	
+scripts/mainfunctions.lua(556,1) Can't find	101995	
+scripts/mainfunctions.lua(556,1) Can't find	139512	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100047 - resurrectionstone	used:false	active:true	
-scripts/components/resurrector.lua(44,1) Saving resurrector	100047 - resurrectionstone	
-scripts/saveindex.lua(342,1) RegisterResurrector	100047 - resurrectionstone	
+scripts/prefabs/wolfgang.lua(89,1) mighty!	2341.8334554695	stack traceback:
+	D:/games/DontStarveReignOfGiants/data/scripts/prefabs/wolfgang.lua:89 in (local) fn (Lua) <55-111>
+	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:690 in (method) PushEvent (Lua) <684-707>
+	D:/games/DontStarveReignOfGiants/data/scripts/components/hunger.lua:82 in (method) DoDelta (Lua) <63-92>
+	D:/games/DontStarveReignOfGiants/data/scripts/components/eater.lua:119 in () ? (Lua) <109-147>
+	=(tail call):-1 in ()  (tail) <-1--1>
+	D:/games/DontStarveReignOfGiants/data/scripts/bufferedaction.lua:19 in (method) Do (Lua) <16-32>
+	D:/games/DontStarveReignOfGiants/data/scripts/entityscript.lua:942 in (method) PerformBufferedAction (Lua) <932-955>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraphs/SGwilson.lua:1432 in (field) fn (Lua) <1431-1433>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:476 in (method) UpdateState (Lua) <444-488>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:515 in (method) Update (Lua) <507-535>
+	D:/games/DontStarveReignOfGiants/data/scripts/stategraph.lua:111 in (method) Update (Lua) <95-134>
+	D:/games/DontStarveReignOfGiants/data/scripts/update.lua:127 in () ? (Lua) <73-140>	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100042 - resurrectionstone	used:false	active:true	
+scripts/components/resurrector.lua(44,1) Saving resurrector	100042 - resurrectionstone	
+scripts/saveindex.lua(342,1) RegisterResurrector	100042 - resurrectionstone	
 scripts/saveindex.lua(347,1) RegisterResurrector CB	
-scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100048 - resurrectionstone	used:false	active:false	
+scripts/components/resurrector.lua(42,1) Resurrector:OnSave	100043 - resurrectionstone	used:false	active:false	
 scripts/saveindex.lua(358,1) DeregisterResurrector	
 scripts/saveindex.lua(374,1) DeregisterResurrector	
+scripts/mainfunctions.lua(556,1) Can't find	114549	
 scripts/mainfunctions.lua(556,1) Can't find	100016	100016 - wolfgang	
-scripts/mainfunctions.lua(556,1) Can't find	109361	
-scripts/mainfunctions.lua(556,1) Can't find	109362	
-scripts/mainfunctions.lua(556,1) Can't find	109363	
-scripts/mainfunctions.lua(556,1) Can't find	109365	
+scripts/mainfunctions.lua(556,1) Can't find	101995	
+scripts/mainfunctions.lua(556,1) Can't find	139512	
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
 scripts/mainfunctions.lua(582,1) Saved	survival_3	
 Collecting garbage...
-lua_gc took 0.09 seconds
+lua_gc took 0.11 seconds
 ~SimLuaProxy()
-lua_close took 0.10 seconds
+lua_close took 0.12 seconds
 ReleaseAll
 ReleaseAll Finished
 cGame::StartPlaying
@@ -549,24 +511,143 @@ scripts/mods.lua(264,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	Registerin
 scripts/mods.lua(287,1) Mod: ds23alwaysonstatus7_5 (Always On Status)	  Registering default mod prefab	
 scripts/gamelogic.lua(124,1) 	Load FE	
 scripts/gamelogic.lua(128,1) 	Load FE: done	
-scripts/screens/mainscreen.lua(525,1) platform_motd	table: 2854A1E8	
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 2F27F918	
 SimLuaProxy::QueryServer()
 scripts/modindex.lua(85,1) ModIndex: Load sequence finished successfully.
 	
 Reset() returning
+HttpClientWriteCallback (0x0045155C, 1, 1007, 0x0338FAA0)
+HttpClientWriteCallback READ 1007 (1007 total)
+scripts/screens/mainscreen.lua(525,1) platform_motd	table: 2F27E158	
 Could not unload undefined prefab 0xe5bb0a (firework_fx)
 Could not unload undefined prefab 0x97380db1 (multifirework_fx)
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_DisplayFoodValues	
 scripts/mods.lua(299,1) unloading prefabs for mod MOD_ds23alwaysonstatus7_5	
-HttpClientWriteCallback (0x0201155C, 1, 1007, 0x037FF6A8)
-HttpClientWriteCallback READ 1007 (1007 total)
 Collecting garbage...
 lua_gc took 0.02 seconds
 ~SimLuaProxy()
-Cancelling LuaQueryCallback handle [3]
-lua_close took 0.02 seconds
+lua_close took 0.03 seconds
 Could not unload undefined prefab 0xe5bb0a (firework_fx)
 Could not unload undefined prefab 0x97380db1 (multifirework_fx)
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
+Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
 Orphaned unnamed resource. This resource must have used Add( resource ) to insert itself into the manager. 
