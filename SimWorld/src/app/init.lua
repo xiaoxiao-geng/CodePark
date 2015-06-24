@@ -19,7 +19,7 @@ cc.exports.ul = {}
 ul.Tools        = import(".cocosExt.Tools")
 import(".cocosExt.stringExt")
 
--- import(".consts")
+import(".const")
 ul.FSMObject		= import(".cocosExt.FSMObject")
 ul.FSMRoot			= import(".cocosExt.FSMRoot")
 ul.SpriteDrawNode	= import(".cocosExt.SpriteDrawNode")
@@ -36,3 +36,6 @@ ul.Terrain			= import(".model.Terrain")
 ul.World			= import(".model.World")
 ul.SystemBase		= import(".model.SystemBase")
 ul.WaterSystem		= import(".model.WaterSystem")
+
+ul.CellRender		= import(".view.render.CellRender")
+ul.TerrainRender	= import(".view.render.TerrainRender")

@@ -4,6 +4,10 @@ function MainScene:onCreate()
 	local world = ul.World:create()
 	self.world = world
 
+	local terrainRender = ul.TerrainRender:create(world.terrain)
+		:addTo(self)
+		:move(100, 100)
+
 	dump(world)
 
 	ul.Tools.createDebugMenu({

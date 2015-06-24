@@ -20,15 +20,14 @@ function sTerrainCell:ctor()
 
 	-- 云层
 	self.cloudWaterMass = 0
-	self.cloudHeight = 1
+	self.cloudHeight = 4
 
 	-- 空气层
 	self.airWaterMass = 0
-	self.airHeight = 100
+	self.airHeight = 1000
 
 	-- 水
-	self.waterMass = 0
-	self.waterHeight = 0 	-- PS 这个值通过waterMass计算所得
+	self.pondWaterMass = 0
 
 	-- 地面
 	self.groundWaterMass = 0
