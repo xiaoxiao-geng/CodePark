@@ -1,18 +1,30 @@
 local MainScene = class("MainScene", mvc.ViewBase)
 
 function MainScene:onCreate()
-    cc.Label:createWithSystemFont("hello world", nil, 24)
-        :addTo(self)
-        :move(display.width / 2, display.height / 2)
-        :enableShadow()
+	local world = ul.World:create()
+	self.world = world
+
+	dump(world)
+
+	ul.Tools.createDebugMenu({
+			{
+				"update",
+				function()
+					print("update", 0.1)
+					self.world:update(0.1)
+				end,		
+			},
+		})
+		:addTo(self)
+		:move(100, display.height - 100)
 end
 
 function MainScene:onEnter()
-    print("MainScene.onEnter")
+	print("MainScene.onEnter")
 end
 
 function MainScene:onExit()
-    print("MainScene.onExit")
+	print("MainScene.onExit")
 end
 
 return MainScene
