@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CA8CF782-0B13-4EEF-801B-9EFF9CE77770</string>
+	<key>IDESourceControlProjectName</key>
+	<string>balala</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DDD7C653F77E6DCBD67473E42DD3D92882799BF2</key>
+		<string>192.168.1.250:/ude4/prj.balala</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>client/frameworks/runtime-src/proj.ios_mac/balala.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DDD7C653F77E6DCBD67473E42DD3D92882799BF2</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>192.168.1.250:/ude4/prj.balala</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DDD7C653F77E6DCBD67473E42DD3D92882799BF2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DDD7C653F77E6DCBD67473E42DD3D92882799BF2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>prj.balala</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,14 @@
+{
+"types":
+["I","S","S","I"],
+"fields":
+["id","name","qTexture","qHeadOffset"],
+"values":
+[
+["1","美琪","ui/common/npc/npc_q_01.png","94"],
+["2","美雪","ui/common/npc/npc_q_02.png","101"],
+["3","小蓝","ui/common/npc/npc_q_03.png","122"],
+["4","雅雅","ui/common/npc/npc_q_04.png","112"],
+["5","游乐","ui/common/npc/npc_q_05.png","150"]
+]
+}

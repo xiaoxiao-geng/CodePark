@@ -1,0 +1,1 @@
+start runtime\win32_release\balala.exe -workdir %CD%

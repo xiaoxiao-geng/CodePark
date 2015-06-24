@@ -1,0 +1,10 @@
+{
+"types":
+["I","I","I"],
+"fields":
+["index","use_index","varnish_index"],
+"values":
+[
+["1","1","10701"]
+]
+}

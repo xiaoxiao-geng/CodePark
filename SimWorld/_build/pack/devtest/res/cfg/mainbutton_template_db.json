@@ -1,0 +1,12 @@
+{
+"types":
+["I","I","S"],
+"fields":
+["id","module_id","res"],
+"values":
+[
+["1","2","ui/common/main/manicure.png"],
+["2","3","ui/common/main/cosmetic.png"],
+["3","4","ui/common/main/cook.png"]
+]
+}

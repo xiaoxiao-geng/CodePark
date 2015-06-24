@@ -1,0 +1,11 @@
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+.DS_Store
+xcuserdata/
+upgrade_bak/
+bin/
+gen/
+obj/
+assets/

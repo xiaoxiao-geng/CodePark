@@ -1,0 +1,13 @@
+{
+"types":
+["I","S","S","S"],
+"fields":
+["id","textureInDesk","textureInDrop","textureInMake"],
+"values":
+[
+["5001","ui/cook/hamburger/sauce01_in_desk.png","ui/cook/hamburger/sauce01_in_drop.png","ui/cook/hamburger/sauce01_in_make.png"],
+["5002","ui/cook/hamburger/sauce02_in_desk.png","ui/cook/hamburger/sauce02_in_drop.png","ui/cook/hamburger/sauce02_in_make.png"],
+["5003","ui/cook/hamburger/sauce03_in_desk.png","ui/cook/hamburger/sauce03_in_drop.png","ui/cook/hamburger/sauce03_in_make.png"],
+["5004","ui/cook/hamburger/sauce04_in_desk.png","ui/cook/hamburger/sauce04_in_drop.png","ui/cook/hamburger/sauce04_in_make.png"]
+]
+}

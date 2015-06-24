@@ -1,0 +1,11 @@
+{
+"types":
+["S","S","S","S","B"],
+"fields":
+["name","filename","armatureName","movName","bAdding"],
+"values":
+[
+["cicle_01","armature/dianji01/dianji01.ExportJson","dianji01","Animation1","TRUE"],
+["nail","armature/shouzhi/shouzhi.ExportJson","shouzhi","shouzhi","TRUE"]
+]
+}

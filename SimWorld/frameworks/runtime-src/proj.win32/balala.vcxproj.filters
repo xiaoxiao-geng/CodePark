@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{fc5cb953-2953-4968-83b3-39e3ff951754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{037a9a02-b906-4cc5-ad98-304acd4e25ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{2d1d0979-58cd-4ab6-b91c-13650158f1fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cjson">
+      <UniqueIdentifier>{d60af68f-f2ec-42b5-9c8b-fe0cf19438b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lpack">
+      <UniqueIdentifier>{48a56bc1-83bb-4a89-a6c1-1a7d29b0a57b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra">
+      <UniqueIdentifier>{610e29a7-5a19-477d-9c01-0e4279747d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\luabinding">
+      <UniqueIdentifier>{e9a7bab2-1de1-43cc-94d0-c8b47774f008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\crypto">
+      <UniqueIdentifier>{66628669-faa0-4a5c-bfa3-eeed37535f59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\crypto\md5">
+      <UniqueIdentifier>{d3d04ea5-fefa-4d00-bc63-e0caf0ae8849}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SimulatorWin.h" />
+    <ClInclude Include="stdafx.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cjson\fpconv.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cjson\lua_cjson.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\cjson\strbuf.h">
+      <Filter>cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lua_extensions_more.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lpack\lpack.h">
+      <Filter>lpack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\lua_assetsmanager_test_sample.h">
+      <Filter>Classes</Filter>
+    <ClInclude Include="..\Classes\extra\cocos2dx_extra.h">
+      <Filter>extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\extra\luabinding\cocos2dx_extra_luabinding.h">
+      <Filter>extra\luabinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\extra\crypto\CCCrypto.h">
+      <Filter>extra\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\extra\crypto\md5\md5.h">
+      <Filter>extra\crypto\md5</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulatorWin.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cjson\fpconv.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cjson\lua_cjson.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\cjson\strbuf.c">
+      <Filter>cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lua_extensions_more.c">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lpack\lpack.c">
+      <Filter>lpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\lua_assetsmanager_test_sample.cpp">
+      <Filter>Classes</Filter>
+    <ClCompile Include="..\Classes\extra\luabinding\cocos2dx_extra_luabinding.cpp">
+      <Filter>extra\luabinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\extra\crypto\CCCrypto.cpp">
+      <Filter>extra\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\extra\crypto\md5\md5.c">
+      <Filter>extra\crypto\md5</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\game.ico" />
+  </ItemGroup>
+</Project>

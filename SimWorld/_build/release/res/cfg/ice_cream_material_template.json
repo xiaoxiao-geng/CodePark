@@ -1,0 +1,36 @@
+{
+"types":
+["I","S","I","I","I","I","T","T","S","S","S","I"],
+"fields":
+["id","name","maxCream","type","unlockItemId","unlockShopId","cursorOffset","activeOffset","texture1","texture2","textureInDesk","score"],
+"values":
+[
+["1001","杯子","3","1","","121001","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cup_01_top.png","ui/cook/icecream/cup_01_bottom.png","ui/cook/icecream/icon_cup1.png","50"],
+["1002","蛋卷","3","1","","121002","{x = 0, y = 100}","{x = 0, y = 100}","","ui/cook/icecream/cup_02_bottom.png","ui/cook/icecream/icon_cup2.png","60"],
+["1003","玻璃杯","3","1","121003","121003","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cup_03_top.png","ui/cook/icecream/cup_03_bottom.png","ui/cook/icecream/icon_cup3.png","70"],
+["1004","水晶杯","3","1","121004","121004","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cup_04_top.png","ui/cook/icecream/cup_04_bottom.png","ui/cook/icecream/icon_cup4.png","80"],
+["1005","土豪金","3","1","121005","121005","{x = 0, y = 100}","{x = 0, y = 100}","","ui/cook/icecream/cup_05_bottom.png","ui/cook/icecream/icon_cup5.png","90"],
+["2001","巧克力","","2","122001","122001","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_01_top.png","ui/cook/icecream/cream_01_bottom.png","ui/cook/icecream/icon_cream_01.png","15"],
+["2002","草莓","","2","","122002","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_02_top.png","ui/cook/icecream/cream_02_bottom.png","ui/cook/icecream/icon_cream_02.png","10"],
+["2003","柠檬","","2","","122003","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_03_top.png","ui/cook/icecream/cream_03_bottom.png","ui/cook/icecream/icon_cream_03.png","12"],
+["2004","冰果","","2","122004","122004","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_04_top.png","ui/cook/icecream/cream_04_bottom.png","ui/cook/icecream/icon_cream_04.png","20"],
+["2005","奶油","","2","122005","122005","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_05_top.png","ui/cook/icecream/cream_05_bottom.png","ui/cook/icecream/icon_cream_05.png","25"],
+["2006","抹茶","","2","122006","122006","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_06_top.png","ui/cook/icecream/cream_06_bottom.png","ui/cook/icecream/icon_cream_06.png","35"],
+["2007","薄荷","","2","122007","122007","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/cream_07_top.png","ui/cook/icecream/cream_07_bottom.png","ui/cook/icecream/icon_cream_07.png","30"],
+["3001","水果","","3","","123001","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_01.png","ui/cook/icecream/sauce_01.png","ui/cook/icecream/sauce_01.png","30"],
+["3002","坚果","","3","123002","123002","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_02.png","ui/cook/icecream/sauce_02.png","ui/cook/icecream/sauce_02.png","44"],
+["3003","巧克力酱","","3","","123003","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_03_cup1.png","ui/cook/icecream/sauce_03_cup2.png","ui/cook/icecream/sauce_03_in_desk.png","32"],
+["3004","糖果","","3","123004","123004","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_04.png","ui/cook/icecream/sauce_04.png","ui/cook/icecream/sauce_04.png","50"],
+["3005","草莓酱","","3","","123005","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_05_cup1.png","ui/cook/icecream/sauce_05_cup2.png","ui/cook/icecream/sauce_05_in_desk.png","32"],
+["3006","柠檬","","3","123006","123006","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_06.png","ui/cook/icecream/sauce_06.png","ui/cook/icecream/sauce_06.png","48"],
+["3007","樱桃","","3","","123007","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_07.png","ui/cook/icecream/sauce_07.png","ui/cook/icecream/sauce_07.png","42"],
+["3008","黑白巧克力","","3","","123008","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_08.png","ui/cook/icecream/sauce_08.png","ui/cook/icecream/sauce_08.png","40"],
+["3009","奥利奥","","3","","123009","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_09.png","ui/cook/icecream/sauce_09.png","ui/cook/icecream/sauce_09.png","32"],
+["3010","巧克力威化","","3","123010","123010","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_10.png","ui/cook/icecream/sauce_10.png","ui/cook/icecream/sauce_10.png","56"],
+["3011","奶油","","3","","123011","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_11.png","ui/cook/icecream/sauce_11.png","ui/cook/icecream/sauce_11.png","32"],
+["3012","马卡龙","","3","123012","123012","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_12.png","ui/cook/icecream/sauce_12.png","ui/cook/icecream/sauce_12.png","46"],
+["3013","姜饼人","","3","123013","123013","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_13.png","ui/cook/icecream/sauce_13.png","ui/cook/icecream/sauce_13.png","54"],
+["3014","巧克力草莓","","3","123014","123014","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_14.png","ui/cook/icecream/sauce_14.png","ui/cook/icecream/sauce_14.png","58"],
+["3015","蜡烛","","3","123015","123015","{x = 0, y = 100}","{x = 0, y = 100}","ui/cook/icecream/sauce_15.png","ui/cook/icecream/sauce_15.png","ui/cook/icecream/sauce_15.png","52"]
+]
+}

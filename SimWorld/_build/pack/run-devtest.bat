@@ -1,0 +1,1 @@
+start ..\..\runtime\win32\balala.exe -workdir %CD%\devtest

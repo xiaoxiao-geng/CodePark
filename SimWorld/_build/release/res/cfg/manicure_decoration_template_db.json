@@ -1,0 +1,28 @@
+{
+"types":
+["I","I","S","I","I","S","I","T"],
+"fields":
+["index","use_index","texture","unlockItemId","unlockShopId","sub_menu_icon","sub_menu_icon_scale","sub_menu_icon_anchor"],
+"values":
+[
+["11100","0","ui/common/cancel.png","","","ui/common/cancel.png","1","{ 0.5,0.3 }"],
+["11101","1","ui/nail/hand/decoration/1.png","13401","13401","ui/nail/hand/decoration/1.png","1","{ 0.5,0.3 }"],
+["11102","2","ui/nail/hand/decoration/2.png","13402","13402","ui/nail/hand/decoration/2.png","1","{ 0.5,0.3 }"],
+["11103","3","ui/nail/hand/decoration/3.png","13403","13403","ui/nail/hand/decoration/3.png","1","{ 0.5,0.3 }"],
+["11104","4","ui/nail/hand/decoration/4.png","13404","13404","ui/nail/hand/decoration/4.png","1","{ 0.5,0.3 }"],
+["11105","5","ui/nail/hand/decoration/5.png","13405","13405","ui/nail/hand/decoration/5.png","1","{ 0.5,0.3 }"],
+["11106","6","ui/nail/hand/decoration/6.png","13406","13406","ui/nail/hand/decoration/6.png","1","{ 0.5,0.3 }"],
+["11107","7","ui/nail/hand/decoration/7.png","13407","13407","ui/nail/hand/decoration/7.png","1","{ 0.5,0.3 }"],
+["11108","8","ui/nail/hand/decoration/8.png","13408","13408","ui/nail/hand/decoration/8.png","1","{ 0.5,0.3 }"],
+["11109","9","ui/nail/hand/decoration/9.png","13409","13409","ui/nail/hand/decoration/9.png","1","{ 0.5,0.3 }"],
+["11110","10","ui/nail/hand/decoration/10.png","13410","13410","ui/nail/hand/decoration/10.png","1","{ 0.5,0.3 }"],
+["11111","11","ui/nail/hand/decoration/11.png","13411","13411","ui/nail/hand/decoration/11.png","1","{ 0.5,0.3 }"],
+["11112","12","ui/nail/hand/decoration/12.png","13412","13412","ui/nail/hand/decoration/12.png","1","{ 0.5,0.3 }"],
+["11113","13","ui/nail/hand/decoration/13.png","13413","13413","ui/nail/hand/decoration/13.png","1","{ 0.5,0.3 }"],
+["11114","14","ui/nail/hand/decoration/14.png","13414","13414","ui/nail/hand/decoration/14.png","1","{ 0.5,0.3 }"],
+["11115","15","ui/nail/hand/decoration/15.png","13415","13415","ui/nail/hand/decoration/15.png","1","{ 0.5,0.3 }"],
+["11116","16","ui/nail/hand/decoration/16.png","13416","13416","ui/nail/hand/decoration/16.png","1","{ 0.5,0.3 }"],
+["11117","17","ui/nail/hand/decoration/17.png","13417","13417","ui/nail/icon/decoration/17.png","0.44","{ 0.5,0.5 }"],
+["11200","200","ui/nail/hand/decoration/1.png","","13500","ui/nail/hand/decoration/1.png","",""]
+]
+}
